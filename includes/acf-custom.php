@@ -18,15 +18,16 @@ function my_acf_admin_head()
 ?>
 	<style type="text/css">
 		h2.hndle.ui-sortable-handle {
-			background: #cfa144;
-			color: #fff !important;
+			background: #B1DF1D;
+			color: #262624 !important;
 			-webkit-transition: all 0.25s;
 			-o-transition: all 0.25s;
 			transition: all 0.25s;
 		}
 
 		.acf-field.acf-accordion .acf-label.acf-accordion-title {
-			background: #EBE9F5;
+			background: #B1DF1D;
+			color: #262624;
 			transition: all 0.25s;
 		}
 

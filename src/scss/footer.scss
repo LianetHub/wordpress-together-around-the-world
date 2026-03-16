@@ -151,13 +151,6 @@
 			column-gap: 3rem;
 		}
 
-		@media (min-width: $md0) {
-			column-gap: 5rem;
-			// columns: 6;
-
-			grid-template-columns: repeat(6, 1fr);
-		}
-
 		&._init {
 			.footer__arrow-button {
 				display: flex;
@@ -190,19 +183,7 @@
 			}
 		}
 
-		&.menu-item-object-portfolio {
-			@media (min-width: $md4) {
-				// break-inside: avoid;
-			}
 
-			@media (min-width: $md1) {
-				// min-height: 17rem;
-			}
-
-			@media (min-width: $md0) {
-				// min-height: rem(240);
-			}
-		}
 
 		&.has-child {
 			.footer__menu-link {
