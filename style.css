@@ -1,7 +1,7 @@
 /*
 Theme Name: Together-Around-The-World-Theme
 
-Theme URI: http://underscores.me/
+Theme URI: https://github.com/LianetHub/wordpress-together-around-the-world
 
 Author: liana_webdev
 
@@ -9,13 +9,15 @@ Author URI: https://t.me/lianet_14
 
 Description: Тема для сайта "Вместе по миру"
 
-Version: 1.0
+Version: 1.0.0
 
 License: GNU General Public License v3 or Later
 
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Tested up to: 6.5.4
+Text Domain: together-around-the-world-theme
+
+Tested up to: 6.9.1
 
 Requires PHP: 8.1
 

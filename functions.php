@@ -58,7 +58,7 @@ function load_env_configs($path)
 	}
 }
 
-load_env_configs(ABSPATH . '.env');
+// load_env_configs(ABSPATH . '.env');
 
 // Allow SVG file uploads
 function allow_svg_uploads($mimes)
