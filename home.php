@@ -9,6 +9,10 @@
  */
 
 get_header(); ?>
-
+<div class="catalogue-filters">
+    <div class="container">
+        <?php require_once(TEMPLATE_PATH . '_form-selection.php'); ?>
+    </div>
+</div>
 
 <?php get_footer(); ?>
