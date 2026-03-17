@@ -72,17 +72,46 @@ function together_theme_setup()
 }
 add_action('after_setup_theme', 'together_theme_setup');
 
-function load_env_configs($path)
-{
-	if (!file_exists($path)) return;
+// Experts Post Types
+add_action('init', function () {
+	register_post_type('experts', [
+		'labels' => [
+			'name'               => 'Команда экспертов',
+			'singular_name'      => 'Эксперт',
+			'add_new'            => 'Добавить эксперта',
+			'add_new_item'       => 'Добавить нового эксперта',
+			'edit_item'          => 'Редактировать эксперта',
+			'new_item'           => 'Новый эксперт',
+			'view_item'          => 'Посмотреть эксперта',
+			'search_items'       => 'Найти эксперта',
+			'not_found'          => 'Экспертов не найдено',
+			'not_found_in_trash' => 'В корзине экспертов не найдено',
+			'menu_name'          => 'Эксперты',
+		],
+		'public'              => false,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'menu_icon'           => 'dashicons-businessman',
+		'hierarchical'        => false,
+		'supports'            => ['title', 'thumbnail'],
+		'has_archive'         => false,
+		'rewrite'             => false,
+		'query_var'           => false,
+		'publicly_queryable'  => false,
+	]);
+});
 
-	$lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-	foreach ($lines as $line) {
-		if (strpos(trim($line), '#') === 0) continue;
-		list($name, $value) = explode('=', $line, 2);
-		$_ENV[trim($name)] = trim($value);
-	}
-}
+// function load_env_configs($path)
+// {
+// 	if (!file_exists($path)) return;
+
+// 	$lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+// 	foreach ($lines as $line) {
+// 		if (strpos(trim($line), '#') === 0) continue;
+// 		list($name, $value) = explode('=', $line, 2);
+// 		$_ENV[trim($name)] = trim($value);
+// 	}
+// }
 
 // load_env_configs(ABSPATH . '.env');
 
