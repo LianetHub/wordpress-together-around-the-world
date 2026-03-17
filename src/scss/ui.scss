@@ -6,17 +6,17 @@
 @use "icons";
 
 //============ МОДУЛИ ====================
-@use "modules/popup";
-@use "modules/preloader";
-@use "modules/breadcrumbs";
-@use "modules/tooltip";
-@use "modules/marguee";
-@use "modules/pagination";
-@use "modules/animation";
+// @use "modules/popup";
+// @use "modules/preloader";
+// @use "modules/breadcrumbs";
+// @use "modules/tooltip";
+// @use "modules/marguee";
+// @use "modules/pagination";
+// @use "modules/animation";
 //============ МОДУЛИ ====================
 
 .title-lg {
-	font-family: $font-gilroy;
+
 	font-weight: 700;
 	line-height: 100%;
 	font-size: 2.25rem;
@@ -39,7 +39,6 @@
 }
 
 .title {
-	font-family: $font-gilroy;
 	font-weight: 700;
 	line-height: 100%;
 	font-size: 1.75rem;
@@ -59,7 +58,7 @@
 }
 
 .title-md {
-	font-family: $font-gilroy;
+
 	font-weight: 700;
 	line-height: 100%;
 	font-size: 2.25rem;
@@ -78,7 +77,7 @@
 }
 
 .title-sm {
-	font-family: $font-gilroy;
+
 	font-weight: 700;
 	line-height: 100%;
 	font-size: 1.5rem;
@@ -89,60 +88,11 @@
 }
 
 .title-xs {
-	font-family: $font-gilroy;
+
 	font-size: 1.75rem;
 	font-weight: 700;
 	line-height: 114.286%;
 	letter-spacing: -0.0525rem;
-}
-
-.hint {
-	color: #717680;
-	text-align: center;
-	font-family: $font-gilroy;
-	font-weight: 700;
-	letter-spacing: -0.0375rem;
-	text-transform: uppercase;
-	display: inline-flex;
-	align-items: center;
-	gap: 0.38rem;
-	font-size: rem(14);
-
-	@media (min-width: $md4) {
-		font-size: 1rem;
-	}
-
-	@media (min-width: $md3) {
-		font-size: 1.125rem;
-	}
-
-	@media (min-width: $md2) {
-		font-size: 1.25rem;
-	}
-
-	&::before {
-		content: "";
-		width: em(1.1875, 1.25);
-		height: em(1.1875, 1.25);
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: contain;
-		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='17' height='19' viewBox='0 0 17 19' fill='none'%3E%3Cpath d='M7.22723 0.26778C7.84604 -0.0894857 8.60843 -0.0894856 9.22723 0.26778L15.4545 3.86308C16.0733 4.22035 16.4545 4.8806 16.4545 5.59513V12.7857C16.4545 13.5003 16.0733 14.1605 15.4545 14.5178L9.22723 18.1131C8.60843 18.4703 7.84604 18.4703 7.22723 18.1131L0.999992 14.5178C0.38119 14.1605 -7.62939e-06 13.5003 -7.62939e-06 12.7857V5.59513C-7.62939e-06 4.8806 0.38119 4.22035 0.999992 3.86308L7.22723 0.26778Z' fill='%23FF4405'/%3E%3C/svg%3E");
-	}
-}
-
-.subtitle {
-	line-height: 130%;
-	letter-spacing: -0.0125rem;
-	font-size: 1rem;
-
-	@media (min-width: $md5) {
-		font-size: 1.125rem;
-	}
-
-	@media (min-width: $md3) {
-		font-size: 1.25rem;
-	}
 }
 
 .text-center {
@@ -157,9 +107,6 @@
 	color: $accent;
 }
 
-.color-grey {
-	color: #717680;
-}
 
 .swiper-button-next,
 .swiper-button-prev {
@@ -208,7 +155,7 @@
 }
 
 .swiper-button-prev {
-	@extend %ic, .icon-arrow-left;
+	@extend %ic, .icon-chevron-left;
 }
 
 .swiper-button-next {
@@ -244,7 +191,7 @@
 		}
 	}
 
-	@extend %ic, .icon-arrow-right;
+	@extend %ic, .icon-chevron-right;
 }
 
 .swiper-pagination {

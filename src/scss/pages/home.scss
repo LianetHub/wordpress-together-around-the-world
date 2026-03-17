@@ -4,3 +4,100 @@
 @use "variables" as *;
 @use "fonts";
 @use "icons";
+
+
+.hero {
+    min-height: rem(942);
+    color: #FFF;
+    background-color: #4B4B4B;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: rem(319) 0 rem(58);
+    display: flex;
+    flex-direction: column;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+
+    // .hero__inner
+    &__inner {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    // .hero__content
+    &__content {}
+
+    // .hero__title
+    &__title {
+        font-size: rem(58);
+        font-weight: 800;
+        line-height: 1.1;
+
+        & span {
+            font-size: em(75, 58);
+            display: block;
+        }
+    }
+
+    // .hero__subtitle
+    &__subtitle {
+        margin-top: 0.5rem;
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+
+    // .hero__btn-main
+    &__btn-main {
+        margin-top: 1.5rem;
+        max-width: 17.5625rem;
+        width: 100%;
+    }
+
+    // .hero__footer
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    // .hero__socials
+    &__socials {
+        display: flex;
+        gap: rem(32);
+    }
+
+    // .hero__socials-btn
+    &__socials-btn {
+        min-width: rem(280);
+    }
+
+    // .hero__badge
+    &__badge {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        max-width: rem(287);
+        width: 100%;
+    }
+
+    // .hero__badge-icon
+    &__badge-icon {
+        width: 3rem;
+        flex-shrink: 0;
+    }
+
+    // .hero__badge-info
+    &__badge-info {
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+}

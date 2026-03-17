@@ -18,10 +18,15 @@ add_theme_support('title-tag');
 // Enqueue theme styles (CSS)
 function theme_enqueue_styles()
 {
-	wp_enqueue_style('swiper', get_template_directory_uri() . '/assets/css/libs/swiper-bundle.min.css');
-	wp_enqueue_style('fancybox', get_template_directory_uri() . '/assets/css/libs/fancybox.css');
-	wp_enqueue_style('reset', get_template_directory_uri() . '/assets/css/reset.min.css');
-	wp_enqueue_style('main-style', get_template_directory_uri() . '/assets/css/style.min.css');
+	$theme_dir = get_template_directory();
+	$theme_uri = get_template_directory_uri();
+
+	wp_enqueue_style('swiper', $theme_uri . '/assets/css/libs/swiper-bundle.min.css');
+	wp_enqueue_style('fancybox', $theme_uri . '/assets/css/libs/fancybox.css');
+	wp_enqueue_style('reset', $theme_uri . '/assets/css/reset.min.css');
+
+	$main_css_ver = filemtime($theme_dir . '/assets/css/style.min.css');
+	wp_enqueue_style('main-style', $theme_uri . '/assets/css/style.min.css', array(), $main_css_ver);
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
 
@@ -29,11 +34,16 @@ add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
 // Enqueue theme scripts (JS)
 function theme_enqueue_scripts()
 {
+	$theme_dir = get_template_directory();
+	$theme_uri = get_template_directory_uri();
+
 	wp_deregister_script('jquery');
-	wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/libs/jquery-4.0.0.min.js', array(), null, true);
-	wp_enqueue_script('swiper-js', get_template_directory_uri() . '/assets/js/libs/swiper-bundle.min.js', array(), null, true);
-	wp_enqueue_script('fancybox-js', get_template_directory_uri() . '/assets/js/libs/fancybox.umd.js', array(), null, true);
-	wp_enqueue_script('app-js', get_template_directory_uri() . '/assets/js/app.min.js', array('jquery'), null, true);
+	wp_enqueue_script('jquery', $theme_uri . '/assets/js/libs/jquery-4.0.0.min.js', array(), null, true);
+	wp_enqueue_script('swiper-js', $theme_uri . '/assets/js/libs/swiper-bundle.min.js', array(), null, true);
+	wp_enqueue_script('fancybox-js', $theme_uri . '/assets/js/libs/fancybox.umd.js', array(), null, true);
+
+	$app_js_ver = filemtime($theme_dir . '/assets/js/app.min.js');
+	wp_enqueue_script('app-js', $theme_uri . '/assets/js/app.min.js', array('jquery'), $app_js_ver, true);
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
 
