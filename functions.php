@@ -56,6 +56,22 @@ add_action('after_setup_theme', function () {
 	add_theme_support('post-thumbnails');
 });
 
+add_theme_support('custom-logo', [
+	'height'      => 81,
+	'width'       => 168,
+	'flex-width'  => true,
+	'flex-height' => true,
+]);
+
+
+function together_theme_setup()
+{
+	register_nav_menus([
+		'header_menu' => 'Меню в шапке',
+	]);
+}
+add_action('after_setup_theme', 'together_theme_setup');
+
 function load_env_configs($path)
 {
 	if (!file_exists($path)) return;
