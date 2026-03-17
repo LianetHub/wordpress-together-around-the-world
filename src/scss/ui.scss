@@ -15,32 +15,9 @@
 // @use "modules/animation";
 //============ МОДУЛИ ====================
 
-.title-lg {
-
-	font-weight: 700;
-	line-height: 100%;
-	font-size: 2.25rem;
-
-	@media (min-width: $md4) {
-		font-size: 2.5rem;
-	}
-
-	@media (min-width: $md3) {
-		font-size: 2.75rem;
-	}
-
-	@media (min-width: $md2) {
-		font-size: 3rem;
-	}
-
-	@media (min-width: $md1) {
-		font-size: 4rem;
-	}
-}
-
 .title {
-	font-weight: 700;
-	line-height: 100%;
+	font-weight: 600;
+	line-height: 117.073%;
 	font-size: 1.75rem;
 
 	@media (min-width: $md5) {
@@ -48,51 +25,10 @@
 	}
 
 	@media (min-width: $md2) {
-		font-size: 2.75rem;
+		font-size: 2.5625rem;
 	}
 
-	@media (min-width: $md1) {
-		font-size: 3rem;
-	}
 
-}
-
-.title-md {
-
-	font-weight: 700;
-	line-height: 100%;
-	font-size: 2.25rem;
-
-	@media (min-width: $md4) {
-		font-size: 2.5rem;
-	}
-
-	@media (min-width: $md3) {
-		font-size: 2.75rem;
-	}
-
-	@media (min-width: $md2) {
-		font-size: 3rem;
-	}
-}
-
-.title-sm {
-
-	font-weight: 700;
-	line-height: 100%;
-	font-size: 1.5rem;
-
-	@media (min-width: $md4) {
-		font-size: 2rem;
-	}
-}
-
-.title-xs {
-
-	font-size: 1.75rem;
-	font-weight: 700;
-	line-height: 114.286%;
-	letter-spacing: -0.0525rem;
 }
 
 .text-center {

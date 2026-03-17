@@ -279,35 +279,10 @@ body {
     font-size: .8em
 }
 
-.title-lg {
-    font-weight: 700;
-    line-height: 100%;
-    font-size: 2.25rem
-}
-
 .title {
-    font-weight: 700;
-    line-height: 100%;
+    font-weight: 600;
+    line-height: 117.073%;
     font-size: 1.75rem
-}
-
-.title-md {
-    font-weight: 700;
-    line-height: 100%;
-    font-size: 2.25rem
-}
-
-.title-sm {
-    font-weight: 700;
-    line-height: 100%;
-    font-size: 1.5rem
-}
-
-.title-xs {
-    font-size: 1.75rem;
-    font-weight: 700;
-    line-height: 114.286%;
-    letter-spacing: -.0525rem
 }
 
 .text-center {
@@ -587,7 +562,7 @@ body {
     border-radius: .5rem
 }
 
-.hidden {
+.form__file.uploaded .form__file-field, .hidden {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -605,6 +580,318 @@ body {
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover
+}
+
+.form__fields {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 1.25rem
+}
+
+.form__field {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    gap: .69rem
+}
+
+.form__field-label {
+    color: #262624;
+    font-size: .75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0 1.69rem
+}
+
+.form__control {
+    text-overflow: ellipsis;
+    -webkit-transition: border-color .3s ease 0s, color .3s ease 0s, background-color .3s ease, -webkit-box-shadow .3s ease;
+    transition: border-color .3s ease 0s, color .3s ease 0s, background-color .3s ease, -webkit-box-shadow .3s ease;
+    transition: border-color .3s ease 0s, color .3s ease 0s, box-shadow .3s ease, background-color .3s ease;
+    transition: border-color .3s ease 0s, color .3s ease 0s, box-shadow .3s ease, background-color .3s ease, -webkit-box-shadow .3s ease;
+    width: 100%;
+    border-radius: .5rem;
+    border: .0625rem solid #d5d7da;
+    background: #fff;
+    color: #181d27;
+    font-size: 1rem;
+    line-height: 150%;
+    padding: .625rem .875rem
+}
+
+.form__control::-webkit-input-placeholder {
+    opacity: 1;
+    color: #717680
+}
+
+.form__control::-moz-placeholder {
+    opacity: 1;
+    color: #717680
+}
+
+.form__control:-ms-input-placeholder {
+    opacity: 1;
+    color: #717680
+}
+
+.form__control::-ms-input-placeholder {
+    opacity: 1;
+    color: #717680
+}
+
+.form__control::placeholder {
+    opacity: 1;
+    color: #717680
+}
+
+.form__control:focus {
+    border-color: #9e77ed;
+    -webkit-box-shadow: inset 0 0 0 .0625rem #9e77ed;
+    box-shadow: inset 0 0 0 .0625rem #9e77ed
+}
+
+.form__control:disabled {
+    background: #ddd;
+    border-color: #ddd
+}
+
+.form__control._error {
+    background: #fff1ed;
+    border-color: #f04438;
+    -webkit-box-shadow: inset 0 0 0 .0625rem #f04438;
+    box-shadow: inset 0 0 0 .0625rem #f04438;
+    color: #f04438
+}
+
+.form__control._error::-webkit-input-placeholder {
+    color: #f04438;
+    opacity: 1
+}
+
+.form__control._error::-moz-placeholder {
+    color: #f04438;
+    opacity: 1
+}
+
+.form__control._error:-ms-input-placeholder {
+    color: #f04438;
+    opacity: 1
+}
+
+.form__control._error::-ms-input-placeholder {
+    color: #f04438;
+    opacity: 1
+}
+
+.form__control._error::placeholder {
+    color: #f04438;
+    opacity: 1
+}
+
+.form__control:is(textarea) {
+    resize: none;
+    height: 7.5rem;
+    font-size: 1rem
+}
+
+.form__submit {
+    position: relative;
+    margin-top: 2.5rem;
+    margin-inline: auto;
+    cursor: pointer
+}
+
+.form__submit:has(input:disabled) {
+    pointer-events: none;
+    cursor: default;
+    opacity: .5
+}
+
+.form__submit input {
+    background: 0 0;
+    color: inherit;
+    cursor: pointer;
+    font-weight: 900
+}
+
+.form__submit .wpcf7-spinner {
+    display: none
+}
+
+.form__file {
+    width: 100%
+}
+
+.form__file-btn {
+    color: #1570ef;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 137.5%;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer
+}
+
+.form__file-btn::before {
+    color: #717680;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.5rem;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-transition: border-color .3s ease, color .3s ease, background-color .3s ease;
+    transition: border-color .3s ease, color .3s ease, background-color .3s ease
+}
+
+.form__file-preview {
+    margin-top: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: .5rem
+}
+
+.form__file-image {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 5rem;
+    flex: 0 0 5rem;
+    height: 5rem;
+    background: #fff
+}
+
+.form__file-image img {
+    width: 100%
+}
+
+.form__file-name {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto
+}
+
+.form__file-remove {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    color: #d92d20;
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease
+}
+
+.form__btn {
+    width: 100%
+}
+
+.form__policy {
+    font-size: .75rem;
+    line-height: 150%
+}
+
+.form__policy a {
+    color: #175cd3
+}
+
+.form__error {
+    color: #f04438;
+    margin-top: .25rem;
+    font-size: .875rem;
+    display: block
+}
+
+.checkbox {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content
+}
+
+.checkbox__input:checked+.checkbox__text::before {
+    border-color: #8e7558;
+    background: #8e7558
+}
+
+.checkbox__input._error+.checkbox__text::before {
+    border-color: #f04438
+}
+
+.checkbox__text {
+    position: relative;
+    display: block;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 0 0 0 2rem;
+    line-height: 100%;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: .875rem;
+    line-height: 1.2857142857;
+    min-height: 1.25rem
+}
+
+.checkbox__text::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border: .0625rem solid #d5d7da;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: .25rem;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.checkbox__text a {
+    color: #1570ef;
+    text-decoration: underline
 }
 
 .btn {
@@ -780,9 +1067,9 @@ body {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    -webkit-box-align: end;
-    -ms-flex-align: end;
-    align-items: flex-end
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
 }
 
 .hero__socials {
@@ -819,12 +1106,26 @@ body {
     font-weight: 500
 }
 
-.nojq {
-    display: none
+.selection {
+    padding: 5rem 0 2.8125rem
 }
 
-html {
-    margin-top: 0 !important
+.selection__form {
+    margin-top: 2.4rem;
+    border-radius: 1.25rem;
+    background: #f9f9f9;
+    padding: 1.375rem 1.06rem
+}
+
+.selection__form-row {
+    display: -ms-grid;
+    display: grid;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: end;
+    -ms-grid-columns: (1fr)[3] 12.5rem;
+    grid-template-columns: repeat(3, 1fr) 12.5rem;
+    gap: 1rem
 }
 
 @media (min-width:389.98px) {
@@ -837,6 +1138,15 @@ html {
 
     .title {
         font-size: 2.25rem
+    }
+
+    .form__control:is(textarea) {
+        height: 5.9375rem
+    }
+
+    .form__policy {
+        line-height: 142.857%;
+        font-size: .875rem
     }
 }
 
@@ -859,18 +1169,6 @@ html {
         font-size: 1.5rem
     }
 
-    .title-lg {
-        font-size: 2.5rem
-    }
-
-    .title-md {
-        font-size: 2.5rem
-    }
-
-    .title-sm {
-        font-size: 2rem
-    }
-
     .btn {
         padding: .53125rem 1.125rem
     }
@@ -884,14 +1182,6 @@ html {
     .container {
         max-width: 60rem
     }
-
-    .title-lg {
-        font-size: 2.75rem
-    }
-
-    .title-md {
-        font-size: 2.75rem
-    }
 }
 
 @media (min-width:991.98px) {
@@ -899,31 +1189,13 @@ html {
         max-width: 73.75rem
     }
 
-    .title-lg {
-        font-size: 3rem
-    }
-
     .title {
-        font-size: 2.75rem
-    }
-
-    .title-md {
-        font-size: 3rem
+        font-size: 2.5625rem
     }
 
     .btn {
         padding: .53125rem 1.5rem;
         font-size: 1.125rem
-    }
-}
-
-@media (min-width:1219.98px) {
-    .title-lg {
-        font-size: 4rem
-    }
-
-    .title {
-        font-size: 3rem
     }
 }
 
@@ -967,5 +1239,21 @@ html {
 
     ::-webkit-scrollbar-thumb:hover {
         background: rgb(141.1785714286, 177.869047619, 23.130952381)
+    }
+
+    .form__file-remove:hover {
+        color: #f10
+    }
+
+    .form__policy a:hover {
+        text-decoration: underline
+    }
+
+    .checkbox__text:hover::before {
+        border-color: #b1df1d
+    }
+
+    .checkbox__text a:hover {
+        text-decoration: none
     }
 }
