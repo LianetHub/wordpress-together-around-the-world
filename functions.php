@@ -350,3 +350,91 @@ function together_around_the_world_transliterate($text)
 	$text = str_replace($cyr, $lat, $text);
 	return sanitize_title($text);
 }
+
+
+function get_formatted_tour_dates($date_from, $date_to, $type = 'card')
+{
+	$months = [
+		'01' => 'января',
+		'02' => 'февраля',
+		'03' => 'марта',
+		'04' => 'апреля',
+		'05' => 'мая',
+		'06' => 'июня',
+		'07' => 'июля',
+		'08' => 'августа',
+		'09' => 'сентября',
+		'10' => 'октября',
+		'11' => 'ноября',
+		'12' => 'декабря'
+	];
+
+	$dt_from = DateTime::createFromFormat('d/m/Y', $date_from);
+	$dt_to = DateTime::createFromFormat('d/m/Y', $date_to);
+
+	if (!$dt_from || !$dt_to) {
+		return '';
+	}
+
+	$d_from = $dt_from->format('d');
+	$m_from = $dt_from->format('m');
+	$y_from = $dt_from->format('Y');
+
+	$d_to = $dt_to->format('d');
+	$m_to = $dt_to->format('m');
+	$y_to = $dt_to->format('Y');
+
+	if ($type === 'card') {
+		if ($m_from === $m_to && $y_from === $y_to) {
+			return $d_from . '-' . $d_to . ' ' . $months[$m_from] . ' ' . $y_from;
+		}
+		return $d_from . ' ' . $months[$m_from] . ' - ' . $d_to . ' ' . $months[$m_to] . ' ' . $y_to;
+	}
+
+	if ($m_from === $m_to) {
+		return $d_from . '-' . $d_to . ' ' . $months[$m_from];
+	}
+	return $d_from . ' ' . $months[$m_from] . ' - ' . $d_to . ' ' . $months[$m_to];
+}
+
+function get_formatted_tour_departure($date_from, $time_str)
+{
+	$months = [
+		'01' => 'января',
+		'02' => 'февраля',
+		'03' => 'марта',
+		'04' => 'апреля',
+		'05' => 'мая',
+		'06' => 'июня',
+		'07' => 'июля',
+		'08' => 'августа',
+		'09' => 'сентября',
+		'10' => 'октября',
+		'11' => 'ноября',
+		'12' => 'декабря'
+	];
+
+	$days = [
+		'1' => 'понедельник',
+		'2' => 'вторник',
+		'3' => 'среда',
+		'4' => 'четверг',
+		'5' => 'пятница',
+		'6' => 'суббота',
+		'7' => 'воскресенье'
+	];
+
+	$dt = DateTime::createFromFormat('d/m/Y', $date_from);
+	if (!$dt) {
+		return '';
+	}
+
+	$d = $dt->format('d');
+	$m = $dt->format('m');
+	$w = $dt->format('N');
+
+	$t = DateTime::createFromFormat('H:i:s', $time_str);
+	$time_formatted = $t ? $t->format('H:i') : $time_str;
+
+	return $time_formatted . ', ' . $d . ' ' . $months[$m] . ', ' . $days[$w];
+}

@@ -1,0 +1,125 @@
+@use "sass:color";
+@use "sass:math";
+@use "mixins" as *;
+@use "variables" as *;
+@use "fonts";
+@use "icons";
+
+.tour-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transform: translateY(-5px);
+    }
+
+    &__link {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    &__image {
+        position: relative;
+        aspect-ratio: 16 / 10;
+        width: 100%;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+    }
+
+    &:hover &__image img {
+        transform: scale(1.05);
+    }
+
+    &__badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        padding: 6px 12px;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        &--hot {
+            background-color: #E63946;
+        }
+
+        &--sold {
+            background-color: #9D0208;
+        }
+
+        &--new {
+            background-color: #55A630;
+        }
+
+        &-icon {
+            font-size: 0.9rem;
+        }
+    }
+
+    &__content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    &__title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #272727;
+        margin-bottom: 8px;
+        line-height: 1.3;
+    }
+
+    &__dates {
+        font-size: 0.9rem;
+        color: #888;
+        margin-bottom: 20px;
+    }
+
+    &__footer {
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    &__price {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: #B1DF1D;
+        white-space: nowrap;
+    }
+
+    &__btn {
+        padding: 10px 20px;
+        border: 1px solid #B1DF1D;
+        color: #272727;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        .tour-card:hover & {
+            background-color: #B1DF1D;
+        }
+    }
+}
