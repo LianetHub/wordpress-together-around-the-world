@@ -9,6 +9,7 @@
 
 <?php require_once(TEMPLATE_PATH . '_hero.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_selection-of-tour.php'); ?>
+<?php require_once(TEMPLATE_PATH . '_team.php'); ?>
 
 <?php
 while (have_posts()) :
