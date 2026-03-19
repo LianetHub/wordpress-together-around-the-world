@@ -2045,14 +2045,6 @@ select.select {
   background-color: #B1DF1D;
 }
 
-.nojq {
-  display: none;
-}
-
-html {
-  margin-top: 0 !important;
-}
-
 @media (min-width: 389.98px) {
   .container {
     -webkit-box-sizing: content-box;

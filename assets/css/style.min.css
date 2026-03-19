@@ -2008,14 +2008,6 @@ body.home .main {
     background-color: #b1df1d
 }
 
-.nojq {
-    display: none
-}
-
-html {
-    margin-top: 0 !important
-}
-
 @media (min-width:389.98px) {
     .container {
         -webkit-box-sizing: content-box;

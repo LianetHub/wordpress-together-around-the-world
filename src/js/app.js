@@ -114,292 +114,292 @@ $(function () {
 
     // Form Controller
 
-    class FormController {
-        constructor() {
-            this.selectors = {
-                field: '.form__field',
-                errorClass: '_error',
-                loadingClass: '_loading',
-                requiredAttr: '[data-required]',
-                fileInput: '.form__file-input',
-                fileContainer: '.form__file',
-                fileRemove: '.form__file-remove',
-                submitBtn: '[type="submit"]'
-            };
-            this.init();
-        }
+    // class FormController {
+    //     constructor() {
+    //         this.selectors = {
+    //             field: '.form__field',
+    //             errorClass: '_error',
+    //             loadingClass: '_loading',
+    //             requiredAttr: '[data-required]',
+    //             fileInput: '.form__file-input',
+    //             fileContainer: '.form__file',
+    //             fileRemove: '.form__file-remove',
+    //             submitBtn: '[type="submit"]'
+    //         };
+    //         this.init();
+    //     }
 
-        init() {
-            const self = this;
+    //     init() {
+    //         const self = this;
 
-            $('form').each(function () {
-                self.bindSubmit($(this));
-            });
+    //         $('form').each(function () {
+    //             self.bindSubmit($(this));
+    //         });
 
-            $(document).on('input change', this.selectors.requiredAttr, (e) => {
-                const $field = $(e.target);
-                if ($field.hasClass(this.selectors.errorClass) || $field.closest(this.selectors.field).hasClass(this.selectors.errorClass)) {
-                    this.toggleErrorState($field, true);
-                }
-            });
+    //         $(document).on('input change', this.selectors.requiredAttr, (e) => {
+    //             const $field = $(e.target);
+    //             if ($field.hasClass(this.selectors.errorClass) || $field.closest(this.selectors.field).hasClass(this.selectors.errorClass)) {
+    //                 this.toggleErrorState($field, true);
+    //             }
+    //         });
 
-            $(document).on('keydown', 'input[type="tel"]', (e) => this.onPhoneKeyDown(e));
-            $(document).on('input', 'input[type="tel"]', (e) => this.onPhoneInput(e));
-            $(document).on('paste', 'input[type="tel"]', (e) => this.onPhonePaste(e));
-            $(document).on('focus', 'input[type="tel"]', (e) => {
-                if (!e.target.value) {
-                    e.target.value = "+7 ";
-                }
-            });
+    //         $(document).on('keydown', 'input[type="tel"]', (e) => this.onPhoneKeyDown(e));
+    //         $(document).on('input', 'input[type="tel"]', (e) => this.onPhoneInput(e));
+    //         $(document).on('paste', 'input[type="tel"]', (e) => this.onPhonePaste(e));
+    //         $(document).on('focus', 'input[type="tel"]', (e) => {
+    //             if (!e.target.value) {
+    //                 e.target.value = "+7 ";
+    //             }
+    //         });
 
-            $(document).off('change', this.selectors.fileInput).on('change', this.selectors.fileInput, (e) => this.handleFileChange(e));
-            $(document).off('click', this.selectors.fileRemove).on('click', this.selectors.fileRemove, (e) => this.handleFileRemove(e));
-        }
+    //         $(document).off('change', this.selectors.fileInput).on('change', this.selectors.fileInput, (e) => this.handleFileChange(e));
+    //         $(document).off('click', this.selectors.fileRemove).on('click', this.selectors.fileRemove, (e) => this.handleFileRemove(e));
+    //     }
 
-        bindSubmit($form) {
-            $form.on('submit', async (e) => {
-                e.preventDefault();
+    //     bindSubmit($form) {
+    //         $form.on('submit', async (e) => {
+    //             e.preventDefault();
 
-                if (this.validateForm($form)) {
-                    await this.sendForm($form);
-                }
-            });
-        }
+    //             if (this.validateForm($form)) {
+    //                 await this.sendForm($form);
+    //             }
+    //         });
+    //     }
 
-        async sendForm($form, isSilent = false) {
-            console.log('submit from form controller');
-            const url = $form.attr('action');
-            const method = $form.attr('method') || 'POST';
-            const formData = new FormData($form[0]);
-            formData.append('page_url', window.location.href);
-            const $submitBtn = $form.find(this.selectors.submitBtn);
+    //     async sendForm($form, isSilent = false) {
+    //         console.log('submit from form controller');
+    //         const url = $form.attr('action');
+    //         const method = $form.attr('method') || 'POST';
+    //         const formData = new FormData($form[0]);
+    //         formData.append('page_url', window.location.href);
+    //         const $submitBtn = $form.find(this.selectors.submitBtn);
 
-            $submitBtn.addClass(this.selectors.loadingClass);
+    //         $submitBtn.addClass(this.selectors.loadingClass);
 
-            try {
-                const response = await fetch(url, {
-                    method: method,
-                    body: formData
-                });
+    //         try {
+    //             const response = await fetch(url, {
+    //                 method: method,
+    //                 body: formData
+    //             });
 
-                if (response.ok) {
-                    const result = await response.json();
+    //             if (response.ok) {
+    //                 const result = await response.json();
 
-                    if (result.success) {
+    //                 if (result.success) {
 
-                        $form[0].reset();
-                        $form.find('.form__file-preview').remove();
-                        $form.find('.uploaded').removeClass('uploaded');
+    //                     $form[0].reset();
+    //                     $form.find('.form__file-preview').remove();
+    //                     $form.find('.uploaded').removeClass('uploaded');
 
-                        if (!isSilent) {
-                            const instance = Fancybox.getInstance();
-                            if (instance) {
-                                instance.destroy();
-                            }
+    //                     if (!isSilent) {
+    //                         const instance = Fancybox.getInstance();
+    //                         if (instance) {
+    //                             instance.destroy();
+    //                         }
 
-                            let successPopupId = "#success-submitting";
+    //                         let successPopupId = "#success-submitting";
 
-                            Fancybox.show([{
-                                src: successPopupId,
-                                type: "inline"
-                            }]);
-                        }
+    //                         Fancybox.show([{
+    //                             src: successPopupId,
+    //                             type: "inline"
+    //                         }]);
+    //                     }
 
-                    } else {
-                        console.error('Ошибка логики сервера:', result.data.message);
-                        this.showErrorPopup();
-                    }
-                } else {
-                    console.error('Ошибка сервера (HTTP статус)');
-                    this.showErrorPopup();
-                }
-            } catch (error) {
-                console.error('Ошибка сети', error);
-                this.showErrorPopup();
-            } finally {
-                $submitBtn.removeClass(this.selectors.loadingClass);
-            }
-        }
+    //                 } else {
+    //                     console.error('Ошибка логики сервера:', result.data.message);
+    //                     this.showErrorPopup();
+    //                 }
+    //             } else {
+    //                 console.error('Ошибка сервера (HTTP статус)');
+    //                 this.showErrorPopup();
+    //             }
+    //         } catch (error) {
+    //             console.error('Ошибка сети', error);
+    //             this.showErrorPopup();
+    //         } finally {
+    //             $submitBtn.removeClass(this.selectors.loadingClass);
+    //         }
+    //     }
 
-        showErrorPopup() {
-            const instance = Fancybox.getInstance();
-            if (instance) {
-                instance.destroy();
-            }
-            Fancybox.show([{
-                src: "#error-submitting",
-                type: "inline"
-            }]);
-        }
+    //     showErrorPopup() {
+    //         const instance = Fancybox.getInstance();
+    //         if (instance) {
+    //             instance.destroy();
+    //         }
+    //         Fancybox.show([{
+    //             src: "#error-submitting",
+    //             type: "inline"
+    //         }]);
+    //     }
 
-        validateField($field) {
-            if (!$field.is(':visible')) {
-                this.toggleErrorState($field, true);
-                return true;
-            }
+    //     validateField($field) {
+    //         if (!$field.is(':visible')) {
+    //             this.toggleErrorState($field, true);
+    //             return true;
+    //         }
 
-            const type = $field.attr('type');
-            const name = $field.attr('name');
-            const val = $field.val() ? $field.val().trim() : '';
-            let isValid = true;
+    //         const type = $field.attr('type');
+    //         const name = $field.attr('name');
+    //         const val = $field.val() ? $field.val().trim() : '';
+    //         let isValid = true;
 
-            if (type === 'checkbox') {
-                isValid = $field.is(':checked');
-            } else if (name === 'username') {
-                isValid = /^[^\d]+$/.test(val) && val.length > 1;
-            } else if (type === 'tel') {
-                const numbers = val.replace(/\D/g, '');
-                isValid = numbers.length >= 11;
-            } else if (type === 'email') {
-                isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
-            } else if (name === 'city') {
-                isValid = val.length >= 2;
-            } else if (name === 'address') {
-                isValid = val.length >= 5;
-            } else {
-                isValid = val !== '';
-            }
+    //         if (type === 'checkbox') {
+    //             isValid = $field.is(':checked');
+    //         } else if (name === 'username') {
+    //             isValid = /^[^\d]+$/.test(val) && val.length > 1;
+    //         } else if (type === 'tel') {
+    //             const numbers = val.replace(/\D/g, '');
+    //             isValid = numbers.length >= 11;
+    //         } else if (type === 'email') {
+    //             isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    //         } else if (name === 'city') {
+    //             isValid = val.length >= 2;
+    //         } else if (name === 'address') {
+    //             isValid = val.length >= 5;
+    //         } else {
+    //             isValid = val !== '';
+    //         }
 
-            this.toggleErrorState($field, isValid);
-            return isValid;
-        }
+    //         this.toggleErrorState($field, isValid);
+    //         return isValid;
+    //     }
 
-        toggleErrorState($field, isValid) {
-            $field.closest(this.selectors.field).toggleClass(this.selectors.errorClass, !isValid);
-            $field.toggleClass(this.selectors.errorClass, !isValid);
-        }
+    //     toggleErrorState($field, isValid) {
+    //         $field.closest(this.selectors.field).toggleClass(this.selectors.errorClass, !isValid);
+    //         $field.toggleClass(this.selectors.errorClass, !isValid);
+    //     }
 
-        validateForm($form) {
-            let isAllValid = true;
-            const self = this;
+    //     validateForm($form) {
+    //         let isAllValid = true;
+    //         const self = this;
 
-            $form.find(this.selectors.requiredAttr).each(function () {
-                if (!self.validateField($(this))) {
-                    isAllValid = false;
-                }
-            });
+    //         $form.find(this.selectors.requiredAttr).each(function () {
+    //             if (!self.validateField($(this))) {
+    //                 isAllValid = false;
+    //             }
+    //         });
 
-            return isAllValid;
-        }
+    //         return isAllValid;
+    //     }
 
-        handleFileChange(e) {
-            const $input = $(e.currentTarget);
-            const $container = $input.closest(this.selectors.fileContainer);
-            const file = e.target.files[0];
-            const maxSize = 10 * 1024 * 1024;
+    //     handleFileChange(e) {
+    //         const $input = $(e.currentTarget);
+    //         const $container = $input.closest(this.selectors.fileContainer);
+    //         const file = e.target.files[0];
+    //         const maxSize = 10 * 1024 * 1024;
 
-            $container.find('.form__error').remove();
+    //         $container.find('.form__error').remove();
 
-            if (file && file.size > maxSize) {
-                $input.val('');
-                $container.append('<span class="form__error">Файл слишком большой. <br> Максимальный размер — 10 МБ.</span>');
-                $container.removeClass('uploaded');
-                $container.find('.form__file-preview').remove();
-                return;
-            }
+    //         if (file && file.size > maxSize) {
+    //             $input.val('');
+    //             $container.append('<span class="form__error">Файл слишком большой. <br> Максимальный размер — 10 МБ.</span>');
+    //             $container.removeClass('uploaded');
+    //             $container.find('.form__file-preview').remove();
+    //             return;
+    //         }
 
-            $container.find('.form__file-preview').remove();
-            $container.removeClass('uploaded');
+    //         $container.find('.form__file-preview').remove();
+    //         $container.removeClass('uploaded');
 
-            if (file) {
-                const isImage = file.type.match('image.*');
-                const reader = new FileReader();
+    //         if (file) {
+    //             const isImage = file.type.match('image.*');
+    //             const reader = new FileReader();
 
-                reader.onload = (event) => {
-                    let previewContent = '';
-                    if (isImage) {
-                        previewContent = `
-                <span class="form__file-image">
-                    <img src="${event.target.result}" alt="Превью" class="cover-image">
-                </span>
-            `;
-                    }
-                    const previewHtml = `
-            <div class="form__file-preview">
-                ${previewContent}
-                <span class="form__file-name">${file.name}</span>
-                <button type="button" aria-label="Удалить" class="form__file-remove icon-cross"></button>
-            </div>
-        `;
-                    $container.append(previewHtml);
-                    $container.addClass('uploaded');
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-        handleFileRemove(e) {
-            e.preventDefault();
-            e.stopPropagation();
+    //             reader.onload = (event) => {
+    //                 let previewContent = '';
+    //                 if (isImage) {
+    //                     previewContent = `
+    //             <span class="form__file-image">
+    //                 <img src="${event.target.result}" alt="Превью" class="cover-image">
+    //             </span>
+    //         `;
+    //                 }
+    //                 const previewHtml = `
+    //         <div class="form__file-preview">
+    //             ${previewContent}
+    //             <span class="form__file-name">${file.name}</span>
+    //             <button type="button" aria-label="Удалить" class="form__file-remove icon-cross"></button>
+    //         </div>
+    //     `;
+    //                 $container.append(previewHtml);
+    //                 $container.addClass('uploaded');
+    //             };
+    //             reader.readAsDataURL(file);
+    //         }
+    //     }
+    //     handleFileRemove(e) {
+    //         e.preventDefault();
+    //         e.stopPropagation();
 
-            const $btn = $(e.currentTarget);
-            const $container = $btn.closest(this.selectors.fileContainer);
-            const $preview = $btn.closest('.form__file-preview');
+    //         const $btn = $(e.currentTarget);
+    //         const $container = $btn.closest(this.selectors.fileContainer);
+    //         const $preview = $btn.closest('.form__file-preview');
 
-            $container.find(this.selectors.fileInput).val('');
-            $container.removeClass('uploaded');
-            $preview.remove();
-        }
+    //         $container.find(this.selectors.fileInput).val('');
+    //         $container.removeClass('uploaded');
+    //         $preview.remove();
+    //     }
 
-        onPhoneInput(e) {
-            const input = e.target;
-            let inputNumbersValue = input.value.replace(/\D/g, '');
-            const selectionStart = input.selectionStart;
-            let formattedInputValue = "";
+    //     onPhoneInput(e) {
+    //         const input = e.target;
+    //         let inputNumbersValue = input.value.replace(/\D/g, '');
+    //         const selectionStart = input.selectionStart;
+    //         let formattedInputValue = "";
 
-            if (!inputNumbersValue) {
-                return input.value = "";
-            }
+    //         if (!inputNumbersValue) {
+    //             return input.value = "";
+    //         }
 
-            if (input.value.length != selectionStart) {
-                if (e.originalEvent.data && /\D/g.test(e.originalEvent.data)) {
-                    input.value = inputNumbersValue;
-                }
-                return;
-            }
+    //         if (input.value.length != selectionStart) {
+    //             if (e.originalEvent.data && /\D/g.test(e.originalEvent.data)) {
+    //                 input.value = inputNumbersValue;
+    //             }
+    //             return;
+    //         }
 
-            if (inputNumbersValue.length > 11) {
-                inputNumbersValue = inputNumbersValue.substring(0, 11);
-            }
+    //         if (inputNumbersValue.length > 11) {
+    //             inputNumbersValue = inputNumbersValue.substring(0, 11);
+    //         }
 
-            formattedInputValue = "+7 (";
+    //         formattedInputValue = "+7 (";
 
-            if (inputNumbersValue.length >= 2) {
-                formattedInputValue += inputNumbersValue.substring(1, 4);
-            }
-            if (inputNumbersValue.length >= 5) {
-                formattedInputValue += ") " + inputNumbersValue.substring(4, 7);
-            }
-            if (inputNumbersValue.length >= 8) {
-                formattedInputValue += "-" + inputNumbersValue.substring(7, 9);
-            }
-            if (inputNumbersValue.length >= 10) {
-                formattedInputValue += "-" + inputNumbersValue.substring(9, 11);
-            }
+    //         if (inputNumbersValue.length >= 2) {
+    //             formattedInputValue += inputNumbersValue.substring(1, 4);
+    //         }
+    //         if (inputNumbersValue.length >= 5) {
+    //             formattedInputValue += ") " + inputNumbersValue.substring(4, 7);
+    //         }
+    //         if (inputNumbersValue.length >= 8) {
+    //             formattedInputValue += "-" + inputNumbersValue.substring(7, 9);
+    //         }
+    //         if (inputNumbersValue.length >= 10) {
+    //             formattedInputValue += "-" + inputNumbersValue.substring(9, 11);
+    //         }
 
-            input.value = formattedInputValue;
-        }
+    //         input.value = formattedInputValue;
+    //     }
 
-        onPhoneKeyDown(e) {
-            const inputValue = e.target.value.replace(/\D/g, '');
-            if (e.keyCode == 8 && inputValue.length == 1) {
-                e.target.value = "";
-            }
-        }
+    //     onPhoneKeyDown(e) {
+    //         const inputValue = e.target.value.replace(/\D/g, '');
+    //         if (e.keyCode == 8 && inputValue.length == 1) {
+    //             e.target.value = "";
+    //         }
+    //     }
 
-        onPhonePaste(e) {
-            const input = e.target;
-            const inputNumbersValue = input.value.replace(/\D/g, '');
-            const pasted = e.originalEvent.clipboardData || window.clipboardData;
-            if (pasted) {
-                const pastedText = pasted.getData('Text');
-                if (/\D/g.test(pastedText)) {
-                    input.value = inputNumbersValue;
-                }
-            }
-        }
-    }
+    //     onPhonePaste(e) {
+    //         const input = e.target;
+    //         const inputNumbersValue = input.value.replace(/\D/g, '');
+    //         const pasted = e.originalEvent.clipboardData || window.clipboardData;
+    //         if (pasted) {
+    //             const pastedText = pasted.getData('Text');
+    //             if (/\D/g.test(pastedText)) {
+    //                 input.value = inputNumbersValue;
+    //             }
+    //         }
+    //     }
+    // }
 
-    window.formController = new FormController();
+    // window.formController = new FormController();
 
     // Spollers
     // class Spollers {
@@ -678,10 +678,6 @@ $(function () {
             }
         }
     }
-
-    $('.custom-select').each((index, element) => {
-        new CustomSelect(element);
-    });
 
     $('.dropdown').each((index, element) => {
         new CustomSelect(element);
