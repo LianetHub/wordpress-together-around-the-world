@@ -12,6 +12,7 @@
 <?php require_once(TEMPLATE_PATH . '_tours.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_description.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_team.php'); ?>
+<?php require_once(TEMPLATE_PATH . '_callback.php'); ?>
 
 <?php
 while (have_posts()) :
