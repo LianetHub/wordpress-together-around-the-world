@@ -134,6 +134,72 @@
     &__form-checkbox {}
 }
 
+.description {
+    padding: rem(45) 0;
+
+    // .description__container
+    &__container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    // .description__column
+    &__column {}
+
+    // .description__title
+    &__title {}
+
+    // .description__list
+    &__list {
+        margin-top: 2.5rem;
+        color: #000;
+        font-size: 1.625rem;
+
+        & li {
+            position: relative;
+            padding-left: rem(55);
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 2.25rem;
+                height: 2.25rem;
+                background: #B1DF1D;
+                border-radius: 50%;
+            }
+
+            &:not(:last-child) {
+                margin-bottom: 1.25rem;
+            }
+        }
+    }
+
+    // .description__steps
+    &__steps {
+        margin-top: 2.5rem;
+        font-size: 1.625rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+
+        & li {
+            counter-increment: num;
+            display: flex;
+
+            &::before {
+                content: counter(num) '.';
+                flex-shrink: 0;
+            }
+        }
+    }
+}
+
+
+
+
+
 .team {
 
     padding: rem(90) 0;

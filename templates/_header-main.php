@@ -1,11 +1,11 @@
 <?php
-$tel      = get_field('tel', 'options');
-$email    = get_field('email', 'options');
-$telegram = get_field('telegram', 'options');
-$vk       = get_field('vk', 'options');
-$ok       = get_field('ok', 'options');
-$max      = get_field('max', 'options');
-$whatsapp = get_field('whatsapp', 'options');
+$tel      = get_field('tel', 'option');
+$email    = get_field('email', 'option');
+$telegram = get_field('telegram', 'option');
+$vk       = get_field('vk', 'option');
+$ok       = get_field('ok', 'option');
+$max      = get_field('max', 'option');
+$whatsapp = get_field('whatsapp', 'option');
 
 $socials = array_filter([
     'vk'       => ['url' => $vk,       'label' => 'ВКонтакте',    'icon' => 'icon-vk'],
