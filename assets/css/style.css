@@ -16,7 +16,8 @@
 }
 
 .tour-card__badge--hot::before,
-.dropdown__list-item.active::before,
+.checkbox__input:checked + .checkbox__text::before,
+.dropdown__list-item.selected::before,
 .dropdown__list-item[aria-checked=true]::before,
 .swiper-button-prev,
 .swiper-button-next,
@@ -39,7 +40,8 @@
 }
 
 .icon-check:before,
-.dropdown__list-item.active:before,
+.checkbox__input:checked + .checkbox__text:before,
+.dropdown__list-item.selected:before,
 .dropdown__list-item[aria-checked=true]:before {
   content: "\e90a";
 }
@@ -697,6 +699,8 @@ select.select {
 .dropdown {
   position: relative;
   width: 100%;
+  font-size: 1.125rem;
+  font-weight: 600;
 }
 
 .dropdown.visible .dropdown__body {
@@ -706,18 +710,14 @@ select.select {
 
 .dropdown.visible .dropdown__button {
   border: 0.0625rem solid #B1DF1D;
+  -webkit-box-shadow: inset 0 0 0 0.0625rem #B1DF1D;
+          box-shadow: inset 0 0 0 0.0625rem #B1DF1D;
 }
 
 .dropdown.visible .dropdown__button::before {
   -webkit-transform: rotate(-180deg);
       -ms-transform: rotate(-180deg);
           transform: rotate(-180deg);
-}
-
-.dropdown {
-  font-size: 0.8125rem;
-  font-weight: 500;
-  line-height: 140%;
 }
 
 .dropdown.dropdown-top .dropdown__body {
@@ -784,12 +784,11 @@ select.select {
   z-index: 4;
   padding: 0.25rem;
   border-radius: 0.5rem;
-  border: 0.0625rem solid #414651;
-  background: #181d27;
-  -webkit-box-shadow: 0 0.75rem 1rem -0.25rem rgba(16, 24, 40, 0.08), 0 0.25rem 0.375rem -0.125rem rgba(16, 24, 40, 0.03);
-          box-shadow: 0 0.75rem 1rem -0.25rem rgba(16, 24, 40, 0.08), 0 0.25rem 0.375rem -0.125rem rgba(16, 24, 40, 0.03);
-  -webkit-transition: 0.2s ease;
-  transition: 0.2s ease;
+  border: 0.0625rem solid #B1DF1D;
+  background: #D9F970;
+  color: #262624;
+  -webkit-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
   visibility: hidden;
 }
@@ -802,6 +801,14 @@ select.select {
 .dropdown__list {
   overflow-x: hidden;
   overflow-y: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.25rem;
 }
 
 .dropdown__list::-webkit-scrollbar {
@@ -812,19 +819,30 @@ select.select {
   padding-right: 0.625rem;
 }
 
+.dropdown__list::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
 .dropdown__list::-webkit-scrollbar-track {
-  background: #e0eaf3;
-  border-radius: 0.3125rem;
+  background: transparent;
 }
 
 .dropdown__list::-webkit-scrollbar-thumb {
-  background: #81a6ca;
-  border-radius: 0.3125rem;
+  background: rgba(217, 249, 112, 0.2);
+  border-radius: 0.625rem;
+}
+
+.dropdown__list::-webkit-scrollbar-thumb:hover {
+  background: #D9F970;
 }
 
 .dropdown__list-item {
-  cursor: pointer !important;
-  white-space: nowrap;
+  position: relative;
+  cursor: pointer;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -834,28 +852,15 @@ select.select {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  gap: 0.5rem;
-  color: #a4a7ae;
-  font-size: 1rem;
-  line-height: 137.5%;
-  padding: 0.375rem 0.5rem;
-  border-radius: 0.375rem;
-  min-height: 1.38rem;
-  font-weight: 400;
 }
 
-.dropdown__list-item {
-  -webkit-transition: color 0.3s ease 0s;
-  transition: color 0.3s ease 0s;
-}
-
-.dropdown__list-item.active,
+.dropdown__list-item.selected,
 .dropdown__list-item[aria-checked=true] {
-  color: #fff;
-  background: #252b37;
+  background: #b1df1d;
+  font-weight: 600;
 }
 
-.dropdown__list-item.active::before,
+.dropdown__list-item.selected::before,
 .dropdown__list-item[aria-checked=true]::before {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
@@ -873,13 +878,12 @@ select.select {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: #939393;
 }
 
-.dropdown__list-item[aria-disabled=true] {
-  opacity: 0.5;
-  pointer-events: none;
-  display: none;
+.dropdown__list-item:active {
+  -webkit-transform: scale(0.98);
+      -ms-transform: scale(0.98);
+          transform: scale(0.98);
 }
 
 .form__fields {
@@ -1168,11 +1172,6 @@ select.select {
   width: fit-content;
 }
 
-.checkbox__input:checked + .checkbox__text::before {
-  border-color: #8e7558;
-  background: #8e7558;
-}
-
 .checkbox__input._error + .checkbox__text::before {
   border-color: #f04438;
 }
@@ -1183,15 +1182,17 @@ select.select {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  padding: 0 0 0 2rem;
+  padding: 0 0 0 1.3125rem;
   line-height: 100%;
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  font-size: 0.875rem;
-  line-height: 1.2857142857;
+  color: #262624;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
   min-height: 1.25rem;
 }
 
@@ -1209,11 +1210,10 @@ select.select {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 0.0625rem solid #d5d7da;
-  width: 1.25rem;
-  height: 1.25rem;
-  border-radius: 0.25rem;
-  color: #fff;
+  border: 0.0625rem solid #262624;
+  width: 0.625rem;
+  height: 0.625rem;
+  font-size: 0.625rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1725,6 +1725,11 @@ select.select {
   gap: 1rem;
 }
 
+.selection__form-checkbox {
+  margin-top: 0.75rem;
+  margin-left: 1.5625rem;
+}
+
 .description {
   padding: 2.8125rem 0;
 }
@@ -2165,12 +2170,8 @@ html {
     background: rgb(141.1785714286, 177.869047619, 23.130952381);
   }
 
-  .dropdown__list::-webkit-scrollbar-thumb:hover {
-    background: #2d87ff;
-  }
-
-  .dropdown__list-item:not(.active):hover {
-    color: #fff;
+  .dropdown__list-item:hover {
+    background: rgba(177, 223, 29, 0.7);
   }
 
   .form__file-remove:hover {
@@ -2179,10 +2180,6 @@ html {
 
   .form__policy a:hover {
     text-decoration: underline;
-  }
-
-  .checkbox__text:hover::before {
-    border-color: #B1DF1D;
   }
 
   .checkbox__text a:hover {

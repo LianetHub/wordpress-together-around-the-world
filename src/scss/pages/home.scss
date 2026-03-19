@@ -131,7 +131,10 @@
     &__form-submit {}
 
     // .selection__form-checkbox
-    &__form-checkbox {}
+    &__form-checkbox {
+        margin-top: rem(12);
+        margin-left: rem(25);
+    }
 }
 
 .description {
