@@ -536,6 +536,158 @@ $(function () {
     // window.spollers = new Spollers();
 
 
+    // custom select
+    class CustomSelect {
+        static openDropdown = null;
+        static eventsBound = false;
+
+        constructor(dropdownElement) {
+            this.$dropdown = $(dropdownElement);
+            this.$input = this.$dropdown.find('input[type="hidden"]');
+            this.$button = this.$dropdown.find('.dropdown__button');
+            this.$buttonText = this.$dropdown.find('.dropdown__button-text');
+            this.$listItems = this.$dropdown.find('.dropdown__list-item');
+
+            this.initialValue = this.$input.val();
+            this.initialText = this.$buttonText.text();
+
+            this.init();
+        }
+
+        init() {
+            this.setupEvents();
+            this.bindGlobalEvents();
+            this.syncStateWithInput();
+        }
+
+        bindGlobalEvents() {
+            if (CustomSelect.eventsBound) return;
+
+            $(document).on('click.customSelectGlobal', (event) => {
+                if (CustomSelect.openDropdown && !$(event.target).closest('.dropdown').length) {
+                    CustomSelect.openDropdown.closeDropdown();
+                }
+            });
+
+            $(document).on('keydown.customSelectGlobal', (event) => {
+                if (event.key === 'Escape' && CustomSelect.openDropdown) {
+                    CustomSelect.openDropdown.closeDropdown();
+                }
+            });
+
+            CustomSelect.eventsBound = true;
+        }
+
+        setupEvents() {
+            this.$button.on('click', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                const isOpen = this.$dropdown.hasClass('visible');
+                this.toggleDropdown(!isOpen);
+            });
+
+            this.$dropdown.on('click', '.dropdown__list-item', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                const item = $(event.currentTarget);
+
+                if (!item.hasClass('disabled')) {
+                    this.selectOption(item);
+                }
+            });
+
+            this.$input.closest('form').on('reset', () => {
+                setTimeout(() => this.restoreInitialState(), 0);
+            });
+        }
+
+        toggleDropdown(isOpen) {
+            if (isOpen && CustomSelect.openDropdown && CustomSelect.openDropdown !== this) {
+                CustomSelect.openDropdown.closeDropdown();
+            }
+
+            const body = this.$dropdown.find('.dropdown__body');
+            const list = this.$dropdown.find('.dropdown__list');
+            const hasScroll = list.length && list[0].scrollHeight > list[0].clientHeight;
+
+            this.$dropdown.toggleClass('visible', isOpen);
+            this.$button.attr('aria-expanded', isOpen);
+            body.attr('aria-hidden', !isOpen);
+
+            if (isOpen) {
+                CustomSelect.openDropdown = this;
+                this.$dropdown.removeClass('dropdown-top');
+
+                const dropdownRect = body[0].getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+
+                if (dropdownRect.bottom > viewportHeight) {
+                    this.$dropdown.addClass('dropdown-top');
+                }
+                list.toggleClass('has-scroll', hasScroll);
+            } else {
+                if (CustomSelect.openDropdown === this) {
+                    CustomSelect.openDropdown = null;
+                }
+            }
+        }
+
+        closeDropdown() {
+            this.toggleDropdown(false);
+        }
+
+        selectOption(item) {
+            const value = item.data('value');
+            const text = item.text();
+
+            this.$listItems.removeClass('selected').attr('aria-checked', 'false');
+            item.addClass('selected').attr('aria-checked', 'true');
+
+            this.$button.addClass('selected');
+            this.$buttonText.text(text);
+
+            this.$input.val(value).trigger('change');
+
+            this.closeDropdown();
+        }
+
+        restoreInitialState() {
+            this.$input.val(this.initialValue);
+            this.$buttonText.text(this.initialText);
+
+            this.$listItems.removeClass('selected').attr('aria-checked', 'false');
+            const initialItem = this.$listItems.filter((_, el) => $(el).data('value') == this.initialValue);
+
+            if (initialItem.length) {
+                initialItem.addClass('selected').attr('aria-checked', 'true');
+                this.$button.addClass('selected');
+            } else {
+                this.$button.removeClass('selected');
+            }
+        }
+
+        syncStateWithInput() {
+            const currentValue = this.$input.val();
+            const currentItem = this.$listItems.filter((_, el) => $(el).data('value') == currentValue);
+
+            if (currentItem.length) {
+                this.$listItems.removeClass('selected').attr('aria-checked', 'false');
+                currentItem.addClass('selected').attr('aria-checked', 'true');
+                this.$buttonText.text(currentItem.text());
+                this.$button.addClass('selected');
+            }
+        }
+    }
+
+    $('.custom-select').each((index, element) => {
+        new CustomSelect(element);
+    });
+
+    $('.dropdown').each((index, element) => {
+        new CustomSelect(element);
+    });
+
+
 
 })
 

@@ -5,7 +5,7 @@
             <input
                 type="text"
                 name="date_from"
-                class="form__control"
+                class="form__control form__control--green"
                 placeholder="Выбрать дату"
                 value="<?php echo esc_attr($_GET['date_from'] ?? ''); ?>">
         </label>
@@ -15,20 +15,30 @@
             <input
                 type="text"
                 name="date_to"
-                class="form__control"
+                class="form__control form__control--green"
                 placeholder="Выбрать дату"
                 value="<?php echo esc_attr($_GET['date_to'] ?? ''); ?>">
         </label>
 
         <label class="selection__form-field form__field">
             <span class="form__field-label">Направление</span>
-            <div class="form__select">
-                <select name="direction" class="form__control">
-                    <option value="0">Не важно</option>
-                    <option value="1" <?php selected($_GET['direction'] ?? '', '1'); ?>>1</option>
-                    <option value="2" <?php selected($_GET['direction'] ?? '', '2'); ?>>2</option>
-                    <option value="3" <?php selected($_GET['direction'] ?? '', '3'); ?>>3</option>
-                </select>
+            <div class="dropdown">
+                <input type="hidden" name="direction" value="1">
+
+                <button type="button" class="dropdown__button" aria-expanded="false" aria-haspopup="true">
+                    <span class="dropdown__button-text">1</span>
+                </button>
+
+                <div class="dropdown__body" aria-hidden="true">
+                    <div class="dropdown__content">
+                        <ul class="dropdown__list" role="listbox">
+                            <li role="option" data-value="0" aria-checked="false" class="dropdown__list-item">Не важно</li>
+                            <li role="option" data-value="1" aria-checked="true" class="dropdown__list-item selected">1</li>
+                            <li role="option" data-value="2" aria-checked="false" class="dropdown__list-item">2</li>
+                            <li role="option" data-value="3" aria-checked="false" class="dropdown__list-item">3</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </label>
 
