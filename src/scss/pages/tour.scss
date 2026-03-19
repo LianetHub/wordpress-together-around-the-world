@@ -5,6 +5,27 @@
 @use "fonts";
 @use "icons";
 
+.tours {
+    padding: rem(45) 0;
+
+    // .tours__title
+    &__title {}
+
+    // .tours__grid
+    &__grid {
+        margin-top: rem(30);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: rem(30);
+        row-gap: rem(45);
+    }
+
+    // .tours__actions
+    &__actions {
+        margin-top: 2.44rem;
+    }
+}
+
 .tour-card {
     background: #fff;
     border-radius: 20px;
@@ -44,32 +65,34 @@
 
     &__badge {
         position: absolute;
-        top: 15px;
-        right: 15px;
-        padding: 6px 12px;
-        border-radius: 50px;
-        font-size: 0.75rem;
-        font-weight: 700;
+        top: 1rem;
+        right: 1rem;
+        color: #FFF;
+        font-size: 0.625rem;
+        line-height: 130%;
         text-transform: uppercase;
-        color: #fff;
+        font-weight: 700;
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 0.25rem;
+        padding: 0.44rem 0.75rem;
+        border-radius: 3.125rem;
 
         &--hot {
-            background-color: #E63946;
+            background-color: #DB1D43;
+
+            &::before {
+                order: 1;
+                @extend %ic, .icon-fire;
+            }
         }
 
         &--sold {
-            background-color: #9D0208;
+            background-color: #AA1589;
         }
 
         &--new {
-            background-color: #55A630;
-        }
-
-        &-icon {
-            font-size: 0.9rem;
+            background-color: #54C81B;
         }
     }
 

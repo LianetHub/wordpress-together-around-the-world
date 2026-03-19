@@ -21,13 +21,15 @@ if ($price) {
             if (has_post_thumbnail()) {
                 $img_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
                 echo '<img src="' . esc_url($img_url) . '" alt="' . the_title_attribute(['echo' => false]) . '">';
+            } else {
+                echo '<img src="' . get_template_directory_uri() . '/assets/img/tour-placeholder.svg" alt="' . the_title_attribute(['echo' => false]) . '" class="placeholder">';
             }
             ?>
 
             <?php if ($badge && $badge !== 'none') : ?>
                 <div class="tour-card__badge tour-card__badge--<?php echo esc_attr($badge); ?>">
                     <?php
-                    if ($badge === 'hot') echo 'Горящие места <span class="tour-card__badge-icon">🔥</span>';
+                    if ($badge === 'hot') echo 'Горящие места';
                     if ($badge === 'sold') echo 'Мест нет';
                     if ($badge === 'new') echo 'Новинка <span class="tour-card__badge-icon">✨</span>';
                     ?>
