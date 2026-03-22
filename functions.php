@@ -68,6 +68,7 @@ function together_theme_setup()
 {
 	register_nav_menus([
 		'header_menu' => 'Меню в шапке',
+		'policies_menu' => 'Меню политик конфиденциальности',
 	]);
 }
 add_action('after_setup_theme', 'together_theme_setup');

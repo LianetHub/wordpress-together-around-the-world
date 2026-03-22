@@ -125,11 +125,21 @@
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: rem(26);
+
+		& a {
+			text-align: center;
+			border-radius: 3.125rem;
+			background: #2F2F2F;
+			color: #7D7D7D;
+			font-size: 1.0625rem;
+			font-weight: 600;
+			line-height: math.div(1.75, 1.0625);
+			letter-spacing: 0.0425rem;
+			padding: 0.5rem;
+			display: block;
+		}
 	}
 
-	// .footer__policies-item
-	&__policies-item {}
 
-	// .footer__policies-link
-	&__policies-link {}
+
 }

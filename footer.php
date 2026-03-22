@@ -97,12 +97,18 @@ $socials = array_filter([
                 </div>
             </div>
         </div>
+
+
         <nav aria-label="Меню политик" class="footer__policies">
-            <ul class="footer__policies-list">
-                <li class="footer__policies-item"><a href="" class="footer__policies-link">Пользовательское соглашение</a></li>
-                <li class="footer__policies-item"><a href="" class="footer__policies-link">Политика конфидециальности</a></li>
-                <li class="footer__policies-item"><a href="" class="footer__policies-link">Договор-оферта на оказание услуг</a></li>
-            </ul>
+            <?php
+            wp_nav_menu([
+                'theme_location'  => 'policies_menu',
+                'container'       => false,
+                'menu_class'      => 'footer__policies-list',
+                'fallback_cb'     => '__return_false',
+                'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+            ]);
+            ?>
         </nav>
     </div>
 </footer>
