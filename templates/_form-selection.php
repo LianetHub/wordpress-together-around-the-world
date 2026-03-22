@@ -1,4 +1,10 @@
-<form action="<?php echo esc_url(home_url('/')); ?>" method="GET" class="selection__form filter-form">
+<?php
+$archive_link = get_post_type_archive_link('post');
+?>
+<form
+    action="<?php echo esc_url($archive_link); ?>"
+    method="GET"
+    class="selection__form filter-form">
     <div class="selection__form-row">
         <label class="selection__form-field form__field">
             <span class="form__field-label">дата поездки от:</span>
