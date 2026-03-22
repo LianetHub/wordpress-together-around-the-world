@@ -1,18 +1,18 @@
 @font-face {
-  font-family: "icons";
-  font-display: swap;
-  src: url("../fonts/icons.woff2") format("woff2"), url("../fonts/icons.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
   font-family: "Roboto";
   src: url("../fonts/Roboto-VariableFont_wdth,wght.woff2") format("woff2 supports variations"), url("../fonts/Roboto-VariableFont_wdth,wght.woff2") format("woff2-variations"), url("../fonts/Roboto-VariableFont_wdth,wght.woff") format("woff");
   font-weight: 100 900;
   font-stretch: 75% 125%;
   font-style: normal;
   font-display: swap;
+}
+
+@font-face {
+  font-family: "icons";
+  font-display: swap;
+  src: url("../fonts/icons.woff2") format("woff2"), url("../fonts/icons.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
 }
 
 .tour-card__badge--hot::before,
@@ -1145,6 +1145,23 @@ select.select {
 
 .form__btn {
   width: 100%;
+  cursor: pointer;
+}
+
+.form__btn .wpcf7-spinner {
+  display: none;
+}
+
+.form__btn input[type=submit] {
+  background: transparent;
+  padding: 0;
+  margin: -0.15rem 0;
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-transform: inherit;
+  cursor: pointer;
 }
 
 .form__policy {
@@ -1319,6 +1336,83 @@ select.select {
   -webkit-transform: scale(0.985);
       -ms-transform: scale(0.985);
           transform: scale(0.985);
+}
+
+.wpcf7-response-output {
+  display: none !important;
+}
+
+.wpcf7-not-valid-tip {
+  margin-top: 0.25em;
+}
+
+.wpcf7-not-valid-tip {
+  text-align: left;
+}
+
+.wpcf7-form:has(.wpcf7-submit[disabled]) .form__btn {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.wpcf7-form.submitting .form__btn {
+  pointer-events: none;
+}
+
+.wpcf7-form.submitting .wpcf7-submit {
+  color: transparent;
+}
+
+.wpcf7-form.submitting .wpcf7-spinner {
+  opacity: 1;
+  visibility: visible;
+  display: block;
+  background: transparent;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.wpcf7-form.submitting .wpcf7-spinner::before {
+  display: none;
+}
+
+.wpcf7-form.submitting .wpcf7-spinner::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 3px solid currentColor;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
+  -webkit-animation: rotation 1s linear infinite;
+          animation: rotation 1s linear infinite;
+  z-index: 3;
+}
+
+@keyframes rotation {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+            transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 .header {
@@ -1868,6 +1962,56 @@ select.select {
   font-size: 0.75rem;
   font-weight: 500;
   line-height: 120%;
+}
+
+.callback {
+  background: #F9F9F9;
+  padding: 4.375rem 0;
+  text-align: center;
+}
+
+.callback__subtitle {
+  margin-top: 1.5rem;
+  color: #4F4F4F;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 0.8125rem;
+  text-transform: lowercase;
+}
+
+.callback__form {
+  margin-top: 2.75rem;
+}
+
+.callback__form-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 1.5625rem;
+}
+
+.callback__form-row .wpcf7-form-control-wrap .wpcf7-not-valid-tip {
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.callback__form-row .form__btn {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 12.1875rem;
+          flex: 0 0 12.1875rem;
+}
+
+.callback__tagline {
+  margin-top: 3.0625rem;
+  color: #4F4F4F;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 0.8125rem;
+  text-transform: lowercase;
 }
 
 .tours {

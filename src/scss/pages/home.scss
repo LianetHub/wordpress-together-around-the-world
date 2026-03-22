@@ -199,10 +199,6 @@
     }
 }
 
-
-
-
-
 .team {
 
     padding: rem(90) 0;
@@ -272,5 +268,58 @@
         font-size: 0.75rem;
         font-weight: 500;
         line-height: 120%;
+    }
+}
+
+.callback {
+    background: #F9F9F9;
+    padding: rem(70) 0;
+    text-align: center;
+
+    // .callback__title
+    &__title {}
+
+    // .callback__subtitle
+    &__subtitle {
+        margin-top: 1.5rem;
+        color: #4F4F4F;
+        font-size: 1.125rem;
+        font-weight: 500;
+        line-height: 0.8125rem;
+        text-transform: lowercase;
+    }
+
+    // .callback__form
+    &__form {
+        margin-top: rem(44);
+    }
+
+    // .callback__form-row
+    &__form-row {
+        display: flex;
+        align-items: flex-start;
+        gap: rem(25);
+
+        .wpcf7-form-control-wrap {
+            .wpcf7-not-valid-tip {
+                position: absolute;
+                top: 100%;
+                left: 0;
+            }
+        }
+
+        .form__btn {
+            flex: 0 0 rem(195);
+        }
+    }
+
+    // .callback__tagline
+    &__tagline {
+        margin-top: rem(49);
+        color: #4F4F4F;
+        font-size: 1.125rem;
+        font-weight: 500;
+        line-height: 0.8125rem;
+        text-transform: lowercase;
     }
 }

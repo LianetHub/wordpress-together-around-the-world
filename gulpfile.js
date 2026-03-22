@@ -14,7 +14,6 @@ global.app = {
 
 import { copy } from "./gulp/tasks/copy.js";
 import { reset } from "./gulp/tasks/reset.js";
-import { server } from "./gulp/tasks/server.js";
 import { scss, copyCssLibs } from "./gulp/tasks/scss.js";
 import { normalize } from "./gulp/tasks/scss.js";
 import { js, copyJsLibs, jsChunks } from "./gulp/tasks/js.js";
@@ -46,7 +45,7 @@ const mainTasks = gulp.series(
     gulp.parallel(copy, normalize, scss, copyCssLibs, favicon, js, copyJsLibs, jsChunks, json, images)
 );
 
-const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
+const dev = gulp.series(reset, mainTasks, watcher);
 const build = gulp.series(reset, mainTasks);
 const deployZIP = gulp.series(reset, mainTasks, zip);
 

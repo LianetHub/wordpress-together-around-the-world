@@ -101,19 +101,19 @@ add_action('init', function () {
 	]);
 });
 
-// function load_env_configs($path)
-// {
-// 	if (!file_exists($path)) return;
+function load_env_configs($path)
+{
+	if (!file_exists($path)) return;
 
-// 	$lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-// 	foreach ($lines as $line) {
-// 		if (strpos(trim($line), '#') === 0) continue;
-// 		list($name, $value) = explode('=', $line, 2);
-// 		$_ENV[trim($name)] = trim($value);
-// 	}
-// }
+	$lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+	foreach ($lines as $line) {
+		if (strpos(trim($line), '#') === 0) continue;
+		list($name, $value) = explode('=', $line, 2);
+		$_ENV[trim($name)] = trim($value);
+	}
+}
 
-// load_env_configs(ABSPATH . '.env');
+load_env_configs(ABSPATH . '.env');
 
 // Allow SVG file uploads
 function allow_svg_uploads($mimes)
@@ -438,3 +438,28 @@ function get_formatted_tour_departure($date_from, $time_str)
 
 	return $time_formatted . ', ' . $d . ' ' . $months[$m] . ', ' . $days[$w];
 }
+
+
+add_action('wpcf7_mail_sent', function ($contact_form) {
+	$submission = WPCF7_Submission::get_instance();
+	if ($submission) {
+		$data = $submission->get_posted_data();
+
+		$token   = $_ENV['TELEGRAM_BOT_TOKEN'] ?? '';
+		$chat_id = $_ENV['TELEGRAM_CHAT_ID'] ?? '';
+
+		if (!$token || !$chat_id) return;
+
+		$username = esc_html($data['username'] ?? 'Не указано');
+		$phone = esc_html($data['phone'] ?? 'Не указано');
+		$clean_phone = preg_replace('/[^\d+]/', '', $phone);
+
+		$message = "<b>Новая заявка с сайта «Вместе по миру»</b>\n\n";
+		$message .= "<b>Имя:</b> " . $username . "\n";
+		$message .= "<b>Телефон:</b> <a href='tel:" . $clean_phone . "'>" . $phone . "</a>";
+
+		$url = "https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text=" . urlencode($message);
+
+		wp_remote_get($url);
+	}
+}, 10, 1);
