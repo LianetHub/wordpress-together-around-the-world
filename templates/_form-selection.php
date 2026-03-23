@@ -1,6 +1,13 @@
 <?php
 $archive_link = get_post_type_archive_link('post');
+$date_from = $_GET['date_from'] ?? '';
+$date_to = $_GET['date_to'] ?? '';
+$no_date = isset($_GET['no_date']) && $_GET['no_date'] === '1';
+
+$clear_from_class = (empty($date_from) || $no_date) ? 'hidden' : '';
+$clear_to_class = (empty($date_to) || $no_date) ? 'hidden' : '';
 ?>
+
 <form
     action="<?php echo esc_url($archive_link); ?>"
     method="GET"
@@ -14,10 +21,10 @@ $archive_link = get_post_type_archive_link('post');
                 class="form__control form__control--green"
                 placeholder="Выбрать дату"
                 readonly
-                value="<?php echo esc_attr($_GET['date_from'] ?? ''); ?>">
+                value="<?php echo esc_attr($date_from); ?>">
             <button
                 type="button"
-                class="form__field-clear icon-cross hidden"
+                class="form__field-clear icon-cross <?php echo esc_attr($clear_from_class); ?>"
                 aria-label="Очистить дату"></button>
         </label>
 
@@ -29,10 +36,10 @@ $archive_link = get_post_type_archive_link('post');
                 class="form__control form__control--green"
                 placeholder="Выбрать дату"
                 readonly
-                value="<?php echo esc_attr($_GET['date_to'] ?? ''); ?>">
+                value="<?php echo esc_attr($date_to); ?>">
             <button
                 type="button"
-                class="form__field-clear icon-cross hidden"
+                class="form__field-clear icon-cross <?php echo esc_attr($clear_to_class); ?>"
                 aria-label="Очистить дату"></button>
         </label>
 
@@ -87,7 +94,7 @@ $archive_link = get_post_type_archive_link('post');
     </div>
 
     <label class="selection__form-checkbox checkbox">
-        <input type="checkbox" name="no_date" value="1" class="checkbox__input hidden" <?php checked($_GET['no_date'] ?? '', '1'); ?>>
+        <input type="checkbox" name="no_date" value="1" class="checkbox__input hidden" <?php checked($no_date); ?>>
         <span class="checkbox__text">даты поездки не важны</span>
     </label>
 </form>

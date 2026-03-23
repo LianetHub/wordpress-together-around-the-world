@@ -325,6 +325,11 @@ const initApp = () => {
         const $dateTo = $form.find('input[name="date_to"]');
         const $noDateCheckbox = $form.find('input[name="no_date"]');
 
+        const calendars = {
+            from: null,
+            to: null
+        };
+
         function parseDate(dateStr) {
             if (!dateStr) return null;
             const parts = dateStr.split('.');
@@ -345,58 +350,96 @@ const initApp = () => {
                 if (!input) return;
 
                 const $input = $(input);
+                const isFrom = $input.attr('name') === 'date_from';
                 const $parent = $input.closest('.form__field');
                 const $clearBtn = $parent.find('.form__field-clear');
 
                 if (self.context.selectedDates.length > 0) {
-                    const dateParts = self.context.selectedDates[0].split('-');
+                    const selectedDate = self.context.selectedDates[0];
+                    const dateParts = selectedDate.split('-');
                     const formattedDate = `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`;
 
                     $input.val(formattedDate);
                     $clearBtn.removeClass('hidden');
+
+                    if (isFrom && calendars.to) {
+                        calendars.to.dateMin = selectedDate;
+                        calendars.to.update();
+                    } else if (!isFrom && calendars.from) {
+                        calendars.from.dateMax = selectedDate;
+                        calendars.from.update();
+                    }
+
                     self.hide();
                 } else {
                     $input.val('');
                     $clearBtn.addClass('hidden');
+
+                    if (isFrom && calendars.to) {
+                        calendars.to.dateMin = new Date().toISOString().split('T')[0];
+                        calendars.to.update();
+                    } else if (!isFrom && calendars.from) {
+                        calendars.from.dateMax = '2470-12-31';
+                        calendars.from.update();
+                    }
                 }
             },
         };
 
-        // Читаем даты из инпутов (для GET параметров)
         const valFrom = parseDate($dateFrom.val());
         const valTo = parseDate($dateTo.val());
 
-        // Создаем экземпляры с предустановленными датами
-        const calFrom = new Calendar($dateFrom[0], {
+        calendars.from = new Calendar($dateFrom[0], {
             ...calendarOptions,
-            selectedDates: valFrom ? [valFrom] : []
+            selectedDates: valFrom ? [valFrom] : [],
+            dateMax: valTo ? valTo : '2470-12-31'
         });
 
-        const calTo = new Calendar($dateTo[0], {
+        calendars.to = new Calendar($dateTo[0], {
             ...calendarOptions,
-            selectedDates: valTo ? [valTo] : []
+            selectedDates: valTo ? [valTo] : [],
+            dateMin: valFrom ? valFrom : new Date().toISOString().split('T')[0]
         });
 
-        calFrom.init();
-        calTo.init();
+        calendars.from.init();
+        calendars.to.init();
 
-        // Логика кнопки очистки
+
         $form.on('click', '.form__field-clear', function (e) {
             e.preventDefault();
+            e.stopPropagation();
+
             const $btn = $(this);
             const $parent = $btn.closest('.form__field');
             const $input = $parent.find('input');
+            const inputName = $input.attr('name');
 
             $input.val('');
+            if ($input[0]) {
+                $input[0].value = '';
+            }
+
             $btn.addClass('hidden');
 
-            if ($input.attr('name') === 'date_from') {
-                calFrom.context.selectedDates = [];
-                calFrom.update();
-            } else {
-                calTo.context.selectedDates = [];
-                calTo.update();
+            if (inputName === 'date_from' && calendars.from) {
+                calendars.from.context.selectedDates = [];
+                calendars.from.update();
+
+                if (calendars.to) {
+                    calendars.to.dateMin = new Date().toISOString().split('T')[0];
+                    calendars.to.update();
+                }
+            } else if (inputName === 'date_to' && calendars.to) {
+                calendars.to.context.selectedDates = [];
+                calendars.to.update();
+
+                if (calendars.from) {
+                    calendars.from.dateMax = '2470-12-31';
+                    calendars.from.update();
+                }
             }
+
+            return false;
         });
 
         function toggleDateInputs() {
@@ -408,17 +451,20 @@ const initApp = () => {
                 $dateFrom.add($dateTo).val('').prop('disabled', true);
                 $form.find('.form__field-clear').addClass('hidden');
 
-                calFrom.context.selectedDates = [];
-                calTo.context.selectedDates = [];
-                calFrom.update();
-                calTo.update();
+                if (calendars.from && calendars.to) {
+                    calendars.from.context.selectedDates = [];
+                    calendars.to.context.selectedDates = [];
+                    calendars.from.dateMax = '2470-12-31';
+                    calendars.to.dateMin = new Date().toISOString().split('T')[0];
 
-                calFrom.hide();
-                calTo.hide();
+                    calendars.from.update();
+                    calendars.to.update();
+                    calendars.from.hide();
+                    calendars.to.hide();
+                }
             } else {
                 $dateFields.removeClass('disabled');
                 $dateFrom.add($dateTo).prop('disabled', false);
-
                 $dateFrom.add($dateTo).each(function () {
                     if ($(this).val()) {
                         $(this).closest('.form__field').find('.form__field-clear').removeClass('hidden');
