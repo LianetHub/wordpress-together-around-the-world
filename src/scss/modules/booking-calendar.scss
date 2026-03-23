@@ -69,6 +69,10 @@
         border-radius: 50%;
         transition: all 0.3s ease;
 
+        &:disabled {
+            opacity: 0.3;
+        }
+
         @media (any-hover: hover) {
             &:hover {
                 background: #B0DF1D;
@@ -112,6 +116,55 @@
 
         .vc-header {
             display: none !important;
+        }
+
+        [data-vc-theme=light] .vc-date:not([data-vc-date-month="prev"]):not([data-vc-date-month="next"]) .vc-date__btn {
+            &:not([aria-disabled]) {
+                background-color: #B1DF1D;
+                color: #7D7D7D;
+            }
+
+            &[aria-disabled] {
+                pointer-events: none;
+            }
+        }
+
+        [data-vc-theme=light] .vc-date[data-vc-date-month="prev"] .vc-date__btn {
+            pointer-events: none;
+            color: #cbd5e1;
+        }
+
+        [data-vc-theme=light] .vc-date[data-vc-date-month="next"] .vc-date__btn {
+            pointer-events: none;
+            color: #cbd5e1;
+        }
+
+
+        [data-vc-theme=light] .vc-date[data-vc-date-week-day][data-vc-date-month="current"] .vc-date__btn,
+        [data-vc-theme=light] .vc-date[data-vc-date-holiday][data-vc-date-selected] .vc-date__btn,
+        [data-vc-theme=light] .vc-date[data-vc-date-weekend][data-vc-date-selected] .vc-date__btn {
+            &:not([aria-disabled]) {
+                &[aria-selected="true"] {
+                    --tw-bg-opacity: 1;
+                    background-color: #000;
+                    color: #fff;
+                }
+            }
+        }
+
+        @media (hover:hover) and (pointer:fine) {
+
+            [data-vc-theme=light] .vc-date[data-vc-date-holiday][data-vc-date-selected] .vc-date__btn:not([aria-disabled]):hover,
+            [data-vc-theme=light] .vc-date[data-vc-date-weekend][data-vc-date-selected] .vc-date__btn:not([aria-disabled]):hover,
+            [data-vc-theme=light] .vc-date[data-vc-date-holiday] .vc-date__btn:not([aria-disabled]):hover,
+            [data-vc-theme=light] .vc-date[data-vc-date-weekend] .vc-date__btn:not([aria-disabled]):hover {
+
+                --tw-bg-opacity: 1;
+                background-color: #000;
+                color: #fff;
+            }
+
+
         }
     }
 

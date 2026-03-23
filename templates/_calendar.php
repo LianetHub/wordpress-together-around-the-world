@@ -2,11 +2,6 @@
 $tours_raw = get_all_tours_data();
 ?>
 
-<!-- <div id="calendar-debug" style="background: #1e1e1e; color: #00ff00; padding: 15px; font-family: monospace; font-size: 12px; margin-bottom: 20px; border: 1px solid #333; max-height: 200px; overflow: auto; border-radius: 8px;">
-    <strong>[DEBUG MODE]</strong><br>
-    <div id="debug-click-info">Ожидание клика...</div>
-</div> -->
-
 <section class="booking-calendar">
     <div class="container">
         <h2 class="booking-calendar__title title text-center">Календарь туров</h2>
@@ -22,7 +17,10 @@ $tours_raw = get_all_tours_data();
                 <?php endforeach; ?>
             </div>
             <div class="booking-calendar__controls">
-                <button type="button" class="booking-calendar__prev icon-chevron-left"></button>
+                <button
+                    type="button"
+                    disabled
+                    class="booking-calendar__prev icon-chevron-left"></button>
                 <div class="booking-calendar__month"></div>
                 <button type="button" class="booking-calendar__next icon-chevron-right"></button>
             </div>
@@ -41,7 +39,6 @@ $tours_raw = get_all_tours_data();
                 Calendar
             } = window.VanillaCalendarPro;
             const sidePanel = document.querySelector('#calendar-side-panel');
-            const debugInfo = document.querySelector('#debug-click-info');
             const prevBtn = document.querySelector('.booking-calendar__prev');
             const nextBtn = document.querySelector('.booking-calendar__next');
             const monthDisplay = document.querySelector('.booking-calendar__month');
@@ -98,10 +95,8 @@ $tours_raw = get_all_tours_data();
 
                 if (viewYear < currentYear || (viewYear === currentYear && viewMonth <= currentMonth)) {
                     prevBtn.setAttribute('disabled', 'true');
-                    prevBtn.style.opacity = '0.3';
                 } else {
                     prevBtn.removeAttribute('disabled');
-                    prevBtn.style.opacity = '1';
                 }
 
                 const date = new Date(viewYear, viewMonth);
@@ -119,19 +114,21 @@ $tours_raw = get_all_tours_data();
                     if (matches.length) enabledDates.push(date);
                 }
 
-                calendar.set({
-                    enableDates: enabledDates
-                });
-
                 const prefix = `${calendar.selectedYear}-${String(calendar.selectedMonth + 1).padStart(2, '0')}`;
                 const datesInMonth = enabledDates.filter(d => d.startsWith(prefix)).sort();
 
                 if (datesInMonth.length > 0) {
                     activeDate = datesInMonth[0];
-                    calendar.selectedDates = [activeDate];
+                    calendar.set({
+                        enableDates: enabledDates,
+                        selectedDates: [activeDate]
+                    });
                 } else {
                     activeDate = null;
-                    calendar.selectedDates = [];
+                    calendar.set({
+                        enableDates: enabledDates,
+                        selectedDates: []
+                    });
                 }
 
                 calendar.update();
@@ -164,23 +161,22 @@ $tours_raw = get_all_tours_data();
                 },
 
                 onClickDate(self, event) {
-                    const dayBtn = event.target.closest('[data-calendar-date]');
-                    const clickedDate = dayBtn ? dayBtn.dataset.calendarDate : null;
+                    const dayBtn = event.target.closest('[data-vc-date]');
+                    const clickedDate = dayBtn ? dayBtn.dataset.vcDate : null;
 
-                    debugInfo.innerHTML = `
-                        Клик по дате: ${clickedDate}<br>
-                        Было активно: ${activeDate}<br>
-                        Библиотека выбрала: ${self.selectedDates[0]}
-                    `;
 
                     if (!clickedDate || !self.enableDates.includes(clickedDate)) {
-                        self.selectedDates = [activeDate];
+                        self.set({
+                            selectedDates: [activeDate]
+                        });
                         self.update();
                         return;
                     }
 
                     activeDate = clickedDate;
-                    self.selectedDates = [activeDate];
+                    self.set({
+                        selectedDates: [activeDate]
+                    });
                     self.update();
                     renderSidePanel(activeDate);
                 },
@@ -189,6 +185,8 @@ $tours_raw = get_all_tours_data();
                     const date = dateEl.dataset.calendarDate;
                     if (allTours[date]) {
                         dateEl.classList.add('has-tour');
+                        const innerBtn = dateEl.querySelector('button');
+                        if (innerBtn) innerBtn.style.pointerEvents = 'none';
                     }
                 }
             });

@@ -824,14 +824,14 @@ button[data-vc-week-day] {
     [data-vc-theme=light] .vc-date[data-vc-date-holiday] .vc-date__btn:hover,
     [data-vc-theme=light] .vc-date[data-vc-date-weekend] .vc-date__btn:hover {
         --tw-bg-opacity: 1;
-        background-color: rgb(255 241 242/var(--tw-bg-opacity))
+        background-color: rgb(241, 245, 249, var(--tw-bg-opacity));
     }
 }
 
 [data-vc-theme=light] .vc-date[data-vc-date-holiday][data-vc-date-hover] .vc-date__btn,
 [data-vc-theme=light] .vc-date[data-vc-date-weekend][data-vc-date-hover] .vc-date__btn {
     --tw-bg-opacity: 1;
-    background-color: rgb(255 241 242/var(--tw-bg-opacity))
+    background-color: rgb(241, 245, 249, var(--tw-bg-opacity));
 }
 
 [data-vc-theme=light] .vc-date[data-vc-date-holiday][data-vc-date-hover=first] .vc-date__btn,

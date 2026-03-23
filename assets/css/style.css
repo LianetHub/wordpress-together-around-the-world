@@ -1313,7 +1313,7 @@ button[data-vc-week-day] {
 [data-vc-theme=light] .vc-date[data-vc-date-holiday][data-vc-date-hover] .vc-date__btn,
 [data-vc-theme=light] .vc-date[data-vc-date-weekend][data-vc-date-hover] .vc-date__btn {
   --tw-bg-opacity: 1;
-  background-color: rgb(255, 241, 242, var(--tw-bg-opacity));
+  background-color: rgb(241, 245, 249, var(--tw-bg-opacity));
 }
 
 [data-vc-theme=light] .vc-date[data-vc-date-holiday][data-vc-date-hover=first] .vc-date__btn,
@@ -1912,6 +1912,11 @@ button[data-vc-week-day] {
   transition: all 0.3s ease;
 }
 
+.booking-calendar__prev:disabled,
+.booking-calendar__next:disabled {
+  opacity: 0.3;
+}
+
 .booking-calendar__month {
   color: #000;
   font-size: 1.25rem;
@@ -1942,6 +1947,33 @@ button[data-vc-week-day] {
 
 .booking-calendar__block .vc-header {
   display: none !important;
+}
+
+.booking-calendar__block [data-vc-theme=light] .vc-date:not([data-vc-date-month=prev]):not([data-vc-date-month=next]) .vc-date__btn:not([aria-disabled]) {
+  background-color: #B1DF1D;
+  color: #7D7D7D;
+}
+
+.booking-calendar__block [data-vc-theme=light] .vc-date:not([data-vc-date-month=prev]):not([data-vc-date-month=next]) .vc-date__btn[aria-disabled] {
+  pointer-events: none;
+}
+
+.booking-calendar__block [data-vc-theme=light] .vc-date[data-vc-date-month=prev] .vc-date__btn {
+  pointer-events: none;
+  color: #cbd5e1;
+}
+
+.booking-calendar__block [data-vc-theme=light] .vc-date[data-vc-date-month=next] .vc-date__btn {
+  pointer-events: none;
+  color: #cbd5e1;
+}
+
+.booking-calendar__block [data-vc-theme=light] .vc-date[data-vc-date-week-day][data-vc-date-month=current] .vc-date__btn:not([aria-disabled])[aria-selected=true],
+.booking-calendar__block [data-vc-theme=light] .vc-date[data-vc-date-holiday][data-vc-date-selected] .vc-date__btn:not([aria-disabled])[aria-selected=true],
+.booking-calendar__block [data-vc-theme=light] .vc-date[data-vc-date-weekend][data-vc-date-selected] .vc-date__btn:not([aria-disabled])[aria-selected=true] {
+  --tw-bg-opacity: 1;
+  background-color: #000;
+  color: #fff;
 }
 
 .booking-calendar__side {
@@ -4164,7 +4196,7 @@ select.select {
   [data-vc-theme=light] .vc-date[data-vc-date-holiday] .vc-date__btn:hover,
   [data-vc-theme=light] .vc-date[data-vc-date-weekend] .vc-date__btn:hover {
     --tw-bg-opacity: 1;
-    background-color: rgb(255, 241, 242, var(--tw-bg-opacity));
+    background-color: rgb(241, 245, 249, var(--tw-bg-opacity));
   }
 
   [data-vc-theme=light] .vc-date[data-vc-date-holiday][data-vc-date-hover=first] .vc-date__btn:hover,
@@ -4370,5 +4402,14 @@ select.select {
     --tw-bg-opacity: 1;
     background-color: rgb(51, 65, 85, var(--tw-bg-opacity));
     color: #94a3b8;
+  }
+
+  .booking-calendar__block [data-vc-theme=light] .vc-date[data-vc-date-holiday][data-vc-date-selected] .vc-date__btn:not([aria-disabled]):hover,
+  .booking-calendar__block [data-vc-theme=light] .vc-date[data-vc-date-weekend][data-vc-date-selected] .vc-date__btn:not([aria-disabled]):hover,
+  .booking-calendar__block [data-vc-theme=light] .vc-date[data-vc-date-holiday] .vc-date__btn:not([aria-disabled]):hover,
+  .booking-calendar__block [data-vc-theme=light] .vc-date[data-vc-date-weekend] .vc-date__btn:not([aria-disabled]):hover {
+    --tw-bg-opacity: 1;
+    background-color: #000;
+    color: #fff;
   }
 }
