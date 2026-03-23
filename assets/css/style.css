@@ -1980,6 +1980,7 @@ button[data-vc-week-day] {
 .booking-calendar__prev:disabled,
 .booking-calendar__next:disabled {
   opacity: 0.3;
+  pointer-events: none;
 }
 
 .booking-calendar__month {

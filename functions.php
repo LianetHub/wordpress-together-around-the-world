@@ -18,18 +18,34 @@ add_theme_support('title-tag');
 // Enqueue theme styles (CSS)
 function theme_enqueue_styles()
 {
-	$theme_dir = get_template_directory();
-	$theme_uri = get_template_directory_uri();
+    $theme_dir = get_template_directory();
+    $theme_uri = get_template_directory_uri();
 
-	wp_enqueue_style('swiper', $theme_uri . '/assets/css/libs/swiper-bundle.min.css');
-	wp_enqueue_style('fancybox', $theme_uri . '/assets/css/libs/fancybox.css');
-	wp_enqueue_style('reset', $theme_uri . '/assets/css/reset.min.css');
+    wp_enqueue_style('swiper', $theme_uri . '/assets/css/libs/swiper-bundle.min.css');
+    wp_enqueue_style('fancybox', $theme_uri . '/assets/css/libs/fancybox.css');
+    
+    wp_enqueue_style('reset', $theme_uri . '/assets/css/reset.min.css');
 
-	$main_css_ver = filemtime($theme_dir . '/assets/css/style.min.css');
-	wp_enqueue_style('main-style', $theme_uri . '/assets/css/style.min.css', array(), $main_css_ver);
+    $main_css_ver = filemtime($theme_dir . '/assets/css/style.min.css');
+    wp_enqueue_style('main-style', $theme_uri . '/assets/css/style.min.css', array(), $main_css_ver);
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
 
+
+add_filter('style_loader_tag', 'theme_styles_add_attributes', 10, 2);
+function theme_styles_add_attributes($tag, $handle)
+{
+    $async_styles = array('swiper', 'fancybox');
+
+    if (in_array($handle, $async_styles)) {
+        return str_replace(
+            " media='all'", 
+            " media='print' onload=\"this.media='all'; this.onload=null;\"", 
+            $tag
+        );
+    }
+    return $tag;
+}
 
 // Enqueue theme scripts (JS)
 function theme_enqueue_scripts()
@@ -80,7 +96,6 @@ function theme_scripts_add_attributes($tag, $handle)
     }
     return $tag;
 }
-
 // =========================================================================
 // 3. THEME SUPPORT AND UTILITIES
 // =========================================================================
