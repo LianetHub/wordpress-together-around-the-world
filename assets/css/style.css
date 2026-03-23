@@ -2120,6 +2120,159 @@ button[data-vc-week-day] {
   text-transform: lowercase;
 }
 
+.fancybox__container {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+.fancybox__slide {
+  padding: 0;
+}
+
+.fancybox__slide.is-case-popup-slide .f-html {
+  max-width: 112.5rem;
+  width: 100%;
+  padding: 3rem 1rem 1rem;
+}
+
+.fancybox__slide.has-ajax .f-button.is-close-button {
+  --f-close-button-width: 4rem;
+  --f-close-button-height: 4rem;
+  --f-button-bg: rgba(194, 194, 194, 0.40);
+  --f-close-button-color: #000;
+  top: 0;
+  right: 0;
+  opacity: 0.7;
+  --f-button-hover-bg: rgba(194, 194, 194, 0.40);
+}
+
+.fancybox__backdrop {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.fancybox__content {
+  color: inherit;
+  background: none;
+  padding: 0;
+}
+
+.fancybox__content :focus:not(.carousel__button.is-close) {
+  outline: none;
+}
+
+.f-button.is-close-button {
+  --f-close-button-width: 2.625rem;
+  --f-close-button-height: 2.625rem;
+  --f-close-button-svg-stroke-width: 0.09375rem;
+  --f-close-button-svg-width: 2rem;
+  --f-close-button-svg-height: 2rem;
+  --f-close-button-color: #aaaaaa;
+  --f-close-button-hover-color: #000;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.popup {
+  display: none;
+  background-color: #fff;
+  color: #000;
+  max-width: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+.popup.popup--small {
+  max-width: 30.625rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  background-image: url("../img/popup-pattern.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 2.5rem 2rem;
+}
+
+.popup__icon {
+  width: 7.6875rem;
+  margin-bottom: 1rem;
+}
+
+.popup__icon img {
+  width: 100%;
+  height: auto;
+}
+
+.popup__image {
+  display: none;
+}
+
+.popup__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: url("../img/popup-decor.png") center bottom/100% auto no-repeat;
+  padding: 2.625rem 1.5rem 1.5rem;
+}
+
+.popup__btn[data-fancybox-close] {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.popup__btn[data-fancybox-close].btn-secondary {
+  background: #fff;
+}
+
+.popup__subtitle {
+  font-size: 0.875rem;
+  margin-top: 0.875rem;
+  line-height: 157.143%;
+}
+
+.popup__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.popup__download-link {
+  margin-top: 1rem;
+}
+
+.popup__form-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  gap: 1.125rem;
+  margin-top: 1rem;
+}
+
 .title {
   font-weight: 600;
   line-height: 117.073%;
@@ -3972,6 +4125,10 @@ select.select {
     padding: 0 1.25rem;
   }
 
+  .popup__form {
+    margin-top: 2rem;
+  }
+
   .title {
     font-size: 2.25rem;
   }
@@ -3991,6 +4148,86 @@ select.select {
     max-width: 45rem;
   }
 
+  .fancybox__slide {
+    padding: 1.25rem;
+  }
+
+  .fancybox__slide.is-case-popup-slide .f-html {
+    padding: 2rem;
+  }
+
+  .f-button.is-close-button {
+    top: 0.875rem;
+    right: 0.875rem;
+  }
+
+  .popup.popup--small {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .popup.popup--small .popup__title {
+    font-size: 1.75rem;
+  }
+
+  .popup__icon {
+    margin-bottom: 1.5rem;
+  }
+
+  .popup__image {
+    display: block;
+    background: #B1DF1D;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 47.5%;
+            flex: 0 0 47.5%;
+    min-height: 40.625rem;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .popup__image::before {
+    content: "";
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    width: 12.3125rem;
+    height: 2.625rem;
+    background: url("../img/logo-white.svg") 0 0/cover no-repeat;
+    z-index: 2;
+  }
+
+  .popup__image::after {
+    content: "";
+    position: absolute;
+    top: -7.94rem;
+    left: -9.13rem;
+    border-radius: 50%;
+    background: #B1DF1D;
+    width: 34.625rem;
+    height: 18.6875rem;
+    z-index: 1;
+    -webkit-filter: blur(5rem);
+            filter: blur(5rem);
+  }
+
+  .popup__content {
+    padding: 3.25rem 3.5rem 1.25rem 3rem;
+  }
+
+  .popup__btn[data-fancybox-close] {
+    margin-top: 1.5rem;
+  }
+
+  .popup__subtitle {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+    line-height: 140%;
+  }
+
+  .popup__form-footer {
+    margin-top: 2rem;
+  }
+
   .btn {
     padding: 0.53125rem 1.125rem;
   }
@@ -4003,6 +4240,10 @@ select.select {
 @media (min-width: 767.98px) {
   .container {
     max-width: 60rem;
+  }
+
+  .popup {
+    max-width: 59.375rem;
   }
 
   .icon-menu {
@@ -4083,6 +4324,10 @@ select.select {
 
   .tours-list__link:hover .tours-list__name {
     color: #B1DF1D;
+  }
+
+  .fancybox__slide.has-ajax .f-button.is-close-button:hover {
+    opacity: 1;
   }
 
   .swiper-button-next:hover,

@@ -1,6 +1,6 @@
 <?php
 
-$privacy_txt = get_field('privacy_txt', 'option');
+$privacy_txt = get_field('privacy_txt', 'option') ?? "";
 
 $callback_form_image = get_field('callback_form_image', 'option');
 $callback_form_title = get_field('callback_form_title', 'option');
@@ -19,7 +19,7 @@ $success_icon = get_field('success_icon', 'option');
 
 ?>
 
-<!-- 
+
 <div class="popup" id="callback">
     <div class="popup__content">
         <?php if ($callback_form_title): ?>
@@ -90,4 +90,4 @@ $success_icon = get_field('success_icon', 'option');
     <button type="button" data-fancybox-close class="popup__btn btn btn-secondary">
         <?php echo esc_html($success_close_btn) ?>
     </button>
-</div> -->
+</div>

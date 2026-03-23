@@ -254,9 +254,13 @@ function together_around_the_world_transliterate($text)
 
 function get_formatted_tour_dates($date_from, $date_to, $type = 'card')
 {
+
+    if (!$date_from || !$date_to) return '';
+
     $months = ['01' => 'января', '02' => 'февраля', '03' => 'марта', '04' => 'апреля', '05' => 'мая', '06' => 'июня', '07' => 'июля', '08' => 'августа', '09' => 'сентября', '10' => 'октября', '11' => 'ноября', '12' => 'декабря'];
-    $dt_from = DateTime::createFromFormat('d/m/Y', $date_from);
-    $dt_to = DateTime::createFromFormat('d/m/Y', $date_to);
+
+    $dt_from = DateTime::createFromFormat('d/m/Y', (string)$date_from);
+    $dt_to = DateTime::createFromFormat('d/m/Y', (string)$date_to);
 
     if (!$dt_from || !$dt_to) return '';
 
@@ -347,8 +351,8 @@ function get_all_tours_data()
             $price         = get_field('tour_price');
             $is_from       = get_field('tour_price_from');
 
-            $dt_from = DateTime::createFromFormat('d/m/Y', $raw_date_from);
-            $dt_to   = DateTime::createFromFormat('d/m/Y', $raw_date_to);
+            $dt_from = DateTime::createFromFormat('d/m/Y', (string)$raw_date_from);
+            $dt_to   = DateTime::createFromFormat('d/m/Y', (string)$raw_date_to);
 
             if ($dt_from) {
                 $date_key = $dt_from->format('Y-m-d');
