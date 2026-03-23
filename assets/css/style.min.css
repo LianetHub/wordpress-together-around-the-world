@@ -1741,7 +1741,8 @@ button[data-vc-week-day] {
     border: .1875rem solid transparent;
     background: 0 0;
     -webkit-transition: all .3s ease;
-    transition: all .3s ease
+    transition: all .3s ease;
+    display: inline-block
 }
 
 .booking-calendar__filter.active {
@@ -1840,7 +1841,17 @@ button[data-vc-week-day] {
 .tours-list__main {
     -webkit-box-flex: 1;
     -ms-flex: 1 1 auto;
-    flex: 1 1 auto
+    flex: 1 1 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start
 }
 
 .tours-list__name {
@@ -3863,6 +3874,10 @@ button[data-vc-week-day] {
 
     .breadcrumbs__link:is(a):hover {
         color: #b1df1d
+    }
+
+    .booking-calendar__filter:hover {
+        color: #3c3c3c
     }
 
     .booking-calendar__next:hover, .booking-calendar__prev:hover {

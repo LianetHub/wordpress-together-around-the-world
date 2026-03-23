@@ -38,9 +38,12 @@
         border: rem(3) solid transparent;
         background: transparent;
         transition: all 0.3s ease;
+        display: inline-block;
 
         @media (any-hover: hover) {
-            &:hover {}
+            &:hover {
+                color: #3C3C3C;
+            }
         }
 
         &.active {
@@ -158,6 +161,9 @@
     // .tours-list__main
     &__main {
         flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     // .tours-list__name

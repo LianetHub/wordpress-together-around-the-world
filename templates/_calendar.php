@@ -1,6 +1,12 @@
 <?php
-$tours_debug = get_all_tours_data();
+$tours_raw = get_all_tours_data();
 ?>
+
+<!-- <div id="calendar-debug" style="background: #1e1e1e; color: #00ff00; padding: 15px; font-family: monospace; font-size: 12px; margin-bottom: 20px; border: 1px solid #333; max-height: 200px; overflow: auto; border-radius: 8px;">
+    <strong>[DEBUG MODE]</strong><br>
+    <div id="debug-click-info">Ожидание клика...</div>
+</div> -->
+
 <section class="booking-calendar">
     <div class="container">
         <h2 class="booking-calendar__title title text-center">Календарь туров</h2>
@@ -17,14 +23,7 @@ $tours_debug = get_all_tours_data();
             </div>
             <div class="booking-calendar__controls">
                 <button type="button" class="booking-calendar__prev icon-chevron-left"></button>
-                <div class="booking-calendar__month">
-                    <?php
-                    $current_date = new DateTime();
-                    $formatter = new IntlDateFormatter('ru_RU', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
-                    $formatter->setPattern('LLLL');
-                    echo mb_convert_case($formatter->format($current_date), MB_CASE_TITLE, "UTF-8");
-                    ?>
-                </div>
+                <div class="booking-calendar__month"></div>
                 <button type="button" class="booking-calendar__next icon-chevron-right"></button>
             </div>
         </div>
@@ -32,53 +31,40 @@ $tours_debug = get_all_tours_data();
             <div class="booking-calendar__block">
                 <div id="booking-calendar"></div>
             </div>
-            <div class="booking-calendar__side" id="calendar-side-panel">
-            </div>
+            <div class="booking-calendar__side" id="calendar-side-panel"></div>
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const {
                 Calendar
             } = window.VanillaCalendarPro;
-            const monthDisplay = document.querySelector('.booking-calendar__month');
             const sidePanel = document.querySelector('#calendar-side-panel');
-            const allTours = <?php echo json_encode(get_all_tours_data()); ?>;
+            const debugInfo = document.querySelector('#debug-click-info');
+            const prevBtn = document.querySelector('.booking-calendar__prev');
+            const nextBtn = document.querySelector('.booking-calendar__next');
+            const monthDisplay = document.querySelector('.booking-calendar__month');
 
-            let currentFilter = 'all';
-            let viewMonth = new Date().getMonth();
-            let viewYear = new Date().getFullYear();
+            const rawTours = <?php echo json_encode($tours_raw); ?>;
+            const todayStr = new Date().toISOString().split('T')[0];
 
-            const allDates = Object.keys(allTours).sort();
-            if (allDates.length > 0) {
-                const [y, m] = allDates[0].split('-');
-                viewYear = parseInt(y, 10);
-                viewMonth = parseInt(m, 10) - 1;
+            const allTours = {};
+            for (const date in rawTours) {
+                if (date >= todayStr) {
+                    allTours[date] = rawTours[date];
+                }
             }
 
-            const getFilteredTours = () => {
-                if (currentFilter === 'all') return allTours;
-                const filtered = {};
-                for (const date in allTours) {
-                    const matches = allTours[date].filter(t => String(t.cat_id) === String(currentFilter));
-                    if (matches.length) filtered[date] = matches;
-                }
-                return filtered;
-            };
+            let currentFilter = 'all';
+            let activeDate = null;
 
-            const updateMonthTitle = () => {
-                const date = new Date(viewYear, viewMonth);
-                let monthName = date.toLocaleString('ru-RU', {
-                    month: 'long'
-                });
-                monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
-                const currentYear = new Date().getFullYear();
-                monthDisplay.textContent = viewYear > currentYear ? `${monthName} ${viewYear}` : monthName;
-            };
+            const renderSidePanel = (dateString) => {
+                const dayTours = allTours[dateString] || [];
+                const tours = dayTours.filter(t => currentFilter === 'all' || String(t.cat_id) === String(currentFilter));
 
-            const renderSidePanel = (dateString, tours) => {
-                if (!dateString || !tours || !tours.length) {
-                    sidePanel.innerHTML = '<div class="booking-calendar__empty">На этот день запланированных туров пока нет. Выберите другую дату.</div>';
+                if (!dateString || tours.length === 0) {
+                    sidePanel.innerHTML = '<div class="booking-calendar__empty">На этот день запланированных туров пока нет.</div>';
                     return;
                 }
 
@@ -103,89 +89,129 @@ $tours_debug = get_all_tours_data();
                 sidePanel.innerHTML = html;
             };
 
-            const selectFirstAvailable = () => {
-                const filtered = getFilteredTours();
-                const currentMonthPrefix = `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}`;
+            const updateControls = (self) => {
+                const todayDate = new Date();
+                const currentYear = todayDate.getFullYear();
+                const currentMonth = todayDate.getMonth();
+                const viewYear = self.selectedYear;
+                const viewMonth = self.selectedMonth;
 
-                const datesInMonth = Object.keys(filtered)
-                    .filter(d => d.startsWith(currentMonthPrefix))
-                    .sort();
+                if (viewYear < currentYear || (viewYear === currentYear && viewMonth <= currentMonth)) {
+                    prevBtn.setAttribute('disabled', 'true');
+                    prevBtn.style.opacity = '0.3';
+                } else {
+                    prevBtn.removeAttribute('disabled');
+                    prevBtn.style.opacity = '1';
+                }
 
-                const selectedDates = datesInMonth.length > 0 ? [datesInMonth[0]] : [];
+                const date = new Date(viewYear, viewMonth);
+                let monthName = date.toLocaleString('ru-RU', {
+                    month: 'long'
+                });
+                monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+                monthDisplay.textContent = viewYear > currentYear ? `${monthName} ${viewYear}` : monthName;
+            };
+
+            const syncCalendarState = () => {
+                const enabledDates = [];
+                for (const date in allTours) {
+                    const matches = allTours[date].filter(t => currentFilter === 'all' || String(t.cat_id) === String(currentFilter));
+                    if (matches.length) enabledDates.push(date);
+                }
 
                 calendar.set({
-                    selectedMonth: viewMonth,
-                    selectedYear: viewYear,
-                    selectedDates: selectedDates
+                    enableDates: enabledDates
                 });
 
+                const prefix = `${calendar.selectedYear}-${String(calendar.selectedMonth + 1).padStart(2, '0')}`;
+                const datesInMonth = enabledDates.filter(d => d.startsWith(prefix)).sort();
+
                 if (datesInMonth.length > 0) {
-                    renderSidePanel(datesInMonth[0], filtered[datesInMonth[0]]);
+                    activeDate = datesInMonth[0];
+                    calendar.selectedDates = [activeDate];
                 } else {
-                    renderSidePanel(null, null);
+                    activeDate = null;
+                    calendar.selectedDates = [];
                 }
+
+                calendar.update();
+                renderSidePanel(activeDate);
+                updateControls(calendar);
             };
+
+            const availableDates = Object.keys(allTours).sort();
+            let startYear = new Date().getFullYear();
+            let startMonth = new Date().getMonth();
+
+            if (availableDates.length > 0) {
+                const [y, m] = availableDates[0].split('-');
+                startYear = parseInt(y, 10);
+                startMonth = parseInt(m, 10) - 1;
+            }
 
             const calendar = new Calendar('#booking-calendar', {
                 type: 'default',
                 locale: 'ru-RU',
                 selectionDatesMode: 'single',
-                dateMin: new Date().toISOString().split('T')[0],
-                selectedMonth: viewMonth,
-                selectedYear: viewYear,
+                dateMin: todayStr,
+                disableAllDates: true,
+                enableDates: availableDates,
+                selectedYear: startYear,
+                selectedMonth: startMonth,
 
-                onInit() {
-                    updateMonthTitle();
-                    selectFirstAvailable();
+                onInit(self) {
+                    syncCalendarState();
                 },
 
-                onClickDate(self) {
-                    if (self.selectedDates && self.selectedDates.length > 0) {
-                        const date = self.selectedDates[0];
-                        renderSidePanel(date, getFilteredTours()[date]);
+                onClickDate(self, event) {
+                    const dayBtn = event.target.closest('[data-calendar-date]');
+                    const clickedDate = dayBtn ? dayBtn.dataset.calendarDate : null;
+
+                    debugInfo.innerHTML = `
+                        Клик по дате: ${clickedDate}<br>
+                        Было активно: ${activeDate}<br>
+                        Библиотека выбрала: ${self.selectedDates[0]}
+                    `;
+
+                    if (!clickedDate || !self.enableDates.includes(clickedDate)) {
+                        self.selectedDates = [activeDate];
+                        self.update();
+                        return;
                     }
+
+                    activeDate = clickedDate;
+                    self.selectedDates = [activeDate];
+                    self.update();
+                    renderSidePanel(activeDate);
                 },
 
                 onCreateDateEls(self, dateEl) {
                     const date = dateEl.dataset.calendarDate;
-                    const filtered = getFilteredTours();
-
-                    if (filtered && filtered[date]) {
+                    if (allTours[date]) {
                         dateEl.classList.add('has-tour');
-                    } else {
-                        dateEl.classList.add('vc-date_disabled');
-                        const btn = dateEl.querySelector('.vc-date__btn') || dateEl.querySelector('button');
-                        if (btn) btn.style.pointerEvents = 'none';
                     }
                 }
             });
 
             calendar.init();
 
-            document.querySelector('.booking-calendar__prev').onclick = () => {
-                const now = new Date();
-                const minMonth = now.getMonth();
-                const minYear = now.getFullYear();
-
-                if (viewYear > minYear || (viewYear === minYear && viewMonth > minMonth)) {
-                    viewMonth--;
-                    if (viewMonth < 0) {
-                        viewMonth = 11;
-                        viewYear--;
-                    }
-                    updateMonthTitle();
-                    selectFirstAvailable();
+            prevBtn.onclick = () => {
+                if (prevBtn.hasAttribute('disabled')) return;
+                calendar.selectedMonth -= 1;
+                if (calendar.selectedMonth < 0) {
+                    calendar.selectedMonth = 11;
+                    calendar.selectedYear -= 1;
                 }
+                syncCalendarState();
             };
 
-            document.querySelector('.booking-calendar__next').onclick = () => {
-                viewMonth++;
-                if (viewMonth > 11) {
-                    viewMonth = 0;
-                    viewYear++;
+            nextBtn.onclick = () => {
+                calendar.selectedMonth += 1;
+                if (calendar.selectedMonth > 11) {
+                    calendar.selectedMonth = 0;
+                    calendar.selectedYear += 1;
                 }
-                updateMonthTitle();
-                selectFirstAvailable();
+                syncCalendarState();
             };
 
             document.querySelectorAll('.booking-calendar__filter').forEach(btn => {
@@ -194,8 +220,7 @@ $tours_debug = get_all_tours_data();
                     document.querySelector('.booking-calendar__filter.active')?.classList.remove('active');
                     btn.classList.add('active');
                     currentFilter = btn.getAttribute('data-id') || 'all';
-
-                    selectFirstAvailable();
+                    syncCalendarState();
                 };
             });
         });
