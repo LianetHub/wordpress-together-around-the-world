@@ -13,6 +13,7 @@ $archive_link = get_post_type_archive_link('post');
                 name="date_from"
                 class="form__control form__control--green"
                 placeholder="Выбрать дату"
+                readonly
                 value="<?php echo esc_attr($_GET['date_from'] ?? ''); ?>">
         </label>
 
@@ -23,11 +24,12 @@ $archive_link = get_post_type_archive_link('post');
                 name="date_to"
                 class="form__control form__control--green"
                 placeholder="Выбрать дату"
+                readonly
                 value="<?php echo esc_attr($_GET['date_to'] ?? ''); ?>">
         </label>
 
-        <label class="selection__form-field form__field">
-            <span class="form__field-label">Направление</span>
+        <div class="selection__form-field form__field">
+            <span id="label-direction" class="form__field-label">Направление</span>
             <div class="dropdown">
                 <?php
                 $current_direction = $_GET['direction'] ?? '0';
@@ -44,7 +46,12 @@ $archive_link = get_post_type_archive_link('post');
                 ?>
                 <input type="hidden" name="direction" value="<?php echo esc_attr($current_direction); ?>">
 
-                <button type="button" class="dropdown__button" aria-expanded="false" aria-haspopup="true">
+                <button
+                    type="button"
+                    class="dropdown__button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    aria-labelledby="label-direction">
                     <span class="dropdown__button-text"><?php echo esc_html($current_label); ?></span>
                 </button>
 
@@ -66,7 +73,7 @@ $archive_link = get_post_type_archive_link('post');
                     </div>
                 </div>
             </div>
-        </label>
+        </div>
 
         <button type="submit" class="selection__form-submit btn btn-primary">Подобрать тур</button>
     </div>

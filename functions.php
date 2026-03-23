@@ -201,6 +201,12 @@ function allow_svg_uploads($mimes)
 }
 add_filter('upload_mimes', 'allow_svg_uploads');
 
+add_action('wp_enqueue_scripts', function () {
+    wp_dequeue_style('wp-img-auto-sizes-contain');
+}, 99);
+
+remove_action('wp_head', 'wp_img_auto_sizes_contain_css');
+
 // =========================================================================
 // 7. TEXT FORMATTING & UTILITIES
 // =========================================================================
@@ -216,7 +222,7 @@ function fix_widows_after_prepositions($text)
         return $text;
     }
 
-    $prepositions = ['в','и','или','к','с','на','у','о','от','для','за','по','без','из','над','под','при','про','через','об','со'];
+    $prepositions = ['в', 'и', 'или', 'к', 'с', 'на', 'у', 'о', 'от', 'для', 'за', 'по', 'без', 'из', 'над', 'под', 'при', 'про', 'через', 'об', 'со'];
     $pattern = implode('|', array_map('preg_quote', $prepositions));
     $regex = '/\b(' . $pattern . ')\s+/iu';
 
@@ -235,8 +241,8 @@ add_filter('wpseo_breadcrumb_separator', '__return_empty_string');
 
 function together_around_the_world_transliterate($text)
 {
-    $cyr = ['а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я','А','Б','В','Г','Д','Е','Ё','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ъ','Ы','Ь','Э','Ю','Я'];
-    $lat = ['a','b','v','g','d','e','io','zh','z','i','y','k','l','m','n','o','p','r','s','t','u','f','h','ts','ch','sh','shb','','y','','e','yu','ya','a','b','v','g','d','e','io','zh','z','i','y','k','l','m','n','o','p','r','s','t','u','f','h','ts','ch','sh','shb','','y','','e','yu','ya'];
+    $cyr = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я'];
+    $lat = ['a', 'b', 'v', 'g', 'd', 'e', 'io', 'zh', 'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'ts', 'ch', 'sh', 'shb', '', 'y', '', 'e', 'yu', 'ya', 'a', 'b', 'v', 'g', 'd', 'e', 'io', 'zh', 'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'ts', 'ch', 'sh', 'shb', '', 'y', '', 'e', 'yu', 'ya'];
 
     $text = str_replace($cyr, $lat, $text);
     return sanitize_title($text);
@@ -248,14 +254,18 @@ function together_around_the_world_transliterate($text)
 
 function get_formatted_tour_dates($date_from, $date_to, $type = 'card')
 {
-    $months = ['01' => 'января','02' => 'февраля','03' => 'марта','04' => 'апреля','05' => 'мая','06' => 'июня','07' => 'июля','08' => 'августа','09' => 'сентября','10' => 'октября','11' => 'ноября','12' => 'декабря'];
+    $months = ['01' => 'января', '02' => 'февраля', '03' => 'марта', '04' => 'апреля', '05' => 'мая', '06' => 'июня', '07' => 'июля', '08' => 'августа', '09' => 'сентября', '10' => 'октября', '11' => 'ноября', '12' => 'декабря'];
     $dt_from = DateTime::createFromFormat('d/m/Y', $date_from);
     $dt_to = DateTime::createFromFormat('d/m/Y', $date_to);
 
     if (!$dt_from || !$dt_to) return '';
 
-    $d_from = $dt_from->format('d'); $m_from = $dt_from->format('m'); $y_from = $dt_from->format('Y');
-    $d_to = $dt_to->format('d'); $m_to = $dt_to->format('m'); $y_to = $dt_to->format('Y');
+    $d_from = $dt_from->format('d');
+    $m_from = $dt_from->format('m');
+    $y_from = $dt_from->format('Y');
+    $d_to = $dt_to->format('d');
+    $m_to = $dt_to->format('m');
+    $y_to = $dt_to->format('Y');
 
     if ($type === 'card') {
         if ($m_from === $m_to && $y_from === $y_to) {
@@ -272,13 +282,15 @@ function get_formatted_tour_dates($date_from, $date_to, $type = 'card')
 
 function get_formatted_tour_departure($date_from, $time_str)
 {
-    $months = ['01' => 'января','02' => 'февраля','03' => 'марта','04' => 'апреля','05' => 'мая','06' => 'июня','07' => 'июля','08' => 'августа','09' => 'сентября','10' => 'октября','11' => 'ноября','12' => 'декабря'];
-    $days = ['1' => 'понедельник','2' => 'вторник','3' => 'среда','4' => 'четверг','5' => 'пятница','6' => 'суббота','7' => 'воскресенье'];
+    $months = ['01' => 'января', '02' => 'февраля', '03' => 'марта', '04' => 'апреля', '05' => 'мая', '06' => 'июня', '07' => 'июля', '08' => 'августа', '09' => 'сентября', '10' => 'октября', '11' => 'ноября', '12' => 'декабря'];
+    $days = ['1' => 'понедельник', '2' => 'вторник', '3' => 'среда', '4' => 'четверг', '5' => 'пятница', '6' => 'суббота', '7' => 'воскресенье'];
 
     $dt = DateTime::createFromFormat('d/m/Y', $date_from);
     if (!$dt) return '';
 
-    $d = $dt->format('d'); $m = $dt->format('m'); $w = $dt->format('N');
+    $d = $dt->format('d');
+    $m = $dt->format('m');
+    $w = $dt->format('N');
     $t = DateTime::createFromFormat('H:i:s', $time_str);
     $time_formatted = $t ? $t->format('H:i') : $time_str;
 

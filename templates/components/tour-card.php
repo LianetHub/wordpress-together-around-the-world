@@ -14,7 +14,7 @@ if ($price) {
 }
 ?>
 
-<article class="tour-card">
+<div class="tour-card">
     <a href="<?php the_permalink(); ?>" class="tour-card__link">
         <div class="tour-card__image">
             <?php
@@ -27,13 +27,13 @@ if ($price) {
             ?>
 
             <?php if ($badge && $badge !== 'none') : ?>
-                <div class="tour-card__badge tour-card__badge--<?php echo esc_attr($badge); ?>">
+                <span class="tour-card__badge tour-card__badge--<?php echo esc_attr($badge); ?>">
                     <?php
                     if ($badge === 'hot') echo 'Горящие места';
                     if ($badge === 'sold') echo 'Мест нет';
                     if ($badge === 'new') echo 'Новинка <span class="tour-card__badge-icon">✨</span>';
                     ?>
-                </div>
+                </span>
             <?php endif; ?>
         </div>
 
@@ -53,4 +53,4 @@ if ($price) {
             </div>
         </div>
     </a>
-</article>
+</div>

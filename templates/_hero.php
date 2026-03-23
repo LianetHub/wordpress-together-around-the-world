@@ -27,11 +27,15 @@ if ($title_raw) {
                     <p class="hero__subtitle"><?php echo esc_html($subtitle); ?></p>
                 <?php endif; ?>
 
-                <?php if ($main_btn): ?>
-                    <a href="<?php echo esc_url($main_btn['url']); ?>"
+                <?php if ($main_btn):
+                    $btn_url    = esc_url($main_btn['url']);
+                    $btn_title  = esc_html($main_btn['title']);
+                    $btn_target = $main_btn['target'] ? ' target="' . esc_attr($main_btn['target']) . '"' : '';
+                ?>
+                    <a href="<?php echo $btn_url; ?>"
                         class="hero__btn-main btn btn-primary"
-                        target="<?php echo esc_attr($main_btn['target']); ?>">
-                        <?php echo esc_html($main_btn['title']); ?>
+                        <?php echo $btn_target; ?>>
+                        <?php echo $btn_title; ?>
                     </a>
                 <?php endif; ?>
             </div>
