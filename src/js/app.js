@@ -1,33 +1,11 @@
 "use strict";
 
-// const { default: Swiper } = require("swiper");
 
-// const { Calendar } = require("vanilla-calendar-pro");
+const initApp = () => {
 
-$(function () {
-
-
-
-    // Smooth Scroll Anchors
-    $('a[href^="#"]').not('[data-fancybox]').on('click', function (event) {
-        const href = this.getAttribute('href');
-
-        if (href === '#') return;
-
-        const target = $(href);
-        const header = $('.header');
-
-        if (target.length) {
-            event.preventDefault();
-
-            const headerHeight = header.outerHeight() || 0;
-            const targetPosition = target.offset().top - headerHeight;
-
-            $('html, body').stop().animate({
-                scrollTop: targetPosition
-            }, 800);
-        }
-    });
+    if (typeof $ === "undefined" || typeof Swiper === "undefined" || typeof Fancybox === "undefined") {
+        return false;
+    }
 
     //  init Fancybox
     if (typeof Fancybox !== "undefined" && Fancybox !== null) {
@@ -482,7 +460,24 @@ $(function () {
 
     // Calendar
 
+    return true;
 
+}
 
-})
+const runAppInit = () => {
+    if (initApp()) return;
 
+    const checkLibs = setInterval(() => {
+        if (initApp()) {
+            clearInterval(checkLibs);
+        }
+    }, 100);
+
+    setTimeout(() => clearInterval(checkLibs), 10000);
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runAppInit);
+} else {
+    runAppInit();
+}

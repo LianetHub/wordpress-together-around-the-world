@@ -1,19 +1,20 @@
 "use strict";
 
-document.addEventListener('DOMContentLoaded', () => {
+const initBookingCalendar = () => {
+    if (!window.VanillaCalendarPro || !window.Swiper || !window.calendarData) {
+        return false;
+    }
 
-    if (!window.VanillaCalendarPro || !window.calendarData) return;
-
-    const {
-        Calendar
-    } = window.VanillaCalendarPro;
+    const { Calendar } = window.VanillaCalendarPro;
     const sidePanel = document.querySelector('#calendar-side-panel');
     const prevBtn = document.querySelector('.booking-calendar__prev');
     const nextBtn = document.querySelector('.booking-calendar__next');
     const monthDisplay = document.querySelector('.booking-calendar__month');
+    const calendarContent = document.querySelector('.booking-calendar__content');
+
+    if (!calendarContent) return true;
 
     const rawTours = window.calendarData.tours || {};
-
     const todayStr = new Date().toISOString().split('T')[0];
 
     const allTours = {};
@@ -25,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentFilter = 'all';
     let activeDate = null;
-
     let filterSwiper = null;
+
     if (document.querySelector('.booking-calendar__filters .swiper')) {
         filterSwiper = new Swiper('.booking-calendar__filters .swiper', {
             slidesPerView: "auto",
@@ -61,15 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
         html += '<ul class="booking-calendar__list tours-list">';
         tours.forEach(tour => {
             html += `
-                    <li class="tours-list__item">
-                        <a href="${tour.link}" class="tours-list__link">
-                            <span class="tours-list__main">
-                                <span class="tours-list__name">${tour.title}</span>
-                                <span class="tours-list__duration">${tour.duration}</span>
-                            </span>
-                            <span class="tours-list__price">${tour.price} р</span>
-                        </a>
-                    </li>`;
+                <li class="tours-list__item">
+                    <a href="${tour.link}" class="tours-list__link">
+                        <span class="tours-list__main">
+                            <span class="tours-list__name">${tour.title}</span>
+                            <span class="tours-list__duration">${tour.duration}</span>
+                        </span>
+                        <span class="tours-list__price">${tour.price} р</span>
+                    </a>
+                </li>`;
         });
         html += '</ul>';
         sidePanel.innerHTML = html;
@@ -82,18 +83,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const viewYear = self.selectedYear;
         const viewMonth = self.selectedMonth;
 
-        if (viewYear < currentYear || (viewYear === currentYear && viewMonth <= currentMonth)) {
-            prevBtn.setAttribute('disabled', 'true');
-        } else {
-            prevBtn.removeAttribute('disabled');
+        if (prevBtn) {
+            if (viewYear < currentYear || (viewYear === currentYear && viewMonth <= currentMonth)) {
+                prevBtn.setAttribute('disabled', 'true');
+            } else {
+                prevBtn.removeAttribute('disabled');
+            }
         }
 
-        const date = new Date(viewYear, viewMonth);
-        let monthName = date.toLocaleString('ru-RU', {
-            month: 'long'
-        });
-        monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
-        monthDisplay.textContent = viewYear > currentYear ? `${monthName} ${viewYear}` : monthName;
+        if (monthDisplay) {
+            const date = new Date(viewYear, viewMonth);
+            let monthName = date.toLocaleString('ru-RU', { month: 'long' });
+            monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+            monthDisplay.textContent = viewYear > currentYear ? `${monthName} ${viewYear}` : monthName;
+        }
     };
 
     const syncCalendarState = () => {
@@ -144,32 +147,24 @@ document.addEventListener('DOMContentLoaded', () => {
         enableDates: availableDates,
         selectedYear: startYear,
         selectedMonth: startMonth,
-
         onInit(self) {
             syncCalendarState();
         },
-
         onClickDate(self, event) {
             const dayBtn = event.target.closest('[data-vc-date]');
             const clickedDate = dayBtn ? dayBtn.dataset.vcDate : null;
 
-
             if (!clickedDate || !self.enableDates.includes(clickedDate)) {
-                self.set({
-                    selectedDates: [activeDate]
-                });
+                self.set({ selectedDates: [activeDate] });
                 self.update();
                 return;
             }
 
             activeDate = clickedDate;
-            self.set({
-                selectedDates: [activeDate]
-            });
+            self.set({ selectedDates: [activeDate] });
             self.update();
             renderSidePanel(activeDate);
         },
-
         onCreateDateEls(self, dateEl) {
             const date = dateEl.dataset.calendarDate;
             if (allTours[date]) {
@@ -182,38 +177,67 @@ document.addEventListener('DOMContentLoaded', () => {
 
     calendar.init();
 
-    prevBtn.onclick = () => {
-        if (prevBtn.hasAttribute('disabled')) return;
-        calendar.selectedMonth -= 1;
-        if (calendar.selectedMonth < 0) {
-            calendar.selectedMonth = 11;
-            calendar.selectedYear -= 1;
-        }
-        syncCalendarState();
-    };
+    if (calendarContent) {
+        calendarContent.classList.add('is-loaded');
+    }
 
-    nextBtn.onclick = () => {
-        calendar.selectedMonth += 1;
-        if (calendar.selectedMonth > 11) {
-            calendar.selectedMonth = 0;
-            calendar.selectedYear += 1;
-        }
-        syncCalendarState();
-    };
+    if (prevBtn) {
+        prevBtn.onclick = () => {
+            if (prevBtn.hasAttribute('disabled')) return;
+            calendar.selectedMonth -= 1;
+            if (calendar.selectedMonth < 0) {
+                calendar.selectedMonth = 11;
+                calendar.selectedYear -= 1;
+            }
+            syncCalendarState();
+        };
+    }
+
+    if (nextBtn) {
+        nextBtn.onclick = () => {
+            calendar.selectedMonth += 1;
+            if (calendar.selectedMonth > 11) {
+                calendar.selectedMonth = 0;
+                calendar.selectedYear += 1;
+            }
+            syncCalendarState();
+        };
+    }
 
     document.querySelectorAll('.booking-calendar__filter').forEach((btn, index) => {
         btn.onclick = (e) => {
             e.preventDefault();
-
             document.querySelector('.booking-calendar__filter.active')?.classList.remove('active');
             btn.classList.add('active');
-
-            if (filterSwiper) {
-                filterSwiper.slideTo(index);
-            }
-
+            if (filterSwiper) filterSwiper.slideTo(index);
             currentFilter = btn.getAttribute('data-id') || 'all';
             syncCalendarState();
         };
     });
-});
+
+    return true;
+};
+
+const runInitialization = () => {
+    if (initBookingCalendar()) {
+        console.log('Calendar initialized');
+        return true;
+    }
+    
+    const checkReady = setInterval(() => {
+        if (initBookingCalendar()) {
+            clearInterval(checkReady);
+            console.log('Calendar initialized via interval');
+        }
+    }, 100);
+
+    setTimeout(() => {
+        clearInterval(checkReady);
+    }, 10000);
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runInitialization);
+} else {
+    runInitialization();
+}

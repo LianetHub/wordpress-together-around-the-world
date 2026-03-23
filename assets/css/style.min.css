@@ -1713,15 +1713,55 @@ button[data-vc-week-day] {
     background: #f9f9f9
 }
 
-.booking-calendar__header {
+.booking-calendar__content {
     margin-top: 1.8rem;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease
+}
+
+.booking-calendar__content:not(.is-loaded) {
+    position: relative;
+    border-radius: 1.25rem;
+    background: #fffdfd;
+    min-height: 35.9375rem;
+    pointer-events: none
+}
+
+.booking-calendar__content:not(.is-loaded)::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 3.75rem;
+    height: 3.75rem;
+    border: .3125rem solid #000;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    -webkit-transform-origin: center;
+    -ms-transform-origin: center;
+    transform-origin: center;
+    -webkit-animation: rotation 1s linear infinite;
+    animation: rotation 1s linear infinite;
+    z-index: 3
+}
+
+.booking-calendar__content:not(.is-loaded) .booking-calendar__header {
+    opacity: 0
+}
+
+.booking-calendar__header {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    gap: 3.75rem
+    gap: 3.75rem;
+    -webkit-transition: opacity .3s ease;
+    transition: opacity .3s ease
 }
 
 .booking-calendar__filters {
@@ -1808,7 +1848,7 @@ button[data-vc-week-day] {
     text-align: center
 }
 
-.booking-calendar__content {
+.booking-calendar__body {
     margin-top: 1.46rem;
     display: -ms-grid;
     display: grid;
