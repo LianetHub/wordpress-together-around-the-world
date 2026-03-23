@@ -17,8 +17,24 @@ $tours_raw = get_all_tours_data();
                                 Все туры
                             </button>
                             <?php
-                            $categories = get_categories(['taxonomy' => 'category', 'hide_empty' => true]);
-                            foreach ($categories as $cat) : ?>
+                            $active_cat_ids = [];
+                            foreach ($tours_raw as $date_events) {
+                                foreach ($date_events as $event) {
+                                    if (!empty($event['cat_id'])) {
+                                        $active_cat_ids[] = $event['cat_id'];
+                                    }
+                                }
+                            }
+                            $active_cat_ids = array_unique($active_cat_ids);
+
+                            $categories = get_categories([
+                                'taxonomy' => 'category',
+                                'hide_empty' => true
+                            ]);
+
+                            foreach ($categories as $cat) :
+                                if (!in_array($cat->term_id, $active_cat_ids)) continue;
+                            ?>
                                 <button
                                     type="button"
                                     class="booking-calendar__filter swiper-slide"
