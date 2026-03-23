@@ -40,6 +40,7 @@ export const path = {
 		scss: `${srcFolder}/scss/**/*.scss`,
 		normalize: `${srcFolder}/scss/reset.scss`,
 		js: `${srcFolder}/js/**/*.js`,
+		jsChunks: `${srcFolder}/js/chunks/**/*.*`,
 		images: `${srcFolder}/img/**/*.{jpg,jpeg,png,svg,gif,ico,webp}`,
 		json: `${srcFolder}/json/*.*`,
 		fonts: `${srcFolder}/fonts/*.{ttf,otf,woff,woff2}`,

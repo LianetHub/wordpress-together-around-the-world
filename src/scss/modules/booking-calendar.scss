@@ -1,0 +1,190 @@
+@use "sass:color";
+@use "sass:math";
+@use "mixins" as *;
+@use "variables" as *;
+@use "fonts";
+@use "icons";
+@use "calendar";
+
+.booking-calendar {
+    padding: 3.7rem 0;
+    background: #F9F9F9;
+
+    // .booking-calendar__title
+    &__title {}
+
+    // .booking-calendar__header
+    &__header {
+        margin-top: 1.8rem;
+        display: flex;
+        align-items: center;
+    }
+
+    // .booking-calendar__filters
+    &__filters {
+        flex: 1 1 auto;
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    // .booking-calendar__filter
+    &__filter {
+        font-size: 0.9375rem;
+        font-weight: 500;
+        line-height: 146.667%;
+        padding: 0.44rem 1.56rem;
+        border-radius: 3.125rem;
+        color: #B7B7B7;
+        border: rem(3) solid transparent;
+        background: transparent;
+        transition: all 0.3s ease;
+
+        @media (any-hover: hover) {
+            &:hover {}
+        }
+
+        &.active {
+            color: #3C3C3C;
+            border: rem(3) solid #B1DF1D;
+            background: #FFF;
+        }
+    }
+
+    // .booking-calendar__controls
+    &__controls {
+        display: flex;
+        align-items: center;
+        gap: rem(23);
+    }
+
+    // .booking-calendar__prev
+    &__prev {
+        width: rem(35);
+        height: rem(35);
+        background: #D9D9D9;
+        color: #353535;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+
+        @media (any-hover: hover) {
+            &:hover {
+                background: #B0DF1D;
+                color: #353535;
+            }
+        }
+    }
+
+    // .booking-calendar__month
+    &__month {
+        color: #000;
+        font-size: 1.25rem;
+        font-weight: 600;
+        line-height: 110%;
+        min-width: rem(120);
+        text-align: center;
+    }
+
+    // .booking-calendar__next
+    &__next {
+        @extend .booking-calendar__prev;
+    }
+
+    // .booking-calendar__content
+    &__content {
+        margin-top: 1.46rem;
+        display: grid;
+        grid-template-columns: 1fr 0.875fr;
+        gap: 1.31rem;
+    }
+
+    // .booking-calendar__block
+    &__block {
+        border-radius: 1.25rem;
+        background: #FFFDFD;
+        padding: 4rem 1.69rem 2rem;
+
+        [data-vc=calendar] {
+            padding: 0;
+        }
+
+        .vc-header {
+            display: none !important;
+        }
+    }
+
+    // .booking-calendar__side
+    &__side {
+        border-radius: 1.25rem;
+        background: #FFFDFD;
+        padding: 3rem 2.31rem;
+    }
+
+    // .booking-calendar__caption
+    &__caption {
+        color: #797979;
+        font-size: 1.125rem;
+        font-weight: 500;
+        line-height: 72.222%;
+    }
+
+    // .booking-calendar__list
+    &__list {
+        margin-top: 1.94rem;
+    }
+}
+
+.tours-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    // .tours-list__item
+    &__item {}
+
+    // .tours-list__link
+    &__link {
+        display: flex;
+        gap: 1rem;
+
+        @media (any-hover: hover) {
+            &:hover {
+                .tours-list__name {
+                    color: #B1DF1D;
+                }
+            }
+        }
+    }
+
+    // .tours-list__main
+    &__main {
+        flex: 1 1 auto;
+    }
+
+    // .tours-list__name
+    &__name {
+        color: #797979;
+        font-size: 1.125rem;
+        font-weight: 500;
+        line-height: 72.222%;
+        transition: color 0.3s ease;
+    }
+
+    // .tours-list__duration
+    &__duration {
+        margin-top: 0.56rem;
+        color: #B7B7B7;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        line-height: 146.667%;
+    }
+
+    // .tours-list__price
+    &__price {
+        flex-shrink: 0;
+        color: #383838;
+        font-size: 1.125rem;
+        font-weight: 600;
+        line-height: 72.222%;
+        text-transform: lowercase;
+    }
+}

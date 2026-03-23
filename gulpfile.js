@@ -32,6 +32,7 @@ function watcher() {
     gulp.watch(path.watch.scss, scss);
     gulp.watch(path.watch.normalize, normalize);
     gulp.watch(path.watch.js, js);
+    gulp.watch(path.watch.jsChunks, jsChunks);
     gulp.watch(path.watch.json, json);
     gulp.watch(path.watch.images, images);
     gulp.watch(path.watch.fonts, fonts);

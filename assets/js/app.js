@@ -1,6 +1,10 @@
 "use strict";
 
+// const { Calendar } = require("vanilla-calendar-pro");
+
 $(function () {
+
+
 
     // Smooth Scroll Anchors
     $('a[href^="#"]').not('[data-fancybox]').on('click', function (event) {
@@ -465,6 +469,16 @@ $(function () {
     $('.dropdown').each((index, element) => {
         new CustomSelect(element);
     });
+
+    // Calendar
+    // const { Calendar } = window.VanillaCalendarPro;
+    // const bookingCalendar = new Calendar('#booking-calendar', {
+    //     type: 'default',
+    //     locale: "ru-RU"
+    // });
+    // bookingCalendar.init();
+
+    // Calendar
 
 
 

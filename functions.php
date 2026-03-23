@@ -41,9 +41,16 @@ function theme_enqueue_scripts()
 	wp_enqueue_script('jquery', $theme_uri . '/assets/js/libs/jquery-4.0.0.min.js', array(), null, true);
 	wp_enqueue_script('swiper-js', $theme_uri . '/assets/js/libs/swiper-bundle.min.js', array(), null, true);
 	wp_enqueue_script('fancybox-js', $theme_uri . '/assets/js/libs/fancybox.umd.js', array(), null, true);
+	wp_enqueue_script('vanilla-calendar-pro-js', $theme_uri . '/assets/js/libs/vanilla-calendar-pro.min.js', array(), null, true);
 
 	$app_js_ver = filemtime($theme_dir . '/assets/js/app.min.js');
-	wp_enqueue_script('app-js', $theme_uri . '/assets/js/app.min.js', array('jquery'), $app_js_ver, true);
+	wp_enqueue_script(
+		'app-js',
+		$theme_uri . '/assets/js/app.min.js',
+		array('jquery', 'vanilla-calendar-pro-js'),
+		$app_js_ver,
+		true
+	);
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
 
@@ -440,6 +447,7 @@ function get_formatted_tour_departure($date_from, $time_str)
 	return $time_formatted . ', ' . $d . ' ' . $months[$m] . ', ' . $days[$w];
 }
 
+// Send to Telegram
 
 add_action('wpcf7_mail_sent', function ($contact_form) {
 	$submission = WPCF7_Submission::get_instance();
@@ -464,3 +472,57 @@ add_action('wpcf7_mail_sent', function ($contact_form) {
 		wp_remote_get($url);
 	}
 }, 10, 1);
+
+// Booking Calendar Module
+
+function get_all_tours_data()
+{
+	$args = [
+		'post_type'      => 'post',
+		'posts_per_page' => -1,
+		'post_status'    => 'publish',
+	];
+
+	$query = new WP_Query($args);
+	$events = [];
+
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+
+			$raw_date_from = get_field('tour_date_from');
+			$raw_date_to   = get_field('tour_date_to');
+			$price         = get_field('tour_price');
+			$is_from       = get_field('tour_price_from');
+
+			$dt_from = DateTime::createFromFormat('d/m/Y', $raw_date_from);
+			$dt_to   = DateTime::createFromFormat('d/m/Y', $raw_date_to);
+
+			if ($dt_from) {
+				$date_key = $dt_from->format('Y-m-d');
+
+				$price_formatted = $price ? number_format($price, 0, '', ' ') : '0';
+				$price_str = $is_from ? 'от ' . $price_formatted : $price_formatted;
+
+				$duration_text = '';
+				if ($dt_to) {
+					$diff = $dt_from->diff($dt_to)->days + 1;
+					$duration_text = 'Продолжительность ' . $diff . ' ' . ($diff == 1 ? 'день' : ($diff < 5 ? 'дня' : 'дней'));
+				}
+
+				$categories = get_the_category();
+				$cat_id = !empty($categories) ? $categories[0]->term_id : 'all';
+
+				$events[$date_key][] = [
+					'title'    => get_the_title(),
+					'price'    => $price_str,
+					'link'     => get_permalink(),
+					'duration' => $duration_text,
+					'cat_id'   => $cat_id
+				];
+			}
+		}
+		wp_reset_postdata();
+	}
+	return $events;
+}
