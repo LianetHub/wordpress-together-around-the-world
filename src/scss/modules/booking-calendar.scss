@@ -180,6 +180,13 @@
             display: none !important;
         }
 
+        .vc-dates {
+            &__row {
+                border-top: 0.125rem solid #DBDBDB;
+                padding: 0.75rem 0;
+            }
+        }
+
         [data-vc-theme=light] .vc-date:not([data-vc-date-month="prev"]):not([data-vc-date-month="next"]) .vc-date__btn {
             &:not([aria-disabled]) {
                 background-color: #B1DF1D;

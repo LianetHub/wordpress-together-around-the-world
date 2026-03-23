@@ -1,18 +1,18 @@
 @font-face {
+    font-family: icons;
+    font-display: swap;
+    src: url(../fonts/icons.woff2) format("woff2"), url(../fonts/icons.woff) format("woff");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
     font-family: Roboto;
     src: url(../fonts/Roboto-VariableFont_wdth,wght.woff2) format("woff2 supports variations"), url(../fonts/Roboto-VariableFont_wdth,wght.woff2) format("woff2-variations"), url(../fonts/Roboto-VariableFont_wdth,wght.woff) format("woff");
     font-weight: 100 900;
     font-stretch: 75% 125%;
     font-style: normal;
     font-display: swap
-}
-
-@font-face {
-    font-family: icons;
-    font-display: swap;
-    src: url(../fonts/icons.woff2) format("woff2"), url(../fonts/icons.woff) format("woff");
-    font-weight: 400;
-    font-style: normal
 }
 
 .checkbox__input:checked+.checkbox__text::before, .dropdown__list-item.selected::before, .dropdown__list-item[aria-checked=true]::before, .swiper-button-next, .swiper-button-prev, .tour-card__badge--hot::before, [class*=" icon-"]:before, [class^=icon-]:before {
@@ -29,6 +29,10 @@
 
 [class*=" icon-"]:before, [class^=icon-]:before {
     display: block
+}
+
+.icon-cross:before {
+    content: "\e90b"
 }
 
 .checkbox__input:checked+.checkbox__text:before, .dropdown__list-item.selected:before, .dropdown__list-item[aria-checked=true]:before, .icon-check:before {
@@ -622,7 +626,7 @@ body.error404 .main {
     border-radius: .25rem;
     border-width: 0;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 700;
     line-height: 1.5rem;
     padding: .25rem
@@ -1703,9 +1707,12 @@ button[data-vc-week-day] {
     background-color: rgb(71, 85, 105, var(--tw-bg-opacity))
 }
 
-.vc-dates__row {
-    border-top: .125rem solid #dbdbdb;
-    padding: .75rem 0
+.vc {
+    z-index: 2
+}
+
+.vc-date__btn[aria-disabled=true] {
+    pointer-events: none
 }
 
 .booking-calendar {
@@ -1870,6 +1877,11 @@ button[data-vc-week-day] {
 
 .booking-calendar__block .vc-header {
     display: none !important
+}
+
+.booking-calendar__block .vc-dates__row {
+    border-top: .125rem solid #dbdbdb;
+    padding: .75rem 0
 }
 
 .booking-calendar__block [data-vc-theme=light] .vc-date:not([data-vc-date-month=prev]):not([data-vc-date-month=next]) .vc-date__btn:not([aria-disabled]) {
@@ -2597,7 +2609,17 @@ button[data-vc-week-day] {
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start;
-    gap: .69rem
+    gap: .69rem;
+    position: relative
+}
+
+.form__field-clear {
+    position: absolute;
+    right: 1rem;
+    bottom: .75rem;
+    font-size: 1.5rem;
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease
 }
 
 .form__field-label {
@@ -4184,6 +4206,10 @@ button[data-vc-week-day] {
 
     .dropdown__list-item:hover {
         background: rgba(177, 223, 29, .7)
+    }
+
+    .form__field-clear:hover {
+        color: #dc3232
     }
 
     .form__file-remove:hover {

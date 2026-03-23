@@ -4,7 +4,7 @@ $archive_link = get_post_type_archive_link('post');
 <form
     action="<?php echo esc_url($archive_link); ?>"
     method="GET"
-    class="selection__form filter-form">
+    class="selection__form">
     <div class="selection__form-row">
         <label class="selection__form-field form__field">
             <span class="form__field-label">дата поездки от:</span>
@@ -15,6 +15,10 @@ $archive_link = get_post_type_archive_link('post');
                 placeholder="Выбрать дату"
                 readonly
                 value="<?php echo esc_attr($_GET['date_from'] ?? ''); ?>">
+            <button
+                type="button"
+                class="form__field-clear icon-cross hidden"
+                aria-label="Очистить дату"></button>
         </label>
 
         <label class="selection__form-field form__field">
@@ -26,6 +30,10 @@ $archive_link = get_post_type_archive_link('post');
                 placeholder="Выбрать дату"
                 readonly
                 value="<?php echo esc_attr($_GET['date_to'] ?? ''); ?>">
+            <button
+                type="button"
+                class="form__field-clear icon-cross hidden"
+                aria-label="Очистить дату"></button>
         </label>
 
         <div class="selection__form-field form__field">

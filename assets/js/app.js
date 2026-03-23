@@ -168,141 +168,6 @@ const initApp = () => {
         .on('input', onPhoneInput)
         .on('paste', onPhonePaste);
 
-    // Spollers
-    // class Spollers {
-    //     constructor() {
-    //         this.$spollersArray = $("[data-spollers]");
-    //         if (this.$spollersArray.length > 0) {
-    //             this.init();
-    //         }
-    //     }
-
-    //     init() {
-    //         const $spollersRegular = this.$spollersArray.filter((index, item) => {
-    //             return !$(item).data("spollers").split(",")[0];
-    //         });
-
-    //         if ($spollersRegular.length > 0) {
-    //             this.initSpollers($spollersRegular);
-    //         }
-
-    //         const $spollersMedia = this.$spollersArray.filter((index, item) => {
-    //             return $(item).data("spollers").split(",")[0];
-    //         });
-
-    //         if ($spollersMedia.length > 0) {
-    //             this.initMediaSpollers($spollersMedia);
-    //         }
-    //     }
-
-    //     initMediaSpollers($spollersMedia) {
-    //         const breakpointsArray = [];
-    //         $spollersMedia.each(function () {
-    //             const params = $(this).data("spollers");
-    //             const paramsArray = params.split(",");
-    //             breakpointsArray.push({
-    //                 value: paramsArray[0],
-    //                 type: paramsArray[1] ? paramsArray[1].trim() : "max",
-    //                 item: $(this)
-    //             });
-    //         });
-
-    //         let mediaQueries = breakpointsArray.map((item) => {
-    //             return `(${item.type}-width: ${item.value}px),${item.value},${item.type}`;
-    //         });
-    //         mediaQueries = [...new Set(mediaQueries)];
-
-    //         mediaQueries.forEach((breakpoint) => {
-    //             const paramsArray = breakpoint.split(",");
-    //             const mediaBreakpoint = paramsArray[1];
-    //             const mediaType = paramsArray[2];
-    //             const matchMedia = window.matchMedia(paramsArray[0]);
-
-    //             const filteredSpollers = breakpointsArray.filter((item) => {
-    //                 return item.value === mediaBreakpoint && item.type === mediaType;
-    //             });
-
-    //             matchMedia.addEventListener("change", () => {
-    //                 this.initSpollers(filteredSpollers, matchMedia);
-    //             });
-    //             this.initSpollers(filteredSpollers, matchMedia);
-    //         });
-    //     }
-
-    //     initSpollers(spollersArray, matchMedia = false) {
-    //         const items = Array.isArray(spollersArray) ? spollersArray : spollersArray.toArray();
-
-    //         items.forEach((spollerItem) => {
-    //             const $spollersBlock = matchMedia ? spollerItem.item : $(spollerItem);
-    //             if (!matchMedia || matchMedia.matches) {
-    //                 $spollersBlock.addClass("_init");
-    //                 this.initSpollerBody($spollersBlock, true);
-    //                 $spollersBlock.off("click", "[data-spoller]").on("click", "[data-spoller]", (e) => this.setSpollerAction(e));
-    //             } else {
-    //                 $spollersBlock.removeClass("_init");
-    //                 this.initSpollerBody($spollersBlock, false);
-    //                 $spollersBlock.off("click", "[data-spoller]");
-    //             }
-    //         });
-    //     }
-
-    //     initSpollerBody($spollersBlock, hideSpollerBody = true) {
-    //         const $spollerTitles = $spollersBlock.find("[data-spoller]");
-    //         if ($spollerTitles.length > 0) {
-    //             $spollerTitles.each(function () {
-    //                 const $title = $(this);
-    //                 const $body = $title.next();
-    //                 const $parent = $title.parent();
-    //                 if (hideSpollerBody) {
-    //                     $title.removeAttr("tabindex");
-    //                     if (!$title.hasClass("_active")) {
-    //                         $body.hide();
-    //                         $parent.removeClass("_spoller-open");
-    //                     } else {
-    //                         $parent.addClass("_spoller-open");
-    //                     }
-    //                 } else {
-    //                     $title.attr("tabindex", "-1");
-    //                     $body.show();
-    //                     $parent.removeClass("_spoller-open");
-    //                 }
-    //             });
-    //         }
-    //     }
-
-    //     setSpollerAction(e) {
-    //         const $el = $(e.target);
-    //         const $spollerTitle = $el.has("[data-spoller]") ? $el : $el.closest("[data-spoller]");
-    //         const $spollersBlock = $spollerTitle.closest("[data-spollers]");
-    //         const isOneSpoller = $spollersBlock.is("[data-one-spoller]");
-    //         const $body = $spollerTitle.next();
-    //         const $parent = $spollerTitle.parent();
-
-    //         if (!$spollersBlock.find(":animated").length) {
-    //             if (isOneSpoller && !$spollerTitle.hasClass("_active")) {
-    //                 this.hideSpollersBody($spollersBlock);
-    //             }
-
-    //             $spollerTitle.toggleClass("_active");
-    //             $parent.toggleClass("_spoller-open");
-    //             $body.slideToggle(300);
-    //         }
-    //         e.preventDefault();
-    //     }
-
-    //     hideSpollersBody($spollersBlock) {
-    //         const $activeTitle = $spollersBlock.find("[data-spoller]._active");
-    //         if ($activeTitle.length) {
-    //             $activeTitle.removeClass("_active");
-    //             $activeTitle.parent().removeClass("_spoller-open");
-    //             $activeTitle.next().slideUp(300);
-    //         }
-    //     }
-    // }
-
-    // window.spollers = new Spollers();
-
-
     // custom select
     class CustomSelect {
         static openDropdown = null;
@@ -450,15 +315,121 @@ const initApp = () => {
         new CustomSelect(element);
     });
 
-    // Calendar
-    // const { Calendar } = window.VanillaCalendarPro;
-    // const bookingCalendar = new Calendar('#booking-calendar', {
-    //     type: 'default',
-    //     locale: "ru-RU"
-    // });
-    // bookingCalendar.init();
+    // Calendar 
+    if ($('.selection__form').length > 0) {
+        if (typeof window.VanillaCalendarPro === 'undefined') return;
 
-    // Calendar
+        const { Calendar } = window.VanillaCalendarPro;
+        const $form = $('.selection__form');
+        const $dateFrom = $form.find('input[name="date_from"]');
+        const $dateTo = $form.find('input[name="date_to"]');
+        const $noDateCheckbox = $form.find('input[name="no_date"]');
+
+        function parseDate(dateStr) {
+            if (!dateStr) return null;
+            const parts = dateStr.split('.');
+            if (parts.length !== 3) return null;
+            return `${parts[2]}-${parts[1]}-${parts[0]}`;
+        }
+
+        const calendarOptions = {
+            inputMode: true,
+            positionToInput: 'auto',
+            parentMode: document.body,
+            selectedTheme: 'light',
+            locale: "ru-RU",
+            dateMin: new Date().toISOString().split('T')[0],
+            dateDisplay: 'DD.MM.YYYY',
+            onChangeToInput(self) {
+                const input = self.context.inputElement;
+                if (!input) return;
+
+                const $input = $(input);
+                const $parent = $input.closest('.form__field');
+                const $clearBtn = $parent.find('.form__field-clear');
+
+                if (self.context.selectedDates.length > 0) {
+                    const dateParts = self.context.selectedDates[0].split('-');
+                    const formattedDate = `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`;
+
+                    $input.val(formattedDate);
+                    $clearBtn.removeClass('hidden');
+                    self.hide();
+                } else {
+                    $input.val('');
+                    $clearBtn.addClass('hidden');
+                }
+            },
+        };
+
+        // Читаем даты из инпутов (для GET параметров)
+        const valFrom = parseDate($dateFrom.val());
+        const valTo = parseDate($dateTo.val());
+
+        // Создаем экземпляры с предустановленными датами
+        const calFrom = new Calendar($dateFrom[0], {
+            ...calendarOptions,
+            selectedDates: valFrom ? [valFrom] : []
+        });
+
+        const calTo = new Calendar($dateTo[0], {
+            ...calendarOptions,
+            selectedDates: valTo ? [valTo] : []
+        });
+
+        calFrom.init();
+        calTo.init();
+
+        // Логика кнопки очистки
+        $form.on('click', '.form__field-clear', function (e) {
+            e.preventDefault();
+            const $btn = $(this);
+            const $parent = $btn.closest('.form__field');
+            const $input = $parent.find('input');
+
+            $input.val('');
+            $btn.addClass('hidden');
+
+            if ($input.attr('name') === 'date_from') {
+                calFrom.context.selectedDates = [];
+                calFrom.update();
+            } else {
+                calTo.context.selectedDates = [];
+                calTo.update();
+            }
+        });
+
+        function toggleDateInputs() {
+            const isNoDate = $noDateCheckbox.is(':checked');
+            const $dateFields = $dateFrom.add($dateTo).closest('.form__field');
+
+            if (isNoDate) {
+                $dateFields.addClass('disabled');
+                $dateFrom.add($dateTo).val('').prop('disabled', true);
+                $form.find('.form__field-clear').addClass('hidden');
+
+                calFrom.context.selectedDates = [];
+                calTo.context.selectedDates = [];
+                calFrom.update();
+                calTo.update();
+
+                calFrom.hide();
+                calTo.hide();
+            } else {
+                $dateFields.removeClass('disabled');
+                $dateFrom.add($dateTo).prop('disabled', false);
+
+                $dateFrom.add($dateTo).each(function () {
+                    if ($(this).val()) {
+                        $(this).closest('.form__field').find('.form__field-clear').removeClass('hidden');
+                    }
+                });
+            }
+        }
+
+        $noDateCheckbox.on('change', toggleDateInputs);
+        toggleDateInputs();
+    }
 
     return true;
 

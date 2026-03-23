@@ -23,6 +23,22 @@
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 0.69rem;
+		position: relative;
+	}
+
+	// .form__field-clear
+	&__field-clear {
+		position: absolute;
+		right: 1rem;
+		bottom: 0.75rem;
+		font-size: 1.5rem;
+		transition: color 0.3s ease;
+
+		@media (any-hover: hover) {
+			&:hover {
+				color: #dc3232;
+			}
+		}
 	}
 
 	// .form__label
