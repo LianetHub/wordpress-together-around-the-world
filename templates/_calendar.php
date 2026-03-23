@@ -7,14 +7,28 @@ $tours_raw = get_all_tours_data();
         <h2 class="booking-calendar__title title text-center">Календарь туров</h2>
         <div class="booking-calendar__header">
             <div class="booking-calendar__filters">
-                <a href="#" class="booking-calendar__filter active" data-id="all">Все туры</a>
-                <?php
-                $categories = get_categories(['taxonomy' => 'category', 'hide_empty' => true]);
-                foreach ($categories as $cat) : ?>
-                    <a href="#" class="booking-calendar__filter" data-id="<?php echo $cat->term_id; ?>">
-                        <?php echo $cat->name; ?>
-                    </a>
-                <?php endforeach; ?>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <button
+                            type="button"
+                            class="booking-calendar__filter swiper-slide active"
+                            data-id="all">
+                            Все туры
+                        </button>
+                        <?php
+                        $categories = get_categories(['taxonomy' => 'category', 'hide_empty' => true]);
+                        foreach ($categories as $cat) : ?>
+                            <button
+                                type="button"
+                                class="booking-calendar__filter swiper-slide"
+                                data-id="<?php echo $cat->term_id; ?>">
+                                <?php echo $cat->name; ?>
+                            </button>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <button type="button" class="booking-calendar__filters-prev swiper-button-prev"></button>
+                <button type="button" class="booking-calendar__filters-next swiper-button-next"></button>
             </div>
             <div class="booking-calendar__controls">
                 <button
@@ -212,13 +226,20 @@ $tours_raw = get_all_tours_data();
                 syncCalendarState();
             };
 
-            document.querySelectorAll('.booking-calendar__filter').forEach(btn => {
+            document.querySelectorAll('.booking-calendar__filter').forEach((btn, index) => {
                 btn.onclick = (e) => {
                     e.preventDefault();
+
                     document.querySelector('.booking-calendar__filter.active')?.classList.remove('active');
                     btn.classList.add('active');
+
                     currentFilter = btn.getAttribute('data-id') || 'all';
                     syncCalendarState();
+
+                    const swiperContainer = document.querySelector('.booking-calendar__filters .swiper');
+                    if (swiperContainer && swiperContainer.swiper) {
+                        swiperContainer.swiper.slideTo(index);
+                    }
                 };
             });
         });

@@ -1720,7 +1720,8 @@ button[data-vc-week-day] {
     display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    align-items: center
+    align-items: center;
+    gap: 3.75rem
 }
 
 .booking-calendar__filters {
@@ -1728,7 +1729,8 @@ button[data-vc-week-day] {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     min-width: 0;
-    max-width: 100%
+    max-width: 100%;
+    position: relative
 }
 
 .booking-calendar__filter {
@@ -1745,10 +1747,28 @@ button[data-vc-week-day] {
     display: inline-block
 }
 
+.booking-calendar__filter.swiper-slide {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content
+}
+
 .booking-calendar__filter.active {
     color: #3c3c3c;
     border: .1875rem solid #b1df1d;
     background: #fff
+}
+
+.booking-calendar__filters-prev.swiper-button-prev {
+    left: -2.8125rem
+}
+
+.booking-calendar__filters-next.swiper-button-next {
+    right: -2.8125rem
+}
+
+.booking-calendar__filters-next.swiper-button-disabled, .booking-calendar__filters-prev.swiper-button-disabled {
+    display: none
 }
 
 .booking-calendar__controls {
@@ -1780,7 +1800,7 @@ button[data-vc-week-day] {
     font-size: 1.25rem;
     font-weight: 600;
     line-height: 110%;
-    min-width: 7.5rem;
+    min-width: 8.875rem;
     text-align: center
 }
 
@@ -1933,15 +1953,6 @@ button[data-vc-week-day] {
 }
 
 .swiper-button-next, .swiper-button-prev {
-    position: relative;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    top: auto !important;
-    margin: 0 !important;
-    -webkit-transform: none !important;
-    -ms-transform: none !important;
-    transform: none !important;
     -webkit-transition: background-color .3s ease 0s, color .3s ease 0s;
     transition: background-color .3s ease 0s, color .3s ease 0s;
     z-index: 2;
@@ -1956,11 +1967,10 @@ button[data-vc-week-day] {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    background: #d5d7da;
-    color: #181d27;
-    width: 3rem;
-    height: 3rem;
-    font-size: 1.5rem
+    background: #d9d9d9;
+    color: #353535;
+    --swiper-navigation-size: 2.1875rem;
+    border-radius: 50%
 }
 
 .swiper-button-next.swiper-button-lock, .swiper-button-prev.swiper-button-lock {
@@ -1969,55 +1979,7 @@ button[data-vc-week-day] {
 
 .swiper-button-next.swiper-button-disabled, .swiper-button-next:disabled, .swiper-button-next[aria-disabled=true], .swiper-button-prev.swiper-button-disabled, .swiper-button-prev:disabled, .swiper-button-prev[aria-disabled=true] {
     pointer-events: none;
-    opacity: .7
-}
-
-.swiper-button-next.counting::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    font-size: 0;
-    background: #ff4405;
-    -webkit-transform: scale3d(0, 1, 1);
-    transform: scale3d(0, 1, 1);
-    -webkit-transform-origin: left;
-    -ms-transform-origin: left;
-    transform-origin: left;
-    will-change: transform;
-    z-index: -1;
-    display: block
-}
-
-.swiper-button-next.counting::after {
-    -webkit-animation: countingBar var(--counting-speed, 15.8s) linear forwards;
-    animation: countingBar var(--counting-speed, 15.8s) linear forwards
-}
-
-@-webkit-keyframes countingBar {
-    0% {
-        -webkit-transform: scale3d(0, 1, 1);
-        transform: scale3d(0, 1, 1)
-    }
-
-    100% {
-        -webkit-transform: scale3d(1, 1, 1);
-        transform: scale3d(1, 1, 1)
-    }
-}
-
-@keyframes countingBar {
-    0% {
-        -webkit-transform: scale3d(0, 1, 1);
-        transform: scale3d(0, 1, 1)
-    }
-
-    100% {
-        -webkit-transform: scale3d(1, 1, 1);
-        transform: scale3d(1, 1, 1)
-    }
+    opacity: .3
 }
 
 .swiper-pagination.swiper-pagination-fraction {
@@ -3919,8 +3881,7 @@ button[data-vc-week-day] {
     }
 
     .swiper-button-next:hover, .swiper-button-prev:hover {
-        background: #ff4405;
-        color: #fff
+        background: #b0df1d
     }
 
     .socials__item:hover {

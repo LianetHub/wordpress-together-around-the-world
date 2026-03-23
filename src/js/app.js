@@ -1,5 +1,7 @@
 "use strict";
 
+// const { default: Swiper } = require("swiper");
+
 // const { Calendar } = require("vanilla-calendar-pro");
 
 $(function () {
@@ -114,6 +116,19 @@ $(function () {
                 this.init = false;
             }
         }
+    }
+
+    if ($('.booking-calendar__filters').length) {
+        new Swiper('.booking-calendar__filters .swiper', {
+            slidesPerView: "auto",
+            spaceBetween: 4,
+            watchOverflow: true,
+            slideToClickedSlide: true,
+            navigation: {
+                prevEl: ".booking-calendar__filters-prev",
+                nextEl: ".booking-calendar__filters-next",
+            }
+        })
     }
 
     // Phone Input Mask Russia
