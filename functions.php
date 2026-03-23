@@ -38,22 +38,35 @@ function theme_enqueue_scripts()
 	$theme_uri = get_template_directory_uri();
 
 	wp_deregister_script('jquery');
-	wp_enqueue_script('jquery', $theme_uri . '/assets/js/libs/jquery-4.0.0.min.js', array(), null, true);
+	wp_enqueue_script('jquery', $theme_uri . '/assets/js/libs/jquery-4.0.0.min.js', array(), '4.0.0', true);
+
 	wp_enqueue_script('swiper-js', $theme_uri . '/assets/js/libs/swiper-bundle.min.js', array(), null, true);
 	wp_enqueue_script('fancybox-js', $theme_uri . '/assets/js/libs/fancybox.umd.js', array(), null, true);
 	wp_enqueue_script('vanilla-calendar-pro-js', $theme_uri . '/assets/js/libs/vanilla-calendar-pro.min.js', array(), null, true);
 
-	$app_js_ver = filemtime($theme_dir . '/assets/js/app.min.js');
-	wp_enqueue_script(
-		'app-js',
-		$theme_uri . '/assets/js/app.min.js',
-		array('jquery', 'vanilla-calendar-pro-js'),
-		$app_js_ver,
-		true
-	);
-}
-add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
 
+	$app_js_ver = filemtime($theme_dir . '/assets/js/app.min.js');
+	wp_enqueue_script('app-js', $theme_uri . '/assets/js/app.min.js', array('jquery'), $app_js_ver, true);
+
+
+	if (is_front_page()) {
+		$cal_ver = filemtime($theme_dir . '/assets/js/booking-calendar.min.js');
+		wp_enqueue_script(
+			'booking-calendar',
+			$theme_uri . '/assets/js/booking-calendar.min.js',
+			array('swiper-js', 'vanilla-calendar-pro-js'),
+			$cal_ver,
+			true
+		);
+
+		wp_localize_script('booking-calendar', 'calendarData', array(
+			'tours' => get_all_tours_data(),
+			'api_url' => admin_url('admin-ajax.php'),
+		));
+	}
+}
+
+add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
 
 // =========================================================================
 // 3. THEME SUPPORT AND UTILITIES

@@ -41,7 +41,8 @@
         background: transparent;
         transition: all 0.3s ease;
         display: inline-block;
-
+        user-select: none;
+        
         &.swiper-slide {
             width: fit-content;
         }
