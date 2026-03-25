@@ -10,7 +10,8 @@ $date_str = get_formatted_tour_dates($date_from, $date_to, 'card');
 $price_str = '';
 if ($price) {
     $price_formatted = number_format($price, 0, '', ' ') . ' ₽';
-    $price_str = $is_from ? 'от ' . $price_formatted : $price_formatted;
+    $price_formatted = str_replace(' ', '&#8239;', $price_formatted);
+    $price_str = $is_from ? 'от&#8239;' . $price_formatted : $price_formatted;
 }
 ?>
 
@@ -31,7 +32,7 @@ if ($price) {
                     <?php
                     if ($badge === 'hot') echo 'Горящие места';
                     if ($badge === 'sold') echo 'Мест нет';
-                    if ($badge === 'new') echo 'Новинка <span class="tour-card__badge-icon">✨</span>';
+                    if ($badge === 'new') echo '<span>Но</span><span>вин</span><span>ка</span>';
                     ?>
                 </span>
             <?php endif; ?>
@@ -46,10 +47,12 @@ if ($price) {
 
             <div class="tour-card__footer">
                 <?php if ($price_str) : ?>
-                    <div class="tour-card__price"><?php echo esc_html($price_str); ?></div>
+                    <div class="tour-card__price">
+                        <?php echo $price_str; ?>
+                    </div>
                 <?php endif; ?>
 
-                <span class="tour-card__btn btn btn-outline-primary">Забронировать тур</span>
+                <span class="tour-card__btn btn btn-primary-outline">Забронировать тур</span>
             </div>
         </div>
     </a>
