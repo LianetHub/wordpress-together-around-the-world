@@ -3706,7 +3706,7 @@ select.select {
 }
 
 .description {
-  padding: 2.8125rem 0;
+  padding: 3.4375rem 0;
 }
 
 .description__container {
@@ -3714,12 +3714,23 @@ select.select {
   display: grid;
   -ms-grid-columns: (1fr)[2];
   grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.description__column {
+  padding-left: 1.75rem;
+}
+
+.description__title {
+  padding-left: 3.25rem;
+  max-width: 30rem;
 }
 
 .description__list {
   margin-top: 2.5rem;
   color: #000;
   font-size: 1.625rem;
+  max-width: 30.625rem;
 }
 
 .description__list li {
@@ -3743,13 +3754,15 @@ select.select {
 }
 
 .description__steps {
-  margin-top: 2.5rem;
+  margin-top: 6.8rem;
   font-size: 1.625rem;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[2];
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  gap: 3.5rem;
+  row-gap: 6.6rem;
+  padding-left: 1.5rem;
 }
 
 .description__steps li {
@@ -3763,6 +3776,7 @@ select.select {
   content: counter(num) ".";
   -ms-flex-negative: 0;
       flex-shrink: 0;
+  margin-right: 0.25rem;
 }
 
 .team {

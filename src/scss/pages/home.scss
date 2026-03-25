@@ -138,25 +138,32 @@
 }
 
 .description {
-    padding: rem(45) 0;
+    padding: rem(55) 0;
 
     // .description__container
     &__container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
     }
 
     // .description__column
-    &__column {}
+    &__column {
+        padding-left: 1.75rem;
+    }
 
     // .description__title
-    &__title {}
+    &__title {
+        padding-left: 3.25rem;
+        max-width: 30rem;
+    }
 
     // .description__list
     &__list {
         margin-top: 2.5rem;
         color: #000;
         font-size: 1.625rem;
+        max-width: rem(490);
 
         & li {
             position: relative;
@@ -181,11 +188,13 @@
 
     // .description__steps
     &__steps {
-        margin-top: 2.5rem;
+        margin-top: 6.8rem;
         font-size: 1.625rem;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        gap: 3.5rem;
+        row-gap: 6.6rem;
+        padding-left: 1.5rem;
 
         & li {
             counter-increment: num;
@@ -194,6 +203,7 @@
             &::before {
                 content: counter(num) '.';
                 flex-shrink: 0;
+                margin-right: 0.25rem;
             }
         }
     }
