@@ -183,3 +183,23 @@ input[type=number] {
 ::-webkit-file-upload-button {
   -webkit-appearance: button;
 }
+
+fieldset {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  min-inline-size: auto;
+}
+
+legend {
+  display: table;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+fieldset > * {
+  clear: both;
+}

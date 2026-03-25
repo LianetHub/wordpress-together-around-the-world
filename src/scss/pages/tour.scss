@@ -178,10 +178,224 @@
         max-width: 12.25rem;
         margin-left: auto;
 
-        &.btn-primary-outline {
-            background: transparent;
-            color: #262624;
+        &.btn {
             padding-inline: 0.25rem;
+        }
+    }
+}
+
+.tour {
+
+    // .tour__title
+    &__title {}
+
+    // .tour__booking
+    &__booking {
+        margin-top: rem(30);
+        border-radius: 1.25rem;
+        background: #F9F9F9;
+        padding: rem(30) rem(20);
+    }
+
+    // .tour__booking-header
+    &__booking-header {
+        display: flex;
+        gap: 1rem;
+    }
+
+    // .tour__booking-date
+    &__booking-date {
+        color: #262624;
+        font-size: 1.125rem;
+        font-weight: 600;
+        border-radius: 4.375rem;
+        background: #D9F970;
+        padding: rem(12) rem(30);
+        flex-shrink: 0;
+    }
+
+    // .tour__booking-price
+    &__booking-price {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: rem(9) rem(26);
+        background: #B1DF1D;
+        border-radius: 4.375rem;
+        flex-shrink: 0;
+    }
+
+    // .tour__booking-price-value
+    &__booking-price-value {
+        color: #262624;
+        font-size: 1.5625rem;
+        font-weight: 600;
+        flex-shrink: 0;
+    }
+
+    // .tour__booking-price-per
+    &__booking-price-per {
+        color: #000;
+        font-size: 0.8125rem;
+        line-height: 74%;
+        letter-spacing: -0.04063rem;
+    }
+
+    // .tour__booking-actions
+    &__booking-actions {
+        display: flex;
+        justify-content: flex-end;
+        flex: 1 1 auto;
+        gap: 1rem;
+    }
+
+    // .tour__booking-btn
+    &__booking-btn {
+        max-width: 17.9375rem;
+        width: 100%;
+    }
+
+    // .tour__booking-desc
+    &__booking-desc {
+        margin-top: 1rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    // .tour__booking-text
+    &__booking-text {
+        &.typography-block {
+            font-size: 0.9375rem;
+            line-height: 116.648%;
+            letter-spacing: -0.03281rem;
+        }
+    }
+
+    // .tour__booking-phone
+    &__booking-phone {
+        max-width: 17.9375rem;
+        width: 100%;
+        flex-shrink: 0;
+    }
+}
+
+.booking-form {
+    margin-top: 1.37rem;
+
+    // .booking-form__block
+    &__block {
+        border-top: rem(1) solid #D9D9D9;
+        padding: rem(20) 0 1.75rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    // .booking-form__caption
+    &__caption {
+        color: #000;
+        font-size: 1.63069rem;
+        font-weight: 600;
+    }
+
+    // .booking-form__body
+    &__body {
+        margin-top: 1rem;
+        display: flex;
+        gap: rem(20);
+    }
+
+    // .booking-form__side
+    &__side {
+        flex: 0 0 rem(384);
+    }
+
+    // .booking-form__options
+    &__options {
+        margin-top: 1.25rem;
+    }
+
+    // .booking-form__options-caption
+    &__options-caption {
+        font-size: 0.9375rem;
+        line-height: 116.648%;
+        letter-spacing: -0.03281rem;
+    }
+
+    // .booking-form__options-list
+    &__options-list {
+        margin-top: 0.875rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.44rem;
+    }
+}
+
+.form {
+
+    // .form__option
+    &__option {
+        display: block;
+    }
+
+    // .form__option-input
+    &__option-input {
+        &:checked {
+            &~.form__option-btn {
+                &::after {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+
+    // .form__option-btn
+    &__option-btn {
+        color: #262624;
+        font-size: 1.125rem;
+        font-weight: 600;
+        padding-left: 1.75rem;
+        display: inline-flex;
+        align-items: center;
+        position: relative;
+        min-height: 1.25rem;
+        cursor: pointer;
+        user-select: none;
+        -webkit-font-smoothing: antialiased;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            -webkit-font-smoothing: subpixel-antialiased;
+            will-change: transform;
+        }
+
+        &::before {
+            left: 0;
+            top: 50%;
+            margin-top: -0.5rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            border: rem(1) solid #B1DF1D;
+            background-color: #fff;
+        }
+
+        &::after {
+            left: 0.25rem;
+            top: 50%;
+            margin-top: -0.25rem;
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+            background-color: #B1DF1D;
+            opacity: 0;
+            transform: scale(0);
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
         }
     }
 }

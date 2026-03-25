@@ -52,7 +52,7 @@ if ($price) {
                     </div>
                 <?php endif; ?>
 
-                <span class="tour-card__btn btn btn-primary-outline">Забронировать тур</span>
+                <span class="tour-card__btn btn btn-secondary">Забронировать тур</span>
             </div>
         </div>
     </a>

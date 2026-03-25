@@ -108,10 +108,10 @@
 		&:is(textarea) {
 			resize: none;
 			height: rem(120);
-			font-size: 1rem;
+			border-radius: 1.4375rem;
 
 			@media (min-width: $md5) {
-				height: 5.9375rem;
+				height: 8.125rem;
 			}
 		}
 	}
@@ -400,6 +400,25 @@
 		border-color: #B1DF1D;
 		background: rgba($color: #222222, $alpha: 0.50);
 		color: #fff;
+
+		&:hover {
+			border-color: #B1DF1D;
+			background: #B1DF1D;
+			color: #262624;
+		}
+
+		&:active {
+			background: color.adjust($color: #B1DF1D, $lightness: -10%);
+			border-color: color.adjust($color: #B1DF1D, $lightness: -10%);
+			color: #262624;
+		}
+
+	}
+
+	&.btn-secondary {
+		border-color: #B1DF1D;
+		background: transparent;
+		color: #262624;
 
 		&:hover {
 			border-color: #B1DF1D;
