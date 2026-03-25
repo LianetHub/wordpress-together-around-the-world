@@ -166,6 +166,16 @@ add_action('init', function () {
     ]);
 });
 
+add_filter('register_taxonomy_args', 'disable_category_public_pages', 10, 2);
+function disable_category_public_pages($args, $taxonomy)
+{
+    if ($taxonomy === 'category') {
+        $args['publicly_queryable'] = false;
+        $args['query_var'] = false;
+    }
+    return $args;
+}
+
 // =========================================================================
 // 6. SECURITY & CLEANUP
 // =========================================================================
@@ -299,6 +309,48 @@ function get_formatted_tour_departure($date_from, $time_str)
     $time_formatted = $t ? $t->format('H:i') : $time_str;
 
     return $time_formatted . ', ' . $d . ' ' . $months[$m] . ', ' . $days[$w];
+}
+
+function get_tour_duration($date_from, $date_to)
+{
+    if (!$date_from || !$date_to) return 0;
+
+    $dt_from = DateTime::createFromFormat('d/m/Y', (string)$date_from);
+    $dt_to = DateTime::createFromFormat('d/m/Y', (string)$date_to);
+
+    if (!$dt_from || !$dt_to) return 0;
+
+    $diff = $dt_from->diff($dt_to);
+
+    return $diff->days + 1;
+}
+
+function get_category_tour_data($term_id)
+{
+    $args = [
+        'post_type'      => 'post',
+        'posts_per_page' => 1,
+        'cat'            => $term_id,
+        'meta_key'       => 'tour_price',
+        'orderby'        => 'meta_value_num',
+        'order'          => 'ASC',
+    ];
+
+    $query = new WP_Query($args);
+    $data = ['price' => 0, 'days' => 0];
+
+    if ($query->have_posts()) {
+        $query->the_post();
+        $data['price'] = get_field('tour_price');
+
+        $date_from = get_field('tour_date_from');
+        $date_to   = get_field('tour_date_to');
+
+        $data['days'] = get_tour_duration($date_from, $date_to);
+    }
+
+    wp_reset_postdata();
+    return $data;
 }
 
 // =========================================================================

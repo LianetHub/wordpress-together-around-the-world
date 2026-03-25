@@ -380,6 +380,7 @@ body.error404 .main {
 .breadcrumbs {
   position: relative;
   z-index: 3;
+  padding: 2rem 0;
 }
 
 .breadcrumbs__list {
@@ -3706,7 +3707,7 @@ select.select {
 }
 
 .description {
-  padding: 3.4375rem 0;
+  padding: 3.4375rem 0 3.125rem;
 }
 
 .description__container {
@@ -3777,6 +3778,10 @@ select.select {
   -ms-flex-negative: 0;
       flex-shrink: 0;
   margin-right: 0.25rem;
+}
+
+.directions {
+  padding: 1.75rem 0;
 }
 
 .team {

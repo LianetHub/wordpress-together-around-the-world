@@ -2,7 +2,9 @@
 if (class_exists('WPSEO_Breadcrumbs')) :
     $breadcrumbs = WPSEO_Breadcrumbs::get_instance()->get_links();
     if ($breadcrumbs) : ?>
-        <nav aria-label="Хлебные крошки" class="breadcrumbs">
+        <nav
+            aria-label="Хлебные крошки"
+            class="breadcrumbs">
             <div class="container">
                 <ul class="breadcrumbs__list">
                     <?php foreach ($breadcrumbs as $i => $breadcrumb) : ?>
