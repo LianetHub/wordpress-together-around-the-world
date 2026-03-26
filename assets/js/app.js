@@ -581,6 +581,8 @@ const initApp = () => {
     }
 
     document.addEventListener('wpcf7mailsent', function () {
+
+        Fancybox.close();
         Fancybox.show([{
             src: "#success-submitting",
             type: "inline"
@@ -588,6 +590,7 @@ const initApp = () => {
     }, false);
 
     document.addEventListener('wpcf7mailfailed', function () {
+        Fancybox.close();
         Fancybox.show([{
             src: "#error-submitting",
             type: "inline"
