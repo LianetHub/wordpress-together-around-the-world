@@ -62,7 +62,7 @@
                 <?php endif; ?>
 
                 <div class="tour__booking-actions">
-                    <a href="#booking-form" data-fancybox class="tour__booking-order btn btn-primary">Оставить заявку</a>
+                    <a href="#callback" data-fancybox class="tour__booking-order btn btn-primary">Оставить заявку</a>
                     <button type="button" class="tour__booking-btn btn btn-primary">Забронировать тур</button>
                 </div>
             </div>
@@ -135,9 +135,12 @@
                 </div>
             </div>
             <div class="tour__actions">
-                <a href="#booking-form" data-fancybox class="tour__btn btn btn-secondary">Оставить заявку</a>
+                <a href="#callback" data-fancybox class="tour__btn btn btn-secondary">Оставить заявку</a>
                 <a href="#booking-form" class="tour__btn btn btn-primary">Забронировать тур</a>
             </div>
+        </div>
+        <div class="tour__description">
+            <?php the_content() ?>
         </div>
     </div>
 </section>

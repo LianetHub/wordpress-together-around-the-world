@@ -134,8 +134,9 @@ body {
 // ========================================================
 
 .typography-block {
-	font-size: 1.125rem;
-	line-height: 1.55;
+	font-size: 1.20313rem;
+	letter-spacing: -0.04213rem;
+	line-height: 116.648%;
 
 	h2,
 	h3,
@@ -278,7 +279,7 @@ body {
 			left: rem(18);
 			bottom: 1.125rem;
 			width: rem(4);
-			background: #ff4405;
+			background: $accent;
 		}
 	}
 
@@ -330,6 +331,10 @@ body {
 				}
 			}
 		}
+	}
+
+	& img {
+		border-radius: rem(25);
 	}
 
 	.wp-block-image {

@@ -183,8 +183,9 @@ body.error404 .main {
 }
 
 .typography-block {
-  font-size: 1.125rem;
-  line-height: 1.55;
+  font-size: 1.20313rem;
+  letter-spacing: -0.04213rem;
+  line-height: 116.648%;
 }
 
 .typography-block h2,
@@ -310,7 +311,7 @@ body.error404 .main {
   left: 1.125rem;
   bottom: 1.125rem;
   width: 0.25rem;
-  background: #ff4405;
+  background: #B1DF1D;
 }
 
 .typography-block figure {
@@ -374,6 +375,10 @@ body.error404 .main {
           flex: 1 1 auto;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.typography-block img {
+  border-radius: 1.5625rem;
 }
 
 .typography-block .wp-block-image img {
