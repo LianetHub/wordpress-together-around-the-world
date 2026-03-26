@@ -356,7 +356,7 @@ body.error404 .main {
 .breadcrumbs {
     position: relative;
     z-index: 3;
-    padding: 2rem 0
+    padding: 1rem 0
 }
 
 .breadcrumbs__list {
@@ -2614,6 +2614,48 @@ button[data-vc-week-day] {
     position: relative
 }
 
+.form__field.has-error .form__control {
+    -webkit-box-shadow: inset 0 0 0 .0625rem #f04438;
+    box-shadow: inset 0 0 0 .0625rem #f04438;
+    border-color: #dc3232;
+    color: #dc3232;
+    background-color: rgba(220, 50, 50, .1)
+}
+
+.form__field.has-error .form__control::-webkit-input-placeholder {
+    color: #dc3232;
+    opacity: .5
+}
+
+.form__field.has-error .form__control::-moz-placeholder {
+    color: #dc3232;
+    opacity: .5
+}
+
+.form__field.has-error .form__control:-ms-input-placeholder {
+    color: #dc3232;
+    opacity: .5
+}
+
+.form__field.has-error .form__control::-ms-input-placeholder {
+    color: #dc3232;
+    opacity: .5
+}
+
+.form__field.has-error .form__control::placeholder {
+    color: #dc3232;
+    opacity: .5
+}
+
+.form__field-error {
+    color: #dc3232;
+    padding-top: .25rem;
+    display: block;
+    position: absolute;
+    top: 100%;
+    width: 100%
+}
+
 .form__field-clear {
     position: absolute;
     right: 1rem;
@@ -2713,37 +2755,37 @@ button[data-vc-week-day] {
     border-color: #ddd
 }
 
-.form__control._error {
-    background: #fff1ed;
-    border-color: #f04438;
+.form__control.wpcf7-not-valid {
     -webkit-box-shadow: inset 0 0 0 .0625rem #f04438;
     box-shadow: inset 0 0 0 .0625rem #f04438;
-    color: #f04438
+    border-color: #dc3232;
+    color: #dc3232;
+    background-color: rgba(220, 50, 50, .1)
 }
 
-.form__control._error::-webkit-input-placeholder {
-    color: #f04438;
-    opacity: 1
+.form__control.wpcf7-not-valid::-webkit-input-placeholder {
+    color: #dc3232;
+    opacity: .5
 }
 
-.form__control._error::-moz-placeholder {
-    color: #f04438;
-    opacity: 1
+.form__control.wpcf7-not-valid::-moz-placeholder {
+    color: #dc3232;
+    opacity: .5
 }
 
-.form__control._error:-ms-input-placeholder {
-    color: #f04438;
-    opacity: 1
+.form__control.wpcf7-not-valid:-ms-input-placeholder {
+    color: #dc3232;
+    opacity: .5
 }
 
-.form__control._error::-ms-input-placeholder {
-    color: #f04438;
-    opacity: 1
+.form__control.wpcf7-not-valid::-ms-input-placeholder {
+    color: #dc3232;
+    opacity: .5
 }
 
-.form__control._error::placeholder {
-    color: #f04438;
-    opacity: 1
+.form__control.wpcf7-not-valid::placeholder {
+    color: #dc3232;
+    opacity: .5
 }
 
 .form__control:is(textarea) {
@@ -2885,13 +2927,6 @@ button[data-vc-week-day] {
     color: #175cd3
 }
 
-.form__error {
-    color: #f04438;
-    margin-top: .25rem;
-    font-size: .875rem;
-    display: block
-}
-
 .checkbox {
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
@@ -2899,6 +2934,10 @@ button[data-vc-week-day] {
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content
+}
+
+.checkbox.has-error .checkbox__text::before {
+    border-color: #f04438
 }
 
 .checkbox__input._error+.checkbox__text::before {
@@ -3798,6 +3837,7 @@ button[data-vc-week-day] {
 
 .tour-card {
     overflow: hidden;
+    border-radius: 1.5625rem;
     -webkit-transition: -webkit-box-shadow .3s ease, -webkit-transform .3s ease;
     transition: -webkit-box-shadow .3s ease, -webkit-transform .3s ease;
     transition: box-shadow .3s ease, transform .3s ease;
@@ -3899,7 +3939,7 @@ button[data-vc-week-day] {
 }
 
 .tour-card__content {
-    padding: .875rem 0 .875rem 1.0625rem;
+    padding: .875rem 1.0625rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -3961,6 +4001,10 @@ button[data-vc-week-day] {
 
 .tour-card__btn.btn {
     padding-inline: .25rem
+}
+
+.tour {
+    padding: 0 0 2rem
 }
 
 .tour__booking {
@@ -4064,16 +4108,28 @@ button[data-vc-week-day] {
     margin-top: 1.37rem
 }
 
+.booking-form__header {
+    border-top: .0625rem solid #d9d9d9
+}
+
 .booking-form__block {
-    border-top: .0625rem solid #d9d9d9;
-    padding: 1.25rem 0 1.75rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
-    flex-direction: column
+    flex-direction: column;
+    position: relative;
+    padding-block: 1.25rem
+}
+
+.booking-form__block:not(:first-child) {
+    border-top: .0625rem solid #d9d9d9
+}
+
+.booking-form__block:not(:last-child) {
+    margin-bottom: .5rem
 }
 
 .booking-form__caption {
@@ -4114,6 +4170,69 @@ button[data-vc-week-day] {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     gap: 1.44rem
+}
+
+.booking-form__passengers {
+    margin-top: 1.25rem;
+    border-top: .0625rem solid #d9d9d9
+}
+
+.booking-form__passengers .booking-form__block {
+    padding-right: 5rem
+}
+
+.booking-form__passengers .booking-form__block:first-child .booking-form__remove {
+    display: none
+}
+
+.booking-form__passengers .booking-form__block:last-child .booking-form__add {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.booking-form__row {
+    margin-top: 1rem;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[3] .75fr;
+    grid-template-columns: repeat(3, 1fr) .75fr;
+    gap: 1.125rem
+}
+
+.booking-form__controls {
+    position: absolute;
+    bottom: 1.25rem;
+    right: 0;
+    top: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    gap: .5rem
+}
+
+.booking-form__add {
+    display: none
+}
+
+.booking-form__bottom {
+    margin-top: 1.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
 }
 
 .form__option {
@@ -4255,14 +4374,6 @@ button[data-vc-week-day] {
 
 .policy__content {
     margin-top: 2rem
-}
-
-.nojq {
-    display: none
-}
-
-html {
-    margin-top: 0 !important
 }
 
 @media (min-width:389.98px) {

@@ -477,6 +477,109 @@ const initApp = () => {
         toggleDateInputs();
     }
 
+    // Booking Form
+    if ($('.tour__booking-form').length > 0) {
+        const $form = $('.tour__booking-form');
+        const $passengersContainer = $('.booking-form__passengers');
+
+        $('.tour__booking-btn').on('click', function (e) {
+            e.preventDefault();
+            $form.stop().slideToggle(400);
+        });
+
+        function updatePassengerIndices() {
+            $passengersContainer.find('.booking-form__block').each(function (index) {
+                const passengerNumber = index + 1;
+                const $block = $(this);
+
+                $block.find('.booking-form__caption').text('Пассажир ' + passengerNumber);
+
+                $block.find('input').each(function () {
+                    const $input = $(this);
+                    const placeholder = ($input.attr('placeholder') || '').toLowerCase();
+
+                    let fieldName = '';
+                    if (placeholder.includes('фамилия')) fieldName = 'last_name';
+                    else if (placeholder.includes('имя')) fieldName = 'first_name';
+                    else if (placeholder.includes('отчество')) fieldName = 'middle_name';
+                    else if (placeholder.includes('рождения')) fieldName = 'birth_date';
+
+                    if (fieldName) {
+                        $input.attr('name', `passengers[${index}][${fieldName}]`);
+                    }
+                });
+            });
+        }
+
+        $passengersContainer.on('click', '.booking-form__add', function () {
+            const $currentBlock = $(this).closest('.booking-form__block');
+            const $newBlock = $currentBlock.clone();
+
+            $newBlock.find('input').val('');
+            $newBlock.find('.form__field').removeClass('has-error');
+            $newBlock.find('.form__field-error').remove();
+
+            $newBlock.appendTo($passengersContainer);
+            updatePassengerIndices();
+        });
+
+        $passengersContainer.on('click', '.booking-form__remove', function () {
+            if ($('.booking-form__block').length > 1) {
+                $(this).closest('.booking-form__block').remove();
+                updatePassengerIndices();
+            }
+        });
+
+        $form.on('input change', '.has-error input, .has-error textarea', function () {
+            const $parent = $(this).closest('.form__field, .checkbox');
+            $parent.removeClass('has-error');
+            $parent.find('.form__field-error').remove();
+        });
+
+        $form.on('submit', function (e) {
+            let isValid = true;
+            const $requiredFields = $form.find('[data-required]');
+
+            $form.find('.form__field').removeClass('has-error');
+            $form.find('.checkbox').removeClass('has-error');
+            $form.find('.form__field-error').remove();
+
+            $requiredFields.each(function () {
+                const $input = $(this);
+                const $parent = $input.closest('.form__field');
+                const value = $input.val() || '';
+
+                if (value.trim() === "") {
+                    isValid = false;
+                    $parent.addClass('has-error');
+                    if ($parent.hasClass('form__field')) {
+                        $parent.append('<div class="form__field-error">Заполните это поле</div>');
+                    }
+                }
+            });
+
+            const $agreementLabel = $form.find('.checkbox');
+            const $agreementInput = $agreementLabel.find('.checkbox__input');
+
+            if (!$agreementInput.is(':checked')) {
+                isValid = false;
+                $agreementLabel.addClass('has-error');
+            }
+
+            if (!isValid) {
+                e.preventDefault();
+                const $firstError = $('.has-error').first();
+                if ($firstError.length) {
+                    $('html, body').animate({
+                        scrollTop: $firstError.offset().top - 100
+                    }, 500);
+                }
+            }
+        });
+
+        updatePassengerIndices();
+    }
+
     return true;
 
 }

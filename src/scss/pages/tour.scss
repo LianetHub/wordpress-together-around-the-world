@@ -33,6 +33,7 @@
 
 .tour-card {
     overflow: hidden;
+    border-radius: 1.5625rem;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 
     @media (any-hover: hover) {
@@ -129,7 +130,7 @@
 
     // .tour-card__content
     &__content {
-        padding: rem(14) rem(0) rem(14) rem(17);
+        padding: rem(14) rem(17);
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
@@ -185,6 +186,8 @@
 }
 
 .tour {
+
+    padding: 0 0 2rem;
 
     // .tour__title
     &__title {}
@@ -283,12 +286,24 @@
 .booking-form {
     margin-top: 1.37rem;
 
+    &__header {
+        border-top: rem(1) solid #D9D9D9;
+    }
+
     // .booking-form__block
     &__block {
-        border-top: rem(1) solid #D9D9D9;
-        padding: rem(20) 0 1.75rem;
         display: flex;
         flex-direction: column;
+        position: relative;
+        padding-block: rem(20);
+
+        &:not(:first-child) {
+            border-top: rem(1) solid #D9D9D9;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: rem(8);
+        }
     }
 
     // .booking-form__caption
@@ -329,7 +344,72 @@
         flex-wrap: wrap;
         gap: 1.44rem;
     }
+
+    // .booking-form__passengers
+    &__passengers {
+        margin-top: rem(20);
+        border-top: rem(1) solid #D9D9D9;
+
+        .booking-form__block {
+            padding-right: 5rem;
+
+            &:first-child {
+                .booking-form__remove {
+                    display: none;
+                }
+            }
+
+            &:last-child {
+                .booking-form__add {
+                    display: flex;
+                }
+            }
+        }
+    }
+
+    // .booking-form__row
+    &__row {
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr) 0.75fr;
+        gap: rem(18);
+    }
+
+    // .booking-form__controls
+    &__controls {
+        position: absolute;
+        bottom: 1.25rem;
+        right: 0;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 0.5rem;
+    }
+
+    // .booking-form__remove
+    &__remove {}
+
+    // .booking-form__add
+    &__add {
+        display: none;
+    }
+
+    // .booking-form__bottom
+    &__bottom {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    // .booking-form__submit
+    &__submit {}
 }
+
+
+
 
 .form {
 

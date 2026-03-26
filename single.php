@@ -24,7 +24,7 @@
                 </div>
                 <div class="tour__booking-actions">
                     <a href="" class="tour__booking-btn btn btn-primary">Оставить заявку</a>
-                    <a href="" class="tour__booking-btn btn btn-primary">Забронировать тур</a>
+                    <button type="button" class="tour__booking-btn btn btn-primary">Забронировать тур</button>
                 </div>
             </div>
             <div class="tour__booking-desc">

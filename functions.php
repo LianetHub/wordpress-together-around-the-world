@@ -166,15 +166,6 @@ add_action('init', function () {
     ]);
 });
 
-add_filter('register_taxonomy_args', 'disable_category_public_pages', 10, 2);
-function disable_category_public_pages($args, $taxonomy)
-{
-    if ($taxonomy === 'category') {
-        $args['publicly_queryable'] = false;
-        $args['query_var'] = false;
-    }
-    return $args;
-}
 
 // =========================================================================
 // 6. SECURITY & CLEANUP
