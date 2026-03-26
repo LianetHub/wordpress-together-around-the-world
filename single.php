@@ -10,41 +10,55 @@
 <?php require(TEMPLATE_PATH . '/components/breadcrumbs.php'); ?>
 
 <section class="tour">
+    <?php
+    $date_from = get_field('tour_date_from');
+    $date_to   = get_field('tour_date_to');
+    $price     = get_field('tour_price');
+    $is_from   = get_field('tour_price_from');
+
+    $date_str  = get_formatted_tour_dates($date_from, $date_to, 'tour_page');
+    ?>
     <div class="container">
         <h1 class="tour__title title"><?php the_title() ?></h1>
         <div class="tour__booking">
             <div class="tour__booking-header">
-                <div class="tour__booking-date">13-15 марта</div>
-                <div class="tour__booking-price">
-                    <div class="tour__booking-price-value">12 000</div>
-                    <div class="tour__booking-price-per">
-                        рублей <br>
-                        на человека
+                <?php if ($date_str) : ?>
+                    <div class="tour__booking-date"><?php echo esc_html($date_str); ?></div>
+                <?php endif; ?>
+
+                <?php if ($price) : ?>
+                    <div class="tour__booking-price">
+                        <div class="tour__booking-price-value">
+                            <?php echo ($is_from ? 'от ' : '') . number_format($price, 0, '', ' '); ?>
+                        </div>
+                        <div class="tour__booking-price-per">
+                            рублей <br>
+                            на человека
+                        </div>
                     </div>
-                </div>
+                <?php endif; ?>
+
                 <div class="tour__booking-actions">
-                    <a href="" class="tour__booking-btn btn btn-primary">Оставить заявку</a>
+                    <a href="#booking-form" class="tour__booking-btn btn btn-primary">Оставить заявку</a>
                     <button type="button" class="tour__booking-btn btn btn-primary">Забронировать тур</button>
                 </div>
             </div>
+
             <div class="tour__booking-desc">
                 <div class="tour__booking-text typography-block">
                     <p>
-                        Все туры Вы можнте забронировать с помощью формы на сайте. После заполнения данных с Заказчиком
+                        Все туры Вы можете забронировать с помощью формы на сайте. После заполнения данных с Заказчиком
                         свяжется менеджер для проверки данных, обсуждения вопросов и внесения предоплаты в зависимости
                         от условий бронирования тура.
                     </p>
                 </div>
                 <?php
                 $tel = get_field('tel', 'option');
-                ?>
-                <?php if ($tel) :
+                if ($tel) :
                     $tel_clean = preg_replace('/[^0-9+]/', '', $tel);
                 ?>
-                    <a
-                        href="tel:<?php echo $tel_clean; ?>"
-                        class="tour__booking-phone btn btn-secondary">
-                        <?php echo $tel ?>
+                    <a href="tel:<?php echo $tel_clean; ?>" class="tour__booking-phone btn btn-secondary">
+                        <?php echo esc_html($tel); ?>
                     </a>
                 <?php endif; ?>
             </div>

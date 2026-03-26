@@ -344,6 +344,16 @@ function get_category_tour_data($term_id)
     return $data;
 }
 
+function get_formatted_price($price, $is_from = false)
+{
+    if (!$price) return '';
+
+    $price_formatted = number_format($price, 0, '', '&#8239;');
+    $result = $price_formatted . '&#8239;₽';
+
+    return $is_from ? 'от&#8239;' . $result : $result;
+}
+
 // =========================================================================
 // 9. FORM SUBMISSIONS (TELEGRAM)
 // =========================================================================
