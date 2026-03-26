@@ -408,74 +408,67 @@
     &__submit {}
 }
 
+.questions {
+    padding: rem(40) 0 rem(62);
 
-
-
-.form {
-
-    // .form__option
-    &__option {
-        display: block;
-    }
-
-    // .form__option-input
-    &__option-input {
-        &:checked {
-            &~.form__option-btn {
-                &::after {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-            }
-        }
-    }
-
-    // .form__option-btn
-    &__option-btn {
-        color: #262624;
-        font-size: 1.125rem;
-        font-weight: 600;
-        padding-left: 1.75rem;
-        display: inline-flex;
+    // .questions__body
+    &__body {
+        display: flex;
         align-items: center;
-        position: relative;
-        min-height: 1.25rem;
-        cursor: pointer;
-        user-select: none;
-        -webkit-font-smoothing: antialiased;
+        justify-content: space-between;
+        gap: rem(13);
+    }
 
-        &::before,
-        &::after {
-            content: '';
-            position: absolute;
-            backface-visibility: hidden;
-            transform-style: preserve-3d;
-            -webkit-font-smoothing: subpixel-antialiased;
-            will-change: transform;
+    // .questions__title
+    &__title {
+        flex-shrink: 0;
+    }
+
+    // .questions__actions
+    &__actions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: rem(13);
+    }
+
+    // .questions__btn
+    &__btn {}
+
+    // .questions__bottom
+    &__bottom {
+        margin-top: rem(70);
+    }
+
+    // .questions__bottom-title
+    &__bottom-title {}
+
+    // .questions__bottom-form
+    &__bottom-form {
+        margin-top: 1rem;
+        border-radius: 1.25rem;
+        background: #F9F9F9;
+        padding: 1.62rem 1.44rem;
+    }
+
+    // .questions__bottom-row
+    &__bottom-row {
+        display: flex;
+        gap: 1.31rem;
+
+        &>.wpcf7-form-control-wrap {
+            flex: 1 1 auto;
         }
+    }
 
-        &::before {
-            left: 0;
-            top: 50%;
-            margin-top: -0.5rem;
-            width: 1rem;
-            height: 1rem;
-            border-radius: 50%;
-            border: rem(1) solid #B1DF1D;
-            background-color: #fff;
-        }
+    // .questions__bottom-column
+    &__bottom-column {
+        flex: 0 0 17.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.06rem;
 
-        &::after {
-            left: 0.25rem;
-            top: 50%;
-            margin-top: -0.25rem;
-            width: 0.5rem;
-            height: 0.5rem;
-            border-radius: 50%;
-            background-color: #B1DF1D;
-            opacity: 0;
-            transform: scale(0);
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
+        .form__btn {
+            min-height: rem(45);
         }
     }
 }

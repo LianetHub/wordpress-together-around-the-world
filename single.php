@@ -66,5 +66,46 @@
         </div>
     </div>
 </section>
+<section class="questions">
+    <div class="container">
+        <div class="questions__body">
+            <h2 class="questions__title title">Остались вопросы</h2>
+            <div class="questions__actions">
+                <?php
+                $tg_link   = get_field('telegram', 'option');
+                $max_link  = get_field('max', 'option');
+                $tel       = get_field('tel', 'option');
+                ?>
+                <?php if ($tg_link): ?>
+                    <a href="<?php echo esc_url($tg_link); ?>"
+                        class="questions__btn btn btn-secondary"
+                        target="_blank"
+                        rel="nofollow">Написать в Telegram</a>
+                <?php endif; ?>
+                <?php if ($max_link): ?>
+                    <a href="<?php echo esc_url($max_link); ?>"
+                        class="questions__btn btn btn-secondary"
+                        target="_blank"
+                        rel="nofollow">Написать в Max</a>
+                <?php endif; ?>
+                <?php if ($tel) :
+                    $tel_clean = preg_replace('/[^0-9+]/', '', $tel);
+                ?>
+                    <a
+                        href="tel:<?php echo $tel_clean; ?>"
+                        class="questions__btn btn btn-primary icon-phone">
+                        Позвонить
+                    </a>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="questions__bottom">
+            <h3 class="questions__bottom-title title">Задать вопрос без бронирования</h3>
+            <div class="questions__bottom-form">
+                <?php echo do_shortcode('[contact-form-7 id="8ee8018" title="Контактная форма Задать вопрос без бронирования"]') ?>
+            </div>
+        </div>
+    </div>
+</section>
 
 <?php get_footer(); ?>

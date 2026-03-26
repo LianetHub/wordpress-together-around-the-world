@@ -2876,6 +2876,11 @@ select.select {
   color: #262624;
 }
 
+.form__control.form__control--green-outline {
+  border: 0.1875rem solid #B1DF1D;
+  text-align: center;
+}
+
 .form__control::-webkit-input-placeholder {
   opacity: 1;
   color: #BDBDBD;
@@ -3082,6 +3087,79 @@ select.select {
 
 .form__policy a {
   color: #175cd3;
+}
+
+.form__option {
+  display: block;
+}
+
+.form__option-input:checked ~ .form__option-btn::after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+}
+
+.form__option-btn {
+  color: #262624;
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding-left: 1.75rem;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  min-height: 1.25rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.form__option-btn::before,
+.form__option-btn::after {
+  content: "";
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-font-smoothing: subpixel-antialiased;
+  will-change: transform;
+}
+
+.form__option-btn::before {
+  left: 0;
+  top: 50%;
+  margin-top: -0.5rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 0.0625rem solid #B1DF1D;
+  background-color: #fff;
+}
+
+.form__option-btn::after {
+  left: 0.25rem;
+  top: 50%;
+  margin-top: -0.25rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #B1DF1D;
+  opacity: 0;
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: opacity 0.2s ease, -webkit-transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: opacity 0.2s ease, -webkit-transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease, -webkit-transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .checkbox {
@@ -4393,77 +4471,76 @@ select.select {
           align-items: center;
 }
 
-.form__option {
-  display: block;
+.questions {
+  padding: 2.5rem 0 3.875rem;
 }
 
-.form__option-input:checked ~ .form__option-btn::after {
-  opacity: 1;
-  -webkit-transform: scale(1);
-      -ms-transform: scale(1);
-          transform: scale(1);
-}
-
-.form__option-btn {
-  color: #262624;
-  font-size: 1.125rem;
-  font-weight: 600;
-  padding-left: 1.75rem;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+.questions__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  position: relative;
-  min-height: 1.25rem;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  -webkit-font-smoothing: antialiased;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 0.8125rem;
 }
 
-.form__option-btn::before,
-.form__option-btn::after {
-  content: "";
-  position: absolute;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  -webkit-font-smoothing: subpixel-antialiased;
-  will-change: transform;
+.questions__title {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 
-.form__option-btn::before {
-  left: 0;
-  top: 50%;
-  margin-top: -0.5rem;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  border: 0.0625rem solid #B1DF1D;
-  background-color: #fff;
+.questions__actions {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8125rem;
 }
 
-.form__option-btn::after {
-  left: 0.25rem;
-  top: 50%;
-  margin-top: -0.25rem;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background-color: #B1DF1D;
-  opacity: 0;
-  -webkit-transform: scale(0);
-      -ms-transform: scale(0);
-          transform: scale(0);
-  -webkit-transition: opacity 0.2s ease, -webkit-transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition: opacity 0.2s ease, -webkit-transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease, -webkit-transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.questions__bottom {
+  margin-top: 4.375rem;
+}
+
+.questions__bottom-form {
+  margin-top: 1rem;
+  border-radius: 1.25rem;
+  background: #F9F9F9;
+  padding: 1.62rem 1.44rem;
+}
+
+.questions__bottom-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1.31rem;
+}
+
+.questions__bottom-row > .wpcf7-form-control-wrap {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+.questions__bottom-column {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 17.75rem;
+          flex: 0 0 17.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1.06rem;
+}
+
+.questions__bottom-column .form__btn {
+  min-height: 2.8125rem;
 }
 
 .error {
