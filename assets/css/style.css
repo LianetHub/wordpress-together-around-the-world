@@ -2232,7 +2232,7 @@ button[data-vc-week-day] {
   text-align: center;
   font-size: 1.63069rem;
   font-weight: 600;
-  line-height: 53.659%;
+  line-height: 153.659%;
 }
 
 .popup__btn[data-fancybox-close] {
@@ -2892,6 +2892,11 @@ select.select {
 }
 
 .form__control.form__control--underline.form__control.wpcf7-not-valid {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.form__control.form__control--underline:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
 }

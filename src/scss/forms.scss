@@ -119,6 +119,10 @@
 				box-shadow: none;
 			}
 
+			&:focus {
+				box-shadow: none;
+			}
+
 			&::placeholder {
 				color: #262624;
 			}

@@ -580,6 +580,20 @@ const initApp = () => {
         updatePassengerIndices();
     }
 
+    document.addEventListener('wpcf7mailsent', function () {
+        Fancybox.show([{
+            src: "#success-submitting",
+            type: "inline"
+        }]);
+    }, false);
+
+    document.addEventListener('wpcf7mailfailed', function () {
+        Fancybox.show([{
+            src: "#error-submitting",
+            type: "inline"
+        }]);
+    }, false);
+
     return true;
 
 }
