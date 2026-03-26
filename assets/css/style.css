@@ -4247,7 +4247,7 @@ select.select {
   margin-top: 1.875rem;
   border-radius: 1.25rem;
   background: #F9F9F9;
-  padding: 1.875rem 1.25rem;
+  padding: 1.875rem 1.25rem 0.5625rem;
 }
 
 .tour__booking-header {
@@ -4311,7 +4311,8 @@ select.select {
   gap: 1rem;
 }
 
-.tour__booking-btn {
+.tour__booking-btn,
+.tour__booking-order {
   max-width: 17.9375rem;
   width: 100%;
 }
@@ -4325,6 +4326,7 @@ select.select {
       -ms-flex-align: start;
           align-items: flex-start;
   gap: 1rem;
+  padding-bottom: 1.37rem;
 }
 
 .tour__booking-text.typography-block {
@@ -4352,7 +4354,7 @@ select.select {
       -ms-flex-align: center;
           align-items: center;
   gap: 1rem;
-  padding-left: 1.25rem;
+  padding-inline: 1.25rem;
 }
 
 .tour__departure-title {
@@ -4373,6 +4375,7 @@ select.select {
 
 .tour__departure-text {
   margin-top: 1rem;
+  padding-inline: 1.25rem;
 }
 
 .tour__info {
@@ -4469,8 +4472,17 @@ select.select {
   line-height: 116.648%;
 }
 
-.booking-form {
-  margin-top: 1.37rem;
+.tour__actions {
+  margin-top: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+
+.tour__btn {
+  max-width: 17.9375rem;
+  width: 100%;
 }
 
 .booking-form__header {

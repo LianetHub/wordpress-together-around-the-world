@@ -1,6 +1,7 @@
 <form
     action="#"
     method="post"
+    id="booking-form"
     class="tour__booking-form booking-form"
     style="display: none;">
 

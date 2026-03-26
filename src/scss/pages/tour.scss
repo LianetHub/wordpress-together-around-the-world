@@ -30,7 +30,6 @@
     }
 }
 
-
 .tour-card {
     overflow: hidden;
     border-radius: 1.5625rem;
@@ -197,7 +196,7 @@
         margin-top: rem(30);
         border-radius: 1.25rem;
         background: #F9F9F9;
-        padding: rem(30) rem(20);
+        padding: rem(30) rem(20) rem(9);
     }
 
     // .tour__booking-header
@@ -258,12 +257,18 @@
         width: 100%;
     }
 
+    // .tour__booking-btn
+    &__booking-order {
+        @extend .tour__booking-btn;
+    }
+
     // .tour__booking-desc
     &__booking-desc {
         margin-top: 1rem;
         display: flex;
         align-items: flex-start;
         gap: 1rem;
+        padding-bottom: 1.37rem;
     }
 
     // .tour__booking-text
@@ -295,7 +300,7 @@
         display: flex;
         align-items: center;
         gap: 1rem;
-        padding-left: rem(20);
+        padding-inline: rem(20);
     }
 
     // .tour__departure-title
@@ -319,6 +324,7 @@
     // .tour__departure-text
     &__departure-text {
         margin-top: 1rem;
+        padding-inline: rem(20);
     }
 
     // .tour__info
@@ -406,13 +412,22 @@
         font-size: 0.9375rem;
         line-height: 116.648%
     }
+
+    // .tour__actions
+    &__actions {
+        margin-top: 4rem;
+        display: flex;
+        gap: 1rem;
+    }
+
+    // .tour__btn
+    &__btn {
+        max-width: 17.9375rem;
+        width: 100%;
+    }
 }
 
-
-
-
 .booking-form {
-    margin-top: 1.37rem;
 
     &__header {
         border-top: rem(1) solid #D9D9D9;

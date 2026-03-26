@@ -4088,7 +4088,7 @@ button[data-vc-week-day] {
     margin-top: 1.875rem;
     border-radius: 1.25rem;
     background: #f9f9f9;
-    padding: 1.875rem 1.25rem
+    padding: 1.875rem 1.25rem .5625rem
 }
 
 .tour__booking-header {
@@ -4152,7 +4152,7 @@ button[data-vc-week-day] {
     gap: 1rem
 }
 
-.tour__booking-btn {
+.tour__booking-btn, .tour__booking-order {
     max-width: 17.9375rem;
     width: 100%
 }
@@ -4165,7 +4165,8 @@ button[data-vc-week-day] {
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start;
-    gap: 1rem
+    gap: 1rem;
+    padding-bottom: 1.37rem
 }
 
 .tour__booking-text.typography-block {
@@ -4193,7 +4194,7 @@ button[data-vc-week-day] {
     -ms-flex-align: center;
     align-items: center;
     gap: 1rem;
-    padding-left: 1.25rem
+    padding-inline: 1.25rem
 }
 
 .tour__departure-title {
@@ -4213,7 +4214,8 @@ button[data-vc-week-day] {
 }
 
 .tour__departure-text {
-    margin-top: 1rem
+    margin-top: 1rem;
+    padding-inline: 1.25rem
 }
 
 .tour__info {
@@ -4310,8 +4312,17 @@ button[data-vc-week-day] {
     line-height: 116.648%
 }
 
-.booking-form {
-    margin-top: 1.37rem
+.tour__actions {
+    margin-top: 4rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 1rem
+}
+
+.tour__btn {
+    max-width: 17.9375rem;
+    width: 100%
 }
 
 .booking-form__header {
