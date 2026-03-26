@@ -16,10 +16,33 @@
     $price     = get_field('tour_price');
     $is_from   = get_field('tour_price_from');
 
-    $date_str  = get_formatted_tour_dates($date_from, $date_to, 'tour_page');
+    $departure_time = get_field('tour_departure_time');
+    $departure_text = get_field('tour_departure_text');
+    $tour_included  = get_field('tour_included');
+    $tour_conditions = get_field('tour_conditions');
+
+    $date_str = get_formatted_tour_dates($date_from, $date_to, 'tour_page');
+    $departure_full = get_formatted_tour_departure($date_from, $departure_time);
+
+    $html_datetime = '';
+    if ($date_from) {
+        $dt_obj = DateTime::createFromFormat('d/m/Y', $date_from);
+        if ($dt_obj) {
+            $html_datetime = $dt_obj->format('Y-m-d');
+
+            if ($departure_time) {
+                $t_obj = DateTime::createFromFormat('H:i:s', $departure_time);
+                if ($t_obj) {
+                    $html_datetime .= 'T' . $t_obj->format('H:i');
+                }
+            }
+        }
+    }
     ?>
+
     <div class="container">
         <h1 class="tour__title title"><?php the_title() ?></h1>
+
         <div class="tour__booking">
             <div class="tour__booking-header">
                 <?php if ($date_str) : ?>
@@ -63,6 +86,54 @@
                 <?php endif; ?>
             </div>
             <?php require(TEMPLATE_PATH . '_booking-form.php'); ?>
+        </div>
+
+        <div class="tour__details">
+            <div class="tour__departure">
+                <div class="tour__departure-header">
+                    <div class="tour__departure-title">Выезд</div>
+                    <?php if ($departure_full) : ?>
+                        <time datetime="<?php echo esc_attr($html_datetime); ?>" class="tour__departure-time">
+                            <?php echo esc_html($departure_full); ?>
+                        </time>
+                    <?php endif; ?>
+                </div>
+                <?php if ($departure_text) : ?>
+                    <div class="tour__departure-text typography-block">
+                        <?php echo $departure_text; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+            <div class="tour__info">
+                <div class="tour__conditions">
+                    <div class="tour__conditions-title">В стоимость входит:</div>
+                    <?php if ($tour_included) : ?>
+                        <ul class="tour__conditions-list">
+                            <?php foreach ($tour_included as $item) :
+                                $inc_text = $item['item'];
+                                if ($inc_text) : ?>
+                                    <li><?php echo esc_html($inc_text); ?></li>
+                            <?php endif;
+                            endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+                </div>
+
+                <div class="tour__included">
+                    <?php if ($price) : ?>
+                        <div class="tour__included-price">
+                            Стоимость тура <strong><?php echo ($is_from ? 'от ' : '') . number_format($price, 0, '', ' '); ?></strong> рублей
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($tour_conditions) : ?>
+                        <div class="tour__included-text typography-block">
+                            <?php echo $tour_conditions; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
     </div>
 </section>
