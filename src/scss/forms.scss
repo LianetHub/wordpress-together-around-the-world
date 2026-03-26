@@ -107,6 +107,23 @@
 			text-align: center;
 		}
 
+		&.form__control--underline {
+			background: transparent;
+			color: #262624;
+			border: 0;
+			border-radius: 0;
+			border-bottom: rem(1) solid #262624;
+			padding: 0 0.5rem 1.88rem;
+
+			&.form__control.wpcf7-not-valid {
+				box-shadow: none;
+			}
+
+			&::placeholder {
+				color: #262624;
+			}
+		}
+
 		&::placeholder {
 			opacity: 1;
 			color: #BDBDBD;
@@ -359,8 +376,28 @@
 			transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
 		}
 	}
+}
 
+.wpcf7-list-item {
+	margin: 0;
 
+	label {
+		@extend .checkbox;
+
+		input {
+			&:checked {
+				&+.wpcf7-list-item-label {
+					&::before {
+						@extend %ic, .icon-check;
+					}
+				}
+			}
+		}
+
+		.wpcf7-list-item-label {
+			@extend .checkbox__text;
+		}
+	}
 }
 
 .checkbox {

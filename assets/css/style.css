@@ -16,7 +16,9 @@
 }
 
 .tour-card__badge--hot::before,
+.wpcf7-list-item label input:checked + .wpcf7-list-item-label::before,
 .checkbox__input:checked + .checkbox__text::before,
+.wpcf7-list-item label .checkbox__input:checked + .wpcf7-list-item-label::before,
 .dropdown__list-item.selected::before,
 .dropdown__list-item[aria-checked=true]::before,
 .swiper-button-prev,
@@ -44,7 +46,9 @@
 }
 
 .icon-check:before,
+.wpcf7-list-item label input:checked + .wpcf7-list-item-label:before,
 .checkbox__input:checked + .checkbox__text:before,
+.wpcf7-list-item label .checkbox__input:checked + .wpcf7-list-item-label:before,
 .dropdown__list-item.selected:before,
 .dropdown__list-item[aria-checked=true]:before {
   content: "\e90a";
@@ -2181,19 +2185,25 @@ button[data-vc-week-day] {
   --f-close-button-svg-stroke-width: 0.09375rem;
   --f-close-button-svg-width: 2rem;
   --f-close-button-svg-height: 2rem;
-  --f-close-button-color: #aaaaaa;
-  --f-close-button-hover-color: #000;
+  --f-close-button-color: black;
+  --f-close-button-hover-color: #dc3232;
   top: 0.5rem;
   right: 0.5rem;
 }
 
 .popup {
   display: none;
-  background-color: #fff;
+  background-color: #D9F970;
   color: #000;
-  max-width: 100%;
   padding: 0;
   width: 100%;
+  max-width: 57.25rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 3.25rem 3.5rem 1.75rem;
+  border-radius: 1.4375rem;
 }
 
 .popup.popup--small {
@@ -2206,40 +2216,18 @@ button[data-vc-week-day] {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
-  background-image: url("../img/popup-pattern.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   padding: 2.5rem 2rem;
 }
 
-.popup__icon {
-  width: 7.6875rem;
-  margin-bottom: 1rem;
-}
-
-.popup__icon img {
-  width: 100%;
-  height: auto;
-}
-
-.popup__image {
-  display: none;
-}
-
-.popup__content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background: url("../img/popup-decor.png") center bottom/100% auto no-repeat;
-  padding: 2.625rem 1.5rem 1.5rem;
+.popup__title {
+  color: #000;
+  text-align: center;
+  font-size: 1.63069rem;
+  font-weight: 600;
+  line-height: 53.659%;
 }
 
 .popup__btn[data-fancybox-close] {
@@ -2267,6 +2255,14 @@ button[data-vc-week-day] {
           flex-direction: column;
   gap: 0.5rem;
   margin-top: 1.5rem;
+}
+
+.popup__form .wpcf7-form-control-wrap {
+  display: block;
+}
+
+.popup__form .wpcf7-form-control-wrap:not(:last-child) {
+  margin-bottom: 2rem;
 }
 
 .popup__download-link {
@@ -2881,6 +2877,40 @@ select.select {
   text-align: center;
 }
 
+.form__control.form__control--underline {
+  background: transparent;
+  color: #262624;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 0.0625rem solid #262624;
+  padding: 0 0.5rem 1.88rem;
+}
+
+.form__control.form__control--underline.form__control.wpcf7-not-valid {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.form__control.form__control--underline::-webkit-input-placeholder {
+  color: #262624;
+}
+
+.form__control.form__control--underline::-moz-placeholder {
+  color: #262624;
+}
+
+.form__control.form__control--underline:-ms-input-placeholder {
+  color: #262624;
+}
+
+.form__control.form__control--underline::-ms-input-placeholder {
+  color: #262624;
+}
+
+.form__control.form__control--underline::placeholder {
+  color: #262624;
+}
+
 .form__control::-webkit-input-placeholder {
   opacity: 1;
   color: #BDBDBD;
@@ -3162,7 +3192,12 @@ select.select {
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease, -webkit-transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.checkbox {
+.wpcf7-list-item {
+  margin: 0;
+}
+
+.checkbox,
+.wpcf7-list-item label {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -3171,15 +3206,21 @@ select.select {
   width: fit-content;
 }
 
-.checkbox.has-error .checkbox__text::before {
+.checkbox.has-error .checkbox__text::before,
+.wpcf7-list-item label.has-error .checkbox__text::before,
+.checkbox.has-error .wpcf7-list-item label .wpcf7-list-item-label::before,
+.wpcf7-list-item label .checkbox.has-error .wpcf7-list-item-label::before,
+.wpcf7-list-item label.has-error .wpcf7-list-item-label::before {
   border-color: #f04438;
 }
 
-.checkbox__input._error + .checkbox__text::before {
+.checkbox__input._error + .checkbox__text::before,
+.wpcf7-list-item label .checkbox__input._error + .wpcf7-list-item-label::before {
   border-color: #f04438;
 }
 
-.checkbox__text {
+.checkbox__text,
+.wpcf7-list-item label .wpcf7-list-item-label {
   position: relative;
   display: block;
   width: -webkit-fit-content;
@@ -3199,7 +3240,8 @@ select.select {
   min-height: 1.25rem;
 }
 
-.checkbox__text::before {
+.checkbox__text::before,
+.wpcf7-list-item label .wpcf7-list-item-label::before {
   content: "";
   position: absolute;
   top: 0;
@@ -3222,7 +3264,8 @@ select.select {
   align-items: center;
 }
 
-.checkbox__text a {
+.checkbox__text a,
+.wpcf7-list-item label .wpcf7-list-item-label a {
   color: #1570ef;
   text-decoration: underline;
 }
@@ -4762,7 +4805,7 @@ select.select {
   }
 
   .popup__form {
-    margin-top: 2rem;
+    margin-top: 4rem;
   }
 
   .title {
@@ -4805,51 +4848,6 @@ select.select {
     font-size: 1.75rem;
   }
 
-  .popup__icon {
-    margin-bottom: 1.5rem;
-  }
-
-  .popup__image {
-    display: block;
-    background: #B1DF1D;
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 47.5%;
-            flex: 0 0 47.5%;
-    min-height: 40.625rem;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .popup__image::before {
-    content: "";
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    width: 12.3125rem;
-    height: 2.625rem;
-    background: url("../img/logo-white.svg") 0 0/cover no-repeat;
-    z-index: 2;
-  }
-
-  .popup__image::after {
-    content: "";
-    position: absolute;
-    top: -7.94rem;
-    left: -9.13rem;
-    border-radius: 50%;
-    background: #B1DF1D;
-    width: 34.625rem;
-    height: 18.6875rem;
-    z-index: 1;
-    -webkit-filter: blur(5rem);
-            filter: blur(5rem);
-  }
-
-  .popup__content {
-    padding: 3.25rem 3.5rem 1.25rem 3rem;
-  }
-
   .popup__btn[data-fancybox-close] {
     margin-top: 1.5rem;
   }
@@ -4876,10 +4874,6 @@ select.select {
 @media (min-width: 767.98px) {
   .container {
     max-width: 60rem;
-  }
-
-  .popup {
-    max-width: 59.375rem;
   }
 
   .icon-menu {
@@ -4995,7 +4989,8 @@ select.select {
     text-decoration: underline;
   }
 
-  .checkbox__text a:hover {
+  .checkbox__text a:hover,
+  .wpcf7-list-item label .wpcf7-list-item-label a:hover {
     text-decoration: none;
   }
 
