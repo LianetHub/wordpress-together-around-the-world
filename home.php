@@ -17,6 +17,7 @@ $date_to_raw   = $_GET['date_to'] ?? '';
 $direction     = $_GET['direction'] ?? '0';
 $no_date       = isset($_GET['no_date']) && $_GET['no_date'] === '1';
 
+$current_date = date('Ymd');
 $acf_date_from = '';
 $acf_date_to = '';
 $title_date_from = '';
@@ -44,16 +45,26 @@ $args = [
     'post_status'    => 'publish',
     'meta_query'     => ['relation' => 'AND'],
     'tax_query'      => [],
+    'orderby'        => 'meta_value',
+    'meta_key'       => 'tour_date_from',
+    'order'          => 'ASC',
+];
+
+$args['meta_query'][] = [
+    'key'     => 'tour_date_from',
+    'value'   => $current_date,
+    'compare' => '>=',
+    'type'    => 'DATE'
 ];
 
 if (!$no_date) {
     if (!empty($acf_date_from)) {
-        $args['meta_query'][] = [
-            'key'     => 'tour_date_from',
-            'value'   => $acf_date_from,
-            'compare' => '>=',
-            'type'    => 'DATE'
-        ];
+        foreach ($args['meta_query'] as $key => $query) {
+            if ($query['key'] === 'tour_date_from') {
+                $args['meta_query'][$key]['value'] = $acf_date_from;
+                break;
+            }
+        }
     }
 
     if (!empty($acf_date_to)) {
@@ -121,7 +132,7 @@ $tours_query = new WP_Query($args);
             </div>
         <?php else : ?>
             <div class="tours__empty text-center">
-                <p>К сожалению, по вашим параметрам туров не найдено.</p>
+                <p>К сожалению, по вашим параметрам актуальных туров не найдено.</p>
                 <a href="<?php echo esc_url(get_post_type_archive_link('post')); ?>"
                     class="btn btn-secondary">Сбросить фильтры</a>
             </div>

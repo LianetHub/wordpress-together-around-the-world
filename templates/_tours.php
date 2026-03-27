@@ -1,10 +1,20 @@
 <?php
+$current_date = date('Ymd');
+
 $tours_query = new WP_Query([
     'post_type'      => 'post',
     'posts_per_page' => 6,
     'post_status'    => 'publish',
     'orderby'        => 'date',
     'order'          => 'DESC',
+    'meta_query'     => [
+        [
+            'key'     => 'tour_date_from',
+            'value'   => $current_date,
+            'compare' => '>=',
+            'type'    => 'DATE'
+        ]
+    ]
 ]);
 
 $archive_link = get_post_type_archive_link('post');
