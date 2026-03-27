@@ -5,11 +5,15 @@
  */
 ?>
 
-<?php get_header(); ?>
+<?php get_header();
+require(TEMPLATE_PATH . '/components/breadcrumbs.php');
+?>
+
 <?php if (trim(get_the_content())) : ?>
-    <section class="article">
+    <section class="policy">
         <div class="container">
-            <div class="article__body">
+            <h1 class="policy__title title"><?php the_title() ?></h1>
+            <div class="policy__content typography-block">
                 <?php the_content(); ?>
             </div>
         </div>
