@@ -50,7 +50,7 @@ $args = [
     'order'          => 'ASC',
 ];
 
-$args['meta_query'][] = [
+$args['meta_query']['start_date_clause'] = [
     'key'     => 'tour_date_from',
     'value'   => $current_date,
     'compare' => '>=',
@@ -59,12 +59,7 @@ $args['meta_query'][] = [
 
 if (!$no_date) {
     if (!empty($acf_date_from)) {
-        foreach ($args['meta_query'] as $key => $query) {
-            if ($query['key'] === 'tour_date_from') {
-                $args['meta_query'][$key]['value'] = $acf_date_from;
-                break;
-            }
-        }
+        $args['meta_query']['start_date_clause']['value'] = $acf_date_from;
     }
 
     if (!empty($acf_date_to)) {
@@ -137,7 +132,6 @@ $tours_query = new WP_Query($args);
                     class="btn btn-secondary">Сбросить фильтры</a>
             </div>
         <?php endif; ?>
-
     </div>
 </section>
 
