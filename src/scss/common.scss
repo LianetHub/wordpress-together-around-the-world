@@ -41,24 +41,8 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 
 	&.menu-lock {
-		@media (max-width: $md3) {
+		@media (max-width: $md2) {
 			overflow: hidden;
-
-			.wrapper {
-				&::before {
-					opacity: 1;
-					visibility: visible;
-					pointer-events: all;
-				}
-			}
-
-			.header {
-				&::before {
-					opacity: 1;
-					visibility: visible;
-					pointer-events: all;
-				}
-			}
 		}
 	}
 }
@@ -72,25 +56,6 @@ body {
 	flex-direction: column;
 	overflow-x: clip;
 
-	&::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: rgba($color: $dark, $alpha: 0.45);
-		backdrop-filter: blur(0.125rem);
-		-webkit-backdrop-filter: blur(0.125rem);
-		z-index: 5;
-		opacity: 0;
-		visibility: hidden;
-		pointer-events: none;
-		transition:
-			opacity 0.3s ease,
-			visibility 0.3s ease;
-		cursor: pointer;
-	}
 }
 
 //================== ОБОЛОЧКА==================================

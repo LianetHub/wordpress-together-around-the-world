@@ -49,16 +49,28 @@ $(function () {
     // event handlers
     $(document).on('click', (e) => {
         const $target = $(e.target);
+        const $menu = $('.menu');
+        const $toggler = $('.header__menu-toggler');
 
 
-        // Open/close the mobile menu
-        if ($target.closest('.icon-menu').length) {
-            $('.icon-menu').toggleClass("active");
-            $('.menu').toggleClass("menu--open");
+        if ($target.closest('.header__menu-toggler').length) {
+            $toggler.toggleClass("active");
+            $menu.toggleClass("menu--open");
             $('body').toggleClass('menu-lock');
+            return;
         }
 
+        if ($target.is('.menu') && $menu.hasClass('menu--open')) {
+            $toggler.removeClass("active");
+            $menu.removeClass("menu--open");
+            $('body').removeClass('menu-lock');
+        }
 
+        if ($menu.hasClass('menu--open') && $target.closest('.menu-item a').length) {
+            $toggler.removeClass("active");
+            $menu.removeClass("menu--open");
+            $('body').removeClass('menu-lock');
+        }
     });
 
 

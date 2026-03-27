@@ -34,17 +34,20 @@ $socials = array_filter([
         </div>
     <?php endif; ?>
     <div class="header__menu menu">
-        <nav aria-label="Главное меню" class="menu__navbar">
-            <?php
-            wp_nav_menu([
-                'theme_location'  => 'header_menu',
-                'container'       => false,
-                'menu_class'      => 'menu__list',
-                'fallback_cb'     => '__return_false',
-                'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-            ]);
-            ?>
-        </nav>
+        <div class="menu__content">
+            <div class="menu__logo"><?php the_custom_logo(); ?></div>
+            <nav aria-label="Главное меню" class="menu__navbar">
+                <?php
+                wp_nav_menu([
+                    'theme_location'  => 'header_menu',
+                    'container'       => false,
+                    'menu_class'      => 'menu__list',
+                    'fallback_cb'     => '__return_false',
+                    'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                ]);
+                ?>
+            </nav>
+        </div>
     </div>
     <?php if ($tel) :
         $tel_clean = preg_replace('/[^0-9+]/', '', $tel);
