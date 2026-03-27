@@ -159,8 +159,6 @@
 	// .socials__item
 	&__item {
 		--hover-bg: #{$accent};
-		width: 1.875rem;
-		height: 1.875rem;
 		flex-shrink: 0;
 		display: flex;
 		justify-content: center;
@@ -171,15 +169,34 @@
 		background: #4B4B4B;
 		border-radius: 50%;
 		transition: background-color 0.3s ease;
+		width: rem(22);
+		height: rem(22);
+		font-size: 0.75rem;
+
+		@media (min-width:$md5) {
+			width: 1.875rem;
+			height: 1.875rem;
+			font-size: 1rem;
+		}
 
 		&.icon-vk {
 			--hover-bg: #0077ff;
-			font-size: 0.75rem;
+			font-size: 0.5rem;
+
+			@media (min-width:$md5) {
+				font-size: 0.75rem;
+
+			}
 		}
 
 		&.icon-whatsapp {
 			--hover-bg: #00e510;
-			font-size: 1.375rem;
+			font-size: 1rem;
+
+			@media (min-width:$md5) {
+				font-size: 1.375rem;
+
+			}
 		}
 
 		&.icon-telegram {
@@ -188,12 +205,21 @@
 
 		&.icon-max {
 			--hover-bg: #5405ff;
-			font-size: 1.15rem;
+			font-size: 0.875rem;
+
+			@media (min-width:$md5) {
+				font-size: 1.15rem;
+
+			}
 		}
 
 		&.icon-ok {
 			--hover-bg: #EE8208;
-			font-size: 1.25rem;
+
+			@media (min-width:$md5) {
+				font-size: 1.25rem;
+
+			}
 		}
 
 		@media (any-hover: hover) {

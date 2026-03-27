@@ -55,4 +55,10 @@ $socials = array_filter([
             <span class="header__btn-text">Позвонить</span>
         </a>
     <?php endif; ?>
+    <button
+        type="button"
+        class="header__menu-toggler icon-menu"
+        aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+    </button>
 </div>

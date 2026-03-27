@@ -6,7 +6,15 @@
 @use "icons";
 
 :root {
-	--header-height: #{rem(116)};
+	--header-height: #{rem(66)};
+
+	@media (min-width:$md4) {
+		--header-height: #{rem(90)};
+	}
+
+	@media (min-width:$md3) {
+		--header-height: #{rem(116)};
+	}
 
 	@media (min-width:$md1) {
 		--header-height: #{rem(150)};

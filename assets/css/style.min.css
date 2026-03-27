@@ -80,7 +80,7 @@
 }
 
 :root {
-    --header-height: 7.25rem
+    --header-height: 4.125rem
 }
 
 html {
@@ -1930,8 +1930,7 @@ button[data-vc-week-day] {
 .booking-calendar__caption {
     color: #797979;
     font-size: 1.125rem;
-    font-weight: 500;
-    line-height: 72.222%
+    font-weight: 500
 }
 
 .booking-calendar__list {
@@ -2275,8 +2274,6 @@ button[data-vc-week-day] {
 
 .socials__item {
     --hover-bg: #B1DF1D;
-    width: 1.875rem;
-    height: 1.875rem;
     -ms-flex-negative: 0;
     flex-shrink: 0;
     display: -webkit-box;
@@ -2294,17 +2291,20 @@ button[data-vc-week-day] {
     background: #4b4b4b;
     border-radius: 50%;
     -webkit-transition: background-color .3s ease;
-    transition: background-color .3s ease
+    transition: background-color .3s ease;
+    width: 1.375rem;
+    height: 1.375rem;
+    font-size: .75rem
 }
 
 .socials__item.icon-vk {
     --hover-bg: #0077ff;
-    font-size: .75rem
+    font-size: .5rem
 }
 
 .socials__item.icon-whatsapp {
     --hover-bg: #00e510;
-    font-size: 1.375rem
+    font-size: 1rem
 }
 
 .socials__item.icon-telegram {
@@ -2313,12 +2313,11 @@ button[data-vc-week-day] {
 
 .socials__item.icon-max {
     --hover-bg: #5405ff;
-    font-size: 1.15rem
+    font-size: .875rem
 }
 
 .socials__item.icon-ok {
-    --hover-bg: #EE8208;
-    font-size: 1.25rem
+    --hover-bg: #EE8208
 }
 
 ._loading {
@@ -3331,11 +3330,11 @@ button[data-vc-week-day] {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    padding: .5rem 1.44rem
+    padding: .5rem 1rem
 }
 
 .header__main .custom-logo-link {
-    max-width: 7.5rem
+    max-width: 5.75rem
 }
 
 .header__socials {
@@ -3343,9 +3342,9 @@ button[data-vc-week-day] {
 }
 
 .header__btn.btn {
-    width: 1.875rem;
-    height: 1.875rem;
-    padding: .25rem
+    width: 1.375rem;
+    height: 1.375rem;
+    padding: .125rem
 }
 
 .header__btn-text {
@@ -3388,32 +3387,31 @@ button[data-vc-week-day] {
     -webkit-box-align: end;
     -ms-flex-align: end;
     align-items: flex-end;
-    padding: .62rem .3125rem;
-    color: #fff;
+    padding: .62rem .125rem;
+    color: #d9d9d9;
+    flex-shrink: 0;
     z-index: 11;
     -webkit-transition: all .3s ease;
     transition: all .3s ease;
-    min-width: 2.25rem;
-    height: 2.25rem;
-    margin-left: .75rem
+    min-width: 1.5rem;
+    height: 1.5rem
 }
 
 .icon-menu span {
     display: block;
-    padding: .21875rem 0;
     width: 100%;
     -webkit-transition: opacity .4s ease .4s, -webkit-transform .4s ease .4s;
     transition: opacity .4s ease .4s, -webkit-transform .4s ease .4s;
     transition: transform .4s ease .4s, opacity .4s ease .4s;
     transition: transform .4s ease .4s, opacity .4s ease .4s, -webkit-transform .4s ease .4s;
-    will-change: transform
+    will-change: transform;
+    padding: .125rem 0
 }
 
 .icon-menu span::before {
     content: "";
     display: block;
     height: .125rem;
-    border-radius: .125rem;
     background: currentColor;
     -webkit-transition: -webkit-transform .3s ease 0s;
     transition: -webkit-transform .3s ease 0s;
@@ -3422,14 +3420,8 @@ button[data-vc-week-day] {
     will-change: transform
 }
 
-.icon-menu span:last-child {
-    width: 77%
-}
-
 .icon-menu.active {
-    color: #8c8c8c;
-    background: 0 0;
-    padding: .35rem
+    background: 0 0
 }
 
 .icon-menu.active span {
@@ -3447,9 +3439,9 @@ button[data-vc-week-day] {
 }
 
 .icon-menu.active span:first-child {
-    -webkit-transform: translateY(.5625rem);
-    -ms-transform: translateY(.5625rem);
-    transform: translateY(.5625rem)
+    -webkit-transform: translateY(.375rem);
+    -ms-transform: translateY(.375rem);
+    transform: translateY(.375rem)
 }
 
 .icon-menu.active span:first-child::before {
@@ -3463,9 +3455,9 @@ button[data-vc-week-day] {
 }
 
 .icon-menu.active span:nth-child(3) {
-    -webkit-transform: translateY(-.5625rem);
-    -ms-transform: translateY(-.5625rem);
-    transform: translateY(-.5625rem);
+    -webkit-transform: translateY(-.375rem);
+    -ms-transform: translateY(-.375rem);
+    transform: translateY(-.375rem);
     width: 100%
 }
 
@@ -3672,7 +3664,7 @@ button[data-vc-week-day] {
     -ms-flex-direction: column;
     flex-direction: column;
     min-height: 43.75rem;
-    padding: 7.5rem 0 .875rem
+    padding: 7.5rem 0 1.25rem
 }
 
 .hero .container {
@@ -3708,31 +3700,36 @@ button[data-vc-week-day] {
 
 .hero__title {
     font-weight: 800;
-    line-height: 1.1;
-    font-size: 2.5rem;
-    text-align: center
+    line-height: 1;
+    text-align: center;
+    font-size: 2.125rem
 }
 
 .hero__title span {
-    font-size: 1.2931034483em;
-    display: block
+    display: block;
+    font-size: 1.1764705882em
 }
 
 .hero__subtitle {
     margin-top: .5rem;
-    font-size: 1.25rem;
     font-weight: 500;
-    text-align: center
+    text-align: center;
+    font-size: .9375rem
 }
 
 .hero__btn-main {
-    margin-top: 1.5rem;
+    margin-top: 2.7rem;
     max-width: 17.5625rem;
     width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     margin-inline: auto
+}
+
+.hero__btn-main.btn {
+    padding: .53125rem 1.5rem;
+    font-size: 1.125rem
 }
 
 .hero__footer {
@@ -3764,6 +3761,11 @@ button[data-vc-week-day] {
     min-width: 17.5rem
 }
 
+.hero__socials-btn.btn {
+    padding: .53125rem 1.5rem;
+    font-size: 1.125rem
+}
+
 .hero__badge {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -3771,20 +3773,23 @@ button[data-vc-week-day] {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     gap: .5rem;
     max-width: 17.9375rem;
     width: 100%
 }
 
 .hero__badge-icon {
-    width: 3rem;
     -ms-flex-negative: 0;
-    flex-shrink: 0
+    flex-shrink: 0;
+    width: 1.5625rem
 }
 
 .hero__badge-info {
-    font-size: 1.25rem;
-    font-weight: 500
+    font-weight: 500;
+    font-size: .625rem
 }
 
 .selection {
@@ -4949,6 +4954,28 @@ html {
         font-size: 2.25rem
     }
 
+    .socials__item {
+        width: 1.875rem;
+        height: 1.875rem;
+        font-size: 1rem
+    }
+
+    .socials__item.icon-vk {
+        font-size: .75rem
+    }
+
+    .socials__item.icon-whatsapp {
+        font-size: 1.375rem
+    }
+
+    .socials__item.icon-max {
+        font-size: 1.15rem
+    }
+
+    .socials__item.icon-ok {
+        font-size: 1.25rem
+    }
+
     .form__control:is(textarea) {
         height: 8.125rem
     }
@@ -4957,9 +4984,19 @@ html {
         line-height: 142.857%;
         font-size: .875rem
     }
+
+    .header__btn.btn {
+        padding: .25rem;
+        width: 1.875rem;
+        height: 1.875rem
+    }
 }
 
 @media (min-width:575.98px) {
+    :root {
+        --header-height: 5.625rem
+    }
+
     .container {
         -webkit-box-sizing: content-box;
         box-sizing: content-box;
@@ -5004,6 +5041,35 @@ html {
 
     .btn.btn-sm {
         padding: .9375rem 1.375rem
+    }
+
+    .header__main {
+        padding: .5rem 1.44rem
+    }
+
+    .header__main .custom-logo-link {
+        max-width: 7.5rem
+    }
+
+    .hero__title {
+        line-height: 1.1;
+        font-size: 2.5rem
+    }
+
+    .hero__title span {
+        font-size: 1.2931034483em
+    }
+
+    .hero__subtitle {
+        font-size: 1.25rem
+    }
+
+    .hero__badge-icon {
+        width: 3rem
+    }
+
+    .hero__badge-info {
+        font-size: 1.25rem
     }
 
     .selection__form-row {
@@ -5051,6 +5117,10 @@ html {
 }
 
 @media (min-width:767.98px) {
+    :root {
+        --header-height: 7.25rem
+    }
+
     .container {
         max-width: 45rem
     }
@@ -5063,12 +5133,6 @@ html {
     .btn {
         font-size: 1rem;
         padding: .53125rem 1.125rem
-    }
-
-    .icon-menu {
-        min-width: 2.5rem;
-        height: 2.5rem;
-        margin-left: 1rem
     }
 
     .footer__column {
@@ -5270,6 +5334,10 @@ html {
 
     .hero__subtitle {
         text-align: left
+    }
+
+    .hero__btn-main {
+        margin-top: 1.5rem
     }
 
     .hero__btn-main {
