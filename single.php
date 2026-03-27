@@ -11,6 +11,7 @@
 
 <section class="tour">
     <?php
+    $tour_booking_text   = get_field('tour_booking_text', 'option');
     $date_from = get_field('tour_date_from');
     $date_to   = get_field('tour_date_to');
     $price     = get_field('tour_price');
@@ -68,13 +69,9 @@
             </div>
 
             <div class="tour__booking-desc">
-                <div class="tour__booking-text typography-block">
-                    <p>
-                        Все туры Вы можете забронировать с помощью формы на сайте. После заполнения данных с Заказчиком
-                        свяжется менеджер для проверки данных, обсуждения вопросов и внесения предоплаты в зависимости
-                        от условий бронирования тура.
-                    </p>
-                </div>
+                <p class="tour__booking-text typography-block">
+                    <?php echo esc_html($tour_booking_text); ?>
+                </p>
                 <?php
                 $tel = get_field('tel', 'option');
                 if ($tel) :
