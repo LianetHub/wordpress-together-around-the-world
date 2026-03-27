@@ -1,11 +1,6 @@
 "use strict";
 
-
-const initApp = () => {
-
-    if (typeof $ === "undefined" || typeof Swiper === "undefined" || typeof Fancybox === "undefined") {
-        return false;
-    }
+$(function () {
 
     //  init Fancybox
     if (typeof Fancybox !== "undefined" && Fancybox !== null) {
@@ -94,6 +89,16 @@ const initApp = () => {
                 this.init = false;
             }
         }
+    }
+
+    if ($('.directions__slider').length) {
+        new Swiper('.directions__slider', {
+            slidesPerView: 1,
+            navigation: {
+                prevEl: '.directions__prev',
+                nextEl: '.directions__next'
+            }
+        })
     }
 
     // Phone Input Mask Russia
@@ -596,25 +601,4 @@ const initApp = () => {
             type: "inline"
         }]);
     }, false);
-
-    return true;
-
-}
-
-const runAppInit = () => {
-    if (initApp()) return;
-
-    const checkLibs = setInterval(() => {
-        if (initApp()) {
-            clearInterval(checkLibs);
-        }
-    }, 100);
-
-    setTimeout(() => clearInterval(checkLibs), 10000);
-};
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', runAppInit);
-} else {
-    runAppInit();
-}
+})

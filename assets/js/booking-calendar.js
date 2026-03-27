@@ -1,6 +1,6 @@
 "use strict";
 
-const initBookingCalendar = () => {
+document.addEventListener("DOMContentLoaded", function () {
     if (!window.VanillaCalendarPro || !window.Swiper || !window.calendarData) {
         return false;
     }
@@ -215,29 +215,5 @@ const initBookingCalendar = () => {
         };
     });
 
-    return true;
-};
-
-const runInitialization = () => {
-    if (initBookingCalendar()) {
-        console.log('Calendar initialized');
-        return true;
-    }
-    
-    const checkReady = setInterval(() => {
-        if (initBookingCalendar()) {
-            clearInterval(checkReady);
-            console.log('Calendar initialized via interval');
-        }
-    }, 100);
-
-    setTimeout(() => {
-        clearInterval(checkReady);
-    }, 10000);
-};
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', runInitialization);
-} else {
-    runInitialization();
-}
+    console.log('Calendar initialized');
+})

@@ -98,14 +98,20 @@ function theme_enqueue_scripts()
     wp_enqueue_script('vanilla-calendar-pro-js', $theme_uri . '/assets/js/libs/vanilla-calendar-pro.min.js', array(), null, true);
 
     $app_js_ver = filemtime($theme_dir . '/assets/js/app.min.js');
-    wp_enqueue_script('app-js', $theme_uri . '/assets/js/app.min.js', array('jquery'), $app_js_ver, true);
+    wp_enqueue_script(
+        'app-js',
+        $theme_uri . '/assets/js/app.min.js',
+        array('jquery', 'swiper-js', 'fancybox-js', 'vanilla-calendar-pro-js'),
+        $app_js_ver,
+        true
+    );
 
     if (is_front_page()) {
         $cal_ver = filemtime($theme_dir . '/assets/js/booking-calendar.min.js');
         wp_enqueue_script(
             'booking-calendar',
             $theme_uri . '/assets/js/booking-calendar.min.js',
-            array('jquery'),
+            array('vanilla-calendar-pro-js', 'swiper-js'),
             $cal_ver,
             true
         );
@@ -119,17 +125,22 @@ function theme_enqueue_scripts()
 add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
 
 add_filter('script_loader_tag', 'theme_scripts_add_attributes', 10, 2);
+
 function theme_scripts_add_attributes($tag, $handle)
 {
-    $async_scripts = array(
+    $deferred_scripts = array(
+        'jquery',
         'swiper-js',
         'vanilla-calendar-pro-js',
         'booking-calendar',
-        'fancybox-js'
+        'fancybox-js',
+        'expert-review-scripts',
+        'current-template-js',
+        'app-js'
     );
 
-    if (in_array($handle, $async_scripts)) {
-        return str_replace(' src', ' async src', $tag);
+    if (in_array($handle, $deferred_scripts)) {
+        return str_replace(' src', ' defer src', $tag);
     }
     return $tag;
 }

@@ -3972,6 +3972,25 @@ select.select {
   padding: 1.75rem 0;
 }
 
+.directions__grid {
+  margin-top: 2.69rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.875rem;
+}
+
+.directions__grid--count-4 .directions__item:nth-child(1) {
+  -ms-grid-column-span: 2;
+  grid-column: span 2;
+}
+
+.directions__grid--count-4 .directions__item:nth-child(2) {
+  -ms-grid-row-span: 2;
+  grid-row: span 2;
+}
+
 .team {
   padding: 5.625rem 0;
 }
