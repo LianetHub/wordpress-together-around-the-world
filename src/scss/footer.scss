@@ -12,8 +12,8 @@
 
 	// .footer__header
 	&__header {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		display: flex;
+		justify-content: space-between;
 	}
 
 	// .footer__column
@@ -29,7 +29,13 @@
 		font-weight: 600;
 		line-height: 112%;
 		letter-spacing: -0.01563rem;
-		text-transform: uppercase;
+		transition: color 0.3s ease;
+
+		@media (any-hover: hover) {
+			&:hover {
+				color: $accent;
+			}
+		}
 	}
 
 	// .footer__desc
@@ -50,7 +56,13 @@
 		font-weight: 600;
 		line-height: 112%;
 		letter-spacing: -0.01563rem;
-		text-transform: uppercase;
+		transition: color 0.3s ease;
+
+		@media (any-hover: hover) {
+			&:hover {
+				color: $accent;
+			}
+		}
 	}
 
 	// .footer__menu
@@ -62,6 +74,20 @@
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 0.5rem;
+		color: #E0E0E0;
+		font-size: 1.125rem;
+		font-weight: 600;
+		line-height: 155.556%;
+
+		& a {
+			transition: color 0.3s ease;
+
+			@media (any-hover: hover) {
+				&:hover {
+					color: $accent;
+				}
+			}
+		}
 	}
 
 	// .footer__reqs
@@ -69,12 +95,16 @@
 		background: #4C4C4C;
 		display: flex;
 		align-items: center;
-		gap: 1.25rem;
+		gap: 2rem;
 		padding: rem(12) rem(16);
+		border-radius: 0.9375rem;
+		max-width: 24.125rem;
 	}
 
 	// .footer__reqs-icon
-	&__reqs-icon {}
+	&__reqs-icon {
+		flex-shrink: 0;
+	}
 
 	// .footer__reqs-content
 	&__reqs-content {
@@ -91,13 +121,16 @@
 
 	// .footer__reqs-text
 	&__reqs-text {
+		font-size: 1.25rem;
+		line-height: 1.5;
+		letter-spacing: -0.0375rem;
 		color: #C0C0C0;
 		text-transform: uppercase;
 	}
 
 	// .footer__contacts
 	&__contacts {
-		margin-top: 2.62rem;
+		margin-top: rem(40);
 	}
 
 	// .footer__contacts-title
@@ -107,12 +140,17 @@
 		font-weight: 600;
 		line-height: 1.75rem;
 		letter-spacing: 0.0425rem;
-		text-transform: uppercase;
 	}
 
 	// .footer__socials
 	&__socials {
 		margin-top: 1.19rem;
+		gap: rem(15);
+
+		.socials__item {
+			width: rem(40);
+			height: rem(40);
+		}
 	}
 
 	// .footer__policies

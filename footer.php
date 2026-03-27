@@ -36,7 +36,7 @@ $socials = array_filter([
                         <?php echo $tel; ?>
                     </a>
                 <?php endif; ?>
-                <p class="footer__desc">Мы всегда на связи и готовы помочь</p>
+                <p class="footer__desc">Мы всегда на связи <br> и готовы помочь</p>
                 <a href="mailto:<?php echo $email ?>" class="footer__email"><?php echo $email ?></a>
                 <p class="footer__desc">По любым вопросам пишите на почту</p>
             </div>
@@ -71,8 +71,8 @@ $socials = array_filter([
                 <div class="footer__reqs">
                     <div class="footer__reqs-icon">
                         <img
-                            width="62"
-                            height="68"
+                            width="46"
+                            height="50"
                             src="<?php echo get_template_directory_uri(); ?>/assets/img/flag.svg"
                             loading="lazy"
                             alt="Герб России">

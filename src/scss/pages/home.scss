@@ -414,22 +414,30 @@
 
 
 .team {
-
-    padding: rem(90) 0;
+    padding: rem(80) 0 rem(90);
 
     // .team__title
     &__title {}
 
     // .team__content
     &__content {
-        margin-top: rem(60);
+        margin-top: rem(48);
         display: flex;
-        gap: rem(38);
+        gap: rem(62);
     }
 
     // .team__info
     &__info {
+        padding-left: 1.3rem;
         flex: 0 0 rem(423);
+
+        font-size: 1.125rem;
+        font-weight: 500;
+        line-height: 122.222%;
+
+        h3 {
+            font-size: 1.9375rem;
+        }
     }
 
     // .team__slider
@@ -487,7 +495,7 @@
 
 .callback {
     background: #F9F9F9;
-    padding: rem(70) 0;
+    padding: rem(55) 0 rem(80);
     text-align: center;
 
     // .callback__title
@@ -495,7 +503,7 @@
 
     // .callback__subtitle
     &__subtitle {
-        margin-top: 1.5rem;
+        margin-top: rem(15);
         color: #4F4F4F;
         font-size: 1.125rem;
         font-weight: 500;
