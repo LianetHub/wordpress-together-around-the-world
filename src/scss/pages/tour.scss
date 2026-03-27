@@ -8,6 +8,10 @@
 .tours {
     padding: rem(45) 0;
 
+    &.tours--categories {
+        padding-top: 0;
+    }
+
     // .tours__title
     &__title {}
 

@@ -4104,6 +4104,10 @@ button[data-vc-week-day] {
     padding: 2.8125rem 0
 }
 
+.tours.tours--categories {
+    padding-top: 0
+}
+
 .tours__grid {
     margin-top: 1.5rem;
     display: -ms-grid;
