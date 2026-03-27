@@ -44,7 +44,7 @@
     <div class="container">
         <h1 class="tour__title title"><?php the_title() ?></h1>
 
-        <div class="tour__booking">
+        <div class="tour__booking" id="booking-block">
             <div class="tour__booking-header">
                 <?php if ($date_str) : ?>
                     <div class="tour__booking-date"><?php echo esc_html($date_str); ?></div>
@@ -133,7 +133,7 @@
             </div>
             <div class="tour__actions">
                 <a href="#callback" data-fancybox class="tour__btn btn btn-secondary">Оставить заявку</a>
-                <a href="#booking-form" class="tour__btn btn btn-primary">Забронировать тур</a>
+                <a href="#booking-block" class="tour__btn btn btn-primary js-anchor-booking">Забронировать тур</a>
             </div>
         </div>
         <div class="tour__description">

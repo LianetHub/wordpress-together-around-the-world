@@ -582,6 +582,14 @@ $(function () {
             }
         });
 
+        $('.js-anchor-booking').on('click', function (e) {
+            const $form = $('.tour__booking-form');
+
+            if ($form.is(':hidden')) {
+                $form.stop().slideDown(400);
+            }
+        });
+
         updatePassengerIndices();
     }
 
