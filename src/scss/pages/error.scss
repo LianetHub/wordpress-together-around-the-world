@@ -17,23 +17,35 @@
 
 	// .error__header
 	&__header {
-		padding-top: 8rem;
-		padding-left: 5rem;
 		display: grid;
 		align-items: center;
 		gap: 1.3rem;
 		grid-template-columns: repeat(2, 1fr);
+		padding-top: 4rem;
+
+		@media (min-width:$md1) {
+			padding-top: 8rem;
+			padding-left: 5rem;
+
+		}
 	}
 
 	// .error__code
 	&__code {
-		font-size: 20.93394rem;
 		font-weight: 900;
+		font-size: 16rem;
+
+		@media (min-width:$md1) {
+			font-size: 20.93394rem;
+
+		}
 	}
 
 	// .error__content
 	&__content {
-		padding-bottom: 2.4rem;
+		@media (min-width:$md1) {
+			padding-bottom: 2.4rem;
+		}
 	}
 
 	// .error__title
@@ -50,10 +62,15 @@
 
 	// .error__btns
 	&__btns {
-		margin-top: 6rem;
 		display: flex;
 		justify-content: center;
 		gap: 3.69rem;
+		margin-top: 3rem;
+
+		@media (min-width:$md1) {
+			margin-top: 6rem;
+
+		}
 	}
 
 	// .error__btn

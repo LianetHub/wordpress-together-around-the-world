@@ -7,10 +7,15 @@
 
 .header {
 	position: fixed;
-	top: 3rem;
 	left: 0;
 	width: 100%;
 	z-index: 6;
+	top: 1rem;
+
+	@media (min-width:$md1) {
+		top: 3rem;
+
+	}
 
 	// .header__main
 	&__main {
@@ -19,8 +24,14 @@
 		color: #fff;
 		display: flex;
 		justify-content: space-between;
+		gap: 1rem;
 		align-items: center;
-		padding: 0.5rem 1.44rem 0.5rem 5.31rem;
+		padding: 0.5rem 1.44rem;
+
+		@media (min-width:$md1) {
+			padding: 0.5rem 1.44rem 0.5rem 5.31rem;
+
+		}
 	}
 
 
@@ -39,7 +50,11 @@
 		text-align: center;
 		font-size: 1.125rem;
 		font-weight: 500;
-		gap: rem(50);
+		gap: 1rem;
+
+		@media (min-width:$md1) {
+			gap: rem(50);
+		}
 	}
 
 	// .menu-item

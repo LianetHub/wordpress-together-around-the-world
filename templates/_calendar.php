@@ -44,8 +44,14 @@ $tours_raw = get_all_tours_data();
                             <?php endforeach; ?>
                         </div>
                     </div>
-                    <button type="button" aria-label="Предыдущая категория" class="booking-calendar__filters-prev swiper-button-prev"></button>
-                    <button type="button" aria-label="Следующая категория" class="booking-calendar__filters-next swiper-button-next"></button>
+                    <button
+                        type="button"
+                        aria-label="Предыдущая категория"
+                        class="booking-calendar__filters-prev swiper-button-prev"></button>
+                    <button
+                        type="button"
+                        aria-label="Следующая категория"
+                        class="booking-calendar__filters-next swiper-button-next"></button>
                 </div>
                 <div class="booking-calendar__controls">
                     <button

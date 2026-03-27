@@ -98,7 +98,12 @@
 		gap: 2rem;
 		padding: rem(12) rem(16);
 		border-radius: 0.9375rem;
-		max-width: 24.125rem;
+		max-width: 21.125rem;
+
+		@media (min-width:$md1) {
+			max-width: 24.125rem;
+
+		}
 	}
 
 	// .footer__reqs-icon
@@ -169,12 +174,17 @@
 			border-radius: 3.125rem;
 			background: #2F2F2F;
 			color: #7D7D7D;
-			font-size: 1.0625rem;
 			font-weight: 600;
 			line-height: math.div(1.75, 1.0625);
 			letter-spacing: 0.0425rem;
 			padding: 0.5rem;
 			display: block;
+			font-size: 0.9rem;
+
+			@media (min-width:$md1) {
+				font-size: 1.0625rem;
+
+			}
 		}
 	}
 

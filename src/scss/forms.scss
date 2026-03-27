@@ -497,11 +497,11 @@
 	padding: rem(10) rem(18);
 	font-size: 1rem;
 
-	@media (min-width: $md4) {
+	@media (min-width: $md3) {
 		padding: rem(8.5) rem(18);
 	}
 
-	@media (min-width: $md2) {
+	@media (min-width: $md1) {
 		padding: rem(8.5) rem(24);
 		font-size: 1.125rem;
 	}

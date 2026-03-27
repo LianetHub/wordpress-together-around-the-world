@@ -5,6 +5,14 @@
 @use "fonts";
 @use "icons";
 
+:root {
+	--header-height: #{rem(116)};
+
+	@media (min-width:$md1) {
+		--header-height: #{rem(150)};
+	}
+}
+
 html {
 	scrollbar-gutter: stable;
 }
@@ -87,21 +95,21 @@ body {
 	padding: 0 1rem;
 
 
-	@media (min-width: $md5) {
+	@media (min-width: $md4) {
 		box-sizing: content-box;
 		max-width: rem(540);
 		padding: 0 1.25rem;
 	}
 
-	@media (min-width: $md4) {
+	@media (min-width: $md3) {
 		max-width: rem(720);
 	}
 
-	@media (min-width: $md3) {
+	@media (min-width: $md2) {
 		max-width: rem(960);
 	}
 
-	@media (min-width: $md2) {
+	@media (min-width: $md1) {
 		max-width: rem(1180);
 	}
 

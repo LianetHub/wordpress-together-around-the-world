@@ -21,7 +21,13 @@
         margin-top: rem(24);
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: rem(30);
+        row-gap: rem(30);
+        column-gap: rem(20);
+
+        @media (min-width:$md1) {
+            column-gap: rem(30);
+
+        }
     }
 
     // .tours__actions
@@ -29,8 +35,12 @@
         margin-top: rem(23);
 
         .btn {
-            max-width: rem(373);
             width: 100%;
+            max-width: rem(297);
+
+            @media (min-width:$md1) {
+                max-width: rem(373);
+            }
         }
     }
 
@@ -149,11 +159,16 @@
 
     // .tour-card__content
     &__content {
-        padding: rem(14) rem(17);
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
         flex-grow: 1;
+        padding: rem(10) rem(8);
+
+        @media (min-width:$md1) {
+            padding: rem(14) rem(17);
+
+        }
     }
 
     // .tour-card__title
@@ -187,9 +202,14 @@
     // .tour-card__price
     &__price {
         color: #B5E12C;
-        font-size: 1.5625rem;
         font-weight: 700;
         white-space: nowrap;
+        font-size: 1.25rem;
+
+        @media (min-width:$md1) {
+            font-size: 1.5625rem;
+
+        }
     }
 
     // .tour-card__btn
@@ -320,7 +340,10 @@
         display: flex;
         align-items: center;
         gap: 1rem;
-        padding-inline: rem(20);
+
+        @media (min-width:$md1) {
+            padding-inline: rem(20);
+        }
     }
 
     // .tour__departure-title
@@ -344,7 +367,10 @@
     // .tour__departure-text
     &__departure-text {
         margin-top: 1rem;
-        padding-inline: rem(20);
+
+        @media (min-width:$md1) {
+            padding-inline: rem(20);
+        }
     }
 
     // .tour__info
@@ -577,9 +603,14 @@
     // .questions__body
     &__body {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
         gap: rem(13);
+        flex-direction: column;
+
+        @media (min-width:$md1) {
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: row;
+        }
     }
 
     // .questions__title

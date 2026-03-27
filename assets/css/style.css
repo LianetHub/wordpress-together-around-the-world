@@ -1,18 +1,18 @@
 @font-face {
-  font-family: "icons";
-  font-display: swap;
-  src: url("../fonts/icons.woff2") format("woff2"), url("../fonts/icons.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
   font-family: "Roboto";
   src: url("../fonts/Roboto-VariableFont_wdth,wght.woff2") format("woff2 supports variations"), url("../fonts/Roboto-VariableFont_wdth,wght.woff2") format("woff2-variations"), url("../fonts/Roboto-VariableFont_wdth,wght.woff") format("woff");
   font-weight: 100 900;
   font-stretch: 75% 125%;
   font-style: normal;
   font-display: swap;
+}
+
+@font-face {
+  font-family: "icons";
+  font-display: swap;
+  src: url("../fonts/icons.woff2") format("woff2"), url("../fonts/icons.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
 }
 
 .tour-card__badge--hot::before,
@@ -95,6 +95,10 @@
 
 .icon-vk:before {
   content: "\e908";
+}
+
+:root {
+  --header-height: 7.25rem;
 }
 
 html {
@@ -1916,9 +1920,9 @@ button[data-vc-week-day] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 3.75rem;
   -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
+  gap: 1.25rem;
 }
 
 .booking-calendar__filters {
@@ -1961,11 +1965,11 @@ button[data-vc-week-day] {
 }
 
 .booking-calendar__filters-prev.swiper-button-prev {
-  left: -2.8125rem;
+  left: -0.625rem;
 }
 
 .booking-calendar__filters-next.swiper-button-next {
-  right: -2.8125rem;
+  right: -0.625rem;
 }
 
 .booking-calendar__filters-next.swiper-button-disabled,
@@ -3474,10 +3478,10 @@ select.select {
 
 .header {
   position: fixed;
-  top: 3rem;
   left: 0;
   width: 100%;
   z-index: 6;
+  top: 1rem;
 }
 
 .header__main {
@@ -3490,10 +3494,11 @@ select.select {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  gap: 1rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0.5rem 1.44rem 0.5rem 5.31rem;
+  padding: 0.5rem 1.44rem;
 }
 
 .menu__list {
@@ -3506,7 +3511,7 @@ select.select {
   text-align: center;
   font-size: 1.125rem;
   font-weight: 500;
-  gap: 3.125rem;
+  gap: 1rem;
 }
 
 .menu-item a {
@@ -3708,7 +3713,7 @@ select.select {
   gap: 2rem;
   padding: 0.75rem 1rem;
   border-radius: 0.9375rem;
-  max-width: 24.125rem;
+  max-width: 21.125rem;
 }
 
 .footer__reqs-icon {
@@ -3771,22 +3776,20 @@ select.select {
   border-radius: 3.125rem;
   background: #2F2F2F;
   color: #7D7D7D;
-  font-size: 1.0625rem;
   font-weight: 600;
   line-height: 1.6470588235;
   letter-spacing: 0.0425rem;
   padding: 0.5rem;
   display: block;
+  font-size: 0.9rem;
 }
 
 .hero {
-  min-height: 58.875rem;
   color: #FFF;
   background-color: #4B4B4B;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  padding: 19.9375rem 0 3.625rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3794,6 +3797,8 @@ select.select {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding: 12.5rem 0 3.625rem;
+  min-height: 43.75rem;
 }
 
 .hero .container {
@@ -3939,15 +3944,14 @@ select.select {
 }
 
 .description__title {
-  padding-left: 3.25rem;
-  max-width: 30rem;
+  text-align: center;
 }
 
 .description__list {
   margin-top: 2.5rem;
   color: #000;
-  font-size: 1.625rem;
   max-width: 30.625rem;
+  font-size: 1.25rem;
 }
 
 .description__list li {
@@ -3960,8 +3964,8 @@ select.select {
   position: absolute;
   top: 0;
   left: 0;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 1.3846153846em;
+  height: 1.3846153846em;
   background: #B1DF1D;
   border-radius: 50%;
 }
@@ -3971,15 +3975,14 @@ select.select {
 }
 
 .description__steps {
-  margin-top: 6.8rem;
-  font-size: 1.625rem;
+  margin-top: 2.5rem;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[2];
   grid-template-columns: repeat(2, 1fr);
   gap: 3.5rem;
   row-gap: 6.6rem;
-  padding-left: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .description__steps li {
@@ -3994,6 +3997,7 @@ select.select {
   -ms-flex-negative: 0;
       flex-shrink: 0;
   margin-right: 0.25rem;
+  font-weight: 600;
 }
 
 .directions {
@@ -4020,7 +4024,7 @@ select.select {
   -ms-grid-columns: (1fr)[3];
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 21rem;
-  gap: 1.875rem;
+  gap: 1.25rem;
 }
 
 .directions__grid--count-3 .directions__item:nth-child(1),
@@ -4090,21 +4094,17 @@ select.select {
   border-radius: 3.125rem;
   background: rgba(248, 248, 248, 0.7);
   color: #262626;
-  font-size: 1.125rem;
   font-weight: 600;
-  line-height: 72.222%;
-  padding: 1rem 1.06rem;
+  padding: 0.875rem 0.675rem;
 }
 
 .directions__info-details {
   color: #6B6C6E;
-  font-size: 1.125rem;
-  padding: 1rem 0.75rem;
   font-weight: 600;
-  line-height: 72.222%;
   text-transform: lowercase;
   border-radius: 3.125rem;
   background: rgba(248, 248, 248, 0.7);
+  padding: 0.875rem 0.675rem;
 }
 
 .directions__info-arrow {
@@ -4181,11 +4181,10 @@ select.select {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 3.875rem;
+  gap: 3rem;
 }
 
 .team__info {
-  padding-left: 1.3rem;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 26.4375rem;
           flex: 0 0 26.4375rem;
@@ -4209,9 +4208,9 @@ select.select {
 .team__slider .swiper-wrapper {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[4];
-  grid-template-columns: repeat(4, 1fr);
   gap: 0.9375rem;
+  -ms-grid-columns: (1fr)[3];
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .expert {
@@ -4325,7 +4324,10 @@ select.select {
   display: grid;
   -ms-grid-columns: (1fr)[3];
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.875rem;
+  row-gap: 1.875rem;
+  -webkit-column-gap: 1.25rem;
+     -moz-column-gap: 1.25rem;
+          column-gap: 1.25rem;
 }
 
 .tours__actions {
@@ -4333,8 +4335,8 @@ select.select {
 }
 
 .tours__actions .btn {
-  max-width: 23.3125rem;
   width: 100%;
+  max-width: 18.5625rem;
 }
 
 .tours__empty {
@@ -4464,7 +4466,6 @@ select.select {
 }
 
 .tour-card__content {
-  padding: 0.875rem 1.0625rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4476,6 +4477,7 @@ select.select {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  padding: 0.625rem 0.5rem;
 }
 
 .tour-card__title {
@@ -4511,9 +4513,9 @@ select.select {
 
 .tour-card__price {
   color: #B5E12C;
-  font-size: 1.5625rem;
   font-weight: 700;
   white-space: nowrap;
+  font-size: 1.25rem;
 }
 
 .tour-card__btn {
@@ -4643,7 +4645,6 @@ select.select {
       -ms-flex-align: center;
           align-items: center;
   gap: 1rem;
-  padding-inline: 1.25rem;
 }
 
 .tour__departure-title {
@@ -4664,7 +4665,6 @@ select.select {
 
 .tour__departure-text {
   margin-top: 1rem;
-  padding-inline: 1.25rem;
 }
 
 .tour__info {
@@ -4909,13 +4909,11 @@ select.select {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   gap: 0.8125rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .questions__title {
@@ -4987,8 +4985,6 @@ select.select {
 }
 
 .error__header {
-  padding-top: 8rem;
-  padding-left: 5rem;
   display: -ms-grid;
   display: grid;
   -webkit-box-align: center;
@@ -4997,15 +4993,12 @@ select.select {
   gap: 1.3rem;
   -ms-grid-columns: (1fr)[2];
   grid-template-columns: repeat(2, 1fr);
+  padding-top: 4rem;
 }
 
 .error__code {
-  font-size: 20.93394rem;
   font-weight: 900;
-}
-
-.error__content {
-  padding-bottom: 2.4rem;
+  font-size: 16rem;
 }
 
 .error__title {
@@ -5019,7 +5012,6 @@ select.select {
 }
 
 .error__btns {
-  margin-top: 6rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -5027,6 +5019,7 @@ select.select {
       -ms-flex-pack: center;
           justify-content: center;
   gap: 3.69rem;
+  margin-top: 3rem;
 }
 
 .error__btn {
@@ -5042,14 +5035,15 @@ select.select {
   margin-top: 2rem;
 }
 
-@media (min-width: 389.98px) {
-  .container {
-    -webkit-box-sizing: content-box;
-            box-sizing: content-box;
-    max-width: 33.75rem;
-    padding: 0 1.25rem;
-  }
+.nojq {
+  display: none;
+}
 
+html {
+  margin-top: 0 !important;
+}
+
+@media (min-width: 389.98px) {
   .popup__form {
     margin-top: 4rem;
   }
@@ -5070,7 +5064,10 @@ select.select {
 
 @media (min-width: 575.98px) {
   .container {
-    max-width: 45rem;
+    -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+    max-width: 33.75rem;
+    padding: 0 1.25rem;
   }
 
   .fancybox__slide {
@@ -5108,10 +5105,6 @@ select.select {
     margin-top: 2rem;
   }
 
-  .btn {
-    padding: 0.53125rem 1.125rem;
-  }
-
   .btn.btn-sm {
     padding: 0.9375rem 1.375rem;
   }
@@ -5119,7 +5112,11 @@ select.select {
 
 @media (min-width: 767.98px) {
   .container {
-    max-width: 60rem;
+    max-width: 45rem;
+  }
+
+  .btn {
+    padding: 0.53125rem 1.125rem;
   }
 
   .icon-menu {
@@ -5131,11 +5128,29 @@ select.select {
 
 @media (min-width: 991.98px) {
   .container {
-    max-width: 73.75rem;
+    max-width: 60rem;
   }
 
   .title {
     font-size: 2.5625rem;
+  }
+
+  .icon-menu {
+    display: none;
+  }
+}
+
+@media (min-width: 1219.98px) {
+  :root {
+    --header-height: 9.375rem;
+  }
+
+  .container {
+    max-width: 73.75rem;
+  }
+
+  .booking-calendar__header {
+    gap: 3.75rem;
   }
 
   .btn {
@@ -5143,8 +5158,138 @@ select.select {
     font-size: 1.125rem;
   }
 
-  .icon-menu {
-    display: none;
+  .header {
+    top: 3rem;
+  }
+
+  .header__main {
+    padding: 0.5rem 1.44rem 0.5rem 5.31rem;
+  }
+
+  .menu__list {
+    gap: 3.125rem;
+  }
+
+  .footer__reqs {
+    max-width: 24.125rem;
+  }
+
+  .footer__policies-list a {
+    font-size: 1.0625rem;
+  }
+
+  .hero {
+    min-height: 58.875rem;
+    padding: 19.9375rem 0 3.625rem;
+  }
+
+  .description__title {
+    max-width: 30rem;
+    text-align: left;
+    padding-left: 3.25rem;
+  }
+
+  .description__list {
+    font-size: 1.625rem;
+  }
+
+  .description__steps {
+    margin-top: 6.8rem;
+    font-size: 1.625rem;
+    padding-left: 1.5rem;
+  }
+
+  .directions__grid {
+    gap: 1.875rem;
+  }
+
+  .directions__info-day {
+    padding: 1rem 1.06rem;
+    font-size: 1.125rem;
+  }
+
+  .directions__info-details {
+    padding: 1rem 0.75rem;
+    font-size: 1.125rem;
+  }
+
+  .team__content {
+    gap: 3.875rem;
+  }
+
+  .team__info {
+    padding-left: 1.3rem;
+  }
+
+  .team__slider .swiper-wrapper {
+    -ms-grid-columns: (1fr)[4];
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .tours__grid {
+    -webkit-column-gap: 1.875rem;
+       -moz-column-gap: 1.875rem;
+            column-gap: 1.875rem;
+  }
+
+  .tours__actions .btn {
+    max-width: 23.3125rem;
+  }
+
+  .tour-card__content {
+    padding: 0.875rem 1.0625rem;
+  }
+
+  .tour-card__price {
+    font-size: 1.5625rem;
+  }
+
+  .tour__departure-header {
+    padding-inline: 1.25rem;
+  }
+
+  .tour__departure-text {
+    padding-inline: 1.25rem;
+  }
+
+  .questions__body {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+
+  .error__header {
+    padding-top: 8rem;
+    padding-left: 5rem;
+  }
+
+  .error__code {
+    font-size: 20.93394rem;
+  }
+
+  .error__content {
+    padding-bottom: 2.4rem;
+  }
+
+  .error__btns {
+    margin-top: 6rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .booking-calendar__filters-prev.swiper-button-prev {
+    left: -2.8125rem;
+  }
+
+  .booking-calendar__filters-next.swiper-button-next {
+    right: -2.8125rem;
   }
 }
 

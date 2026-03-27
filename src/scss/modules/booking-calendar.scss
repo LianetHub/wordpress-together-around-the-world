@@ -49,11 +49,15 @@
 
     // .booking-calendar__header
     &__header {
-
         display: flex;
         align-items: center;
-        gap: rem(60);
         transition: opacity 0.3s ease;
+        gap: rem(20);
+
+        @media (min-width:$md1) {
+            gap: rem(60);
+
+        }
     }
 
     // .booking-calendar__filters
@@ -97,13 +101,21 @@
 
     &__filters-prev {
         &.swiper-button-prev {
-            left: rem(-45);
+            left: rem(-10);
+
+            @media (min-width:1280px) {
+                left: rem(-45);
+            }
         }
     }
 
     &__filters-next {
         &.swiper-button-next {
-            right: rem(-45);
+            right: rem(-10);
+
+            @media (min-width: 1280px) {
+                right: rem(-45);
+            }
         }
     }
 
