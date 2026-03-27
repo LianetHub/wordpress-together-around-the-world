@@ -218,13 +218,21 @@
     &__title {}
 
     // .directions__slider
-    &__slider {}
+    &__slider {
+        overflow: hidden;
+
+        .swiper-wrapper {
+            display: flex;
+        }
+    }
 
     // .directions__grid
     &__grid {
-        margin-top: 2.69rem;
+        flex: 0 0 100%;
+        margin-top: rem(30);
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 21rem;
         gap: rem(30);
 
         // .directions__grid--count-1
@@ -234,7 +242,19 @@
         &--count-2 {}
 
         // .directions__grid--count-3
-        &--count-3 {}
+        &--count-3 {
+            .directions__item {
+
+                &:nth-child(1),
+                &:nth-child(3) {
+                    grid-column: span 2;
+                }
+
+                &:nth-child(2) {
+                    grid-row: span 2;
+                }
+            }
+        }
 
         // .directions__grid--count-4
         &--count-4 {
@@ -251,31 +271,143 @@
     }
 
     // .directions__item
-    &__item {}
+    &__item {
+        overflow: hidden;
+        border-radius: 1.875rem;
+        position: relative;
+        background: #272727;
+
+        @media (any-hover: hover) {
+            &:hover {
+                .directions__image {
+
+                    & img {
+                        transform: scale(1.05);
+                    }
+                }
+
+                .directions__info-arrow {
+                    background-color: color.adjust($color: $accent, $lightness: -10%);
+                }
+            }
+        }
+    }
 
     // .directions__image
-    &__image {}
+    &__image {
+        height: 100%;
+
+        & img {
+            transition: transform 0.3s ease;
+        }
+    }
 
     // .directions__placeholder
     &__placeholder {}
 
     // .directions__info
-    &__info {}
+    &__info {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: flex-end;
+        padding: 1.5rem;
+    }
+
+    // .directions__info-blocks
+    &__info-blocks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.81rem;
+    }
+
+    // .directions__info-day
+    &__info-day {
+        border-radius: 3.125rem;
+        background: rgba(248, 248, 248, 0.70);
+        color: #262626;
+        font-size: 1.125rem;
+        font-weight: 600;
+        line-height: 72.222%;
+        padding: 1rem 1.06rem;
+    }
+
+
+    // .directions__info-details
+    &__info-details {
+        color: #6B6C6E;
+        font-size: 1.125rem;
+        padding: 1rem 0.75rem;
+        font-weight: 600;
+        line-height: 72.222%;
+        text-transform: lowercase;
+        border-radius: 3.125rem;
+        background: rgba(248, 248, 248, 0.70);
+    }
+
+    // .directions__info-arrow
+    &__info-arrow {
+        width: 4.0625rem;
+        height: 2.8125rem;
+        font-size: 1.4375rem;
+        flex-shrink: 0;
+        padding: 0.69rem 1rem;
+        margin-left: auto;
+        background: #B1DF1D;
+        color: #353535;
+        border-radius: 3.125rem;
+        transition: background-color 0.3s ease;
+    }
 
     // .directions__footer
-    &__footer {}
+    &__footer {
+        margin-top: rem(20);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
     // .directions__controls
-    &__controls {}
+    &__controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
 
     // .directions__prev
-    &__prev {}
+    &__prev {
+        position: static;
+        margin: 0;
+        transform: none
+    }
 
     // .directions__next
-    &__next {}
+    &__next {
+        @extend .directions__prev;
+    }
 
     // .directions__all-link
-    &__all-link {}
+    &__all-link {
+        position: absolute;
+        top: 50%;
+        right: 1.625rem;
+        transform: translateY(-50%);
+        color: #797979;
+        font-size: 1.01875rem;
+        font-weight: 500;
+        transition: color 0.3s ease;
+
+        @media (any-hover: hover) {
+            &:hover {
+                color: #B1DF1D;
+            }
+        }
+    }
 }
 
 

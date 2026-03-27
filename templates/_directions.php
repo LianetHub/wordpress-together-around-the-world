@@ -42,28 +42,32 @@
                             ?>
                                 <a href="<?php echo esc_url(get_category_link($cat->term_id)); ?>"
                                     class="directions__item">
-
                                     <div class="directions__image">
                                         <?php if ($image) : ?>
-                                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($cat->name); ?>">
-                                        <?php else : ?>
-                                            <div class="directions__placeholder"></div>
+                                            <img
+                                                src="<?php echo esc_url($image['url']); ?>"
+                                                alt="<?php echo esc_attr($cat->name); ?>"
+                                                class="cover-image"
+                                                loading="lazy">
                                         <?php endif; ?>
                                     </div>
 
                                     <div class="directions__info">
-                                        <span class="badge badge--name">
-                                            <?php echo esc_html($cat->name); ?>
-                                        </span>
-
-                                        <?php if ($price_val > 0) : ?>
-                                            <span class="badge badge--info">
-                                                от&#8239;<?php echo $price_formatted; ?>&#8239;₽
-                                                <?php if ($days_val > 0) : ?>
-                                                    &#8239;<?php echo $days_val; ?>&#8239;<?php echo $days_word; ?>
-                                                <?php endif; ?>
+                                        <div class="directions__info-blocks">
+                                            <span class="directions__info-day">
+                                                <?php echo esc_html($cat->name); ?>
                                             </span>
-                                        <?php endif; ?>
+
+                                            <?php if ($price_val > 0) : ?>
+                                                <span class="directions__info-details">
+                                                    от&#8239;<?php echo $price_formatted; ?>&#8239;₽
+                                                    <?php if ($days_val > 0) : ?>
+                                                        &#8239;<?php echo $days_val; ?>&#8239;<?php echo $days_word; ?>
+                                                    <?php endif; ?>
+                                                </span>
+                                            <?php endif; ?>
+                                        </div>
+                                        <span class="directions__info-arrow icon-arrow"></span>
 
                                     </div>
                                 </a>
