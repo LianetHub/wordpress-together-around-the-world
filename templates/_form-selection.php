@@ -6,6 +6,7 @@ $no_date = isset($_GET['no_date']) && $_GET['no_date'] === '1';
 
 $clear_from_class = (empty($date_from) || $no_date) ? 'hidden' : '';
 $clear_to_class = (empty($date_to) || $no_date) ? 'hidden' : '';
+$field_disabled = $no_date ? 'disabled' : '';
 ?>
 
 <form
@@ -21,6 +22,7 @@ $clear_to_class = (empty($date_to) || $no_date) ? 'hidden' : '';
                 class="form__control form__control--green"
                 placeholder="Выбрать дату"
                 readonly
+                <?php echo $field_disabled; ?>
                 value="<?php echo esc_attr($date_from); ?>">
             <button
                 type="button"
@@ -36,6 +38,7 @@ $clear_to_class = (empty($date_to) || $no_date) ? 'hidden' : '';
                 class="form__control form__control--green"
                 placeholder="Выбрать дату"
                 readonly
+                <?php echo $field_disabled; ?>
                 value="<?php echo esc_attr($date_to); ?>">
             <button
                 type="button"
