@@ -42,7 +42,9 @@ add_theme_support('custom-logo', [
 function together_theme_setup()
 {
     register_nav_menus([
-        'header_menu' => 'Меню в шапке',
+        'header_menu'   => 'Меню в шапке',
+        'footer_main'   => 'Основное меню в подвале',
+        'footer_cats'   => 'Меню рубрик в подвале',
         'policies_menu' => 'Меню политик конфиденциальности',
     ]);
 }

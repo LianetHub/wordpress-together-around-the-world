@@ -2,6 +2,9 @@
 $tel      = get_field('tel', 'option');
 $email    = get_field('email', 'option');
 
+$reg_company = get_field('reg_company_name', 'option');
+$reg_rto     = get_field('reg_rto_number', 'option');
+
 $telegram = get_field('telegram', 'option');
 $vk       = get_field('vk', 'option');
 $ok       = get_field('ok', 'option');
@@ -13,7 +16,7 @@ $socials = array_filter([
     'ok'       => ['url' => $ok,       'label' => 'Одноклассники', 'icon' => 'icon-ok'],
     'telegram' => ['url' => $telegram, 'label' => 'Telegram',     'icon' => 'icon-telegram'],
     'whatsapp' => ['url' => $whatsapp, 'label' => 'WhatsApp',     'icon' => 'icon-whatsapp'],
-    'max'      => ['url' => $max,      'label' => 'Max',          'icon' => 'icon-max'],
+    'max'      => ['url' => $max,      'label' => 'Max',           'icon' => 'icon-max'],
 ], function ($item) {
     return !empty($item['url']);
 });
@@ -29,8 +32,7 @@ $socials = array_filter([
                 <?php if ($tel) :
                     $tel_clean = preg_replace('/[^0-9+]/', '', $tel);
                 ?>
-                    <a href="tel:<?php echo $tel_clean; ?>"
-                        class="footer__phone">
+                    <a href="tel:<?php echo $tel_clean; ?>" class="footer__phone">
                         <?php echo $tel; ?>
                     </a>
                 <?php endif; ?>
@@ -38,31 +40,33 @@ $socials = array_filter([
                 <a href="mailto:<?php echo $email ?>" class="footer__email"><?php echo $email ?></a>
                 <p class="footer__desc">По любым вопросам пишите на почту</p>
             </div>
+
             <div class="footer__column">
-                <nav aria-label="Меню в подвале" class="footer__menu">
-                    <ul class="footer__menu-list">
-                        <li><a href="">Подбор туров</a></li>
-                        <li><a href="">Новые туры</a></li>
-                        <li><a href="">Все НАПРАВЛЕНИЯ</a></li>
-                        <li><a href="">о НАС</a></li>
-                        <li><a href="">кОМАНДА</a></li>
-                    </ul>
+                <nav aria-label="Основное меню" class="footer__menu">
+                    <?php
+                    wp_nav_menu([
+                        'theme_location' => 'footer_main',
+                        'container'      => false,
+                        'menu_class'     => 'footer__menu-list',
+                        'fallback_cb'    => '__return_false',
+                    ]);
+                    ?>
                 </nav>
             </div>
+
             <div class="footer__column">
-                <nav aria-label="Меню в подвале" class="footer__menu">
-                    <ul class="footer__menu-list">
-                        <li><a href="">аБХАЗИЯ</a></li>
-                        <li><a href="">аДЛЕР</a></li>
-                        <li><a href="">мОСКВА</a></li>
-                        <li><a href="">сАНКТ-пЕТЕРБУРГ</a></li>
-                        <li><a href="">рОСТОВ-НА-дОНУ</a></li>
-                        <li><a href="">еЛЕЦ</a></li>
-                        <li><a href="">лИПЕЦК</a></li>
-                        <li><a href="">Казань</a></li>
-                    </ul>
+                <nav aria-label="Популярные направления" class="footer__menu">
+                    <?php
+                    wp_nav_menu([
+                        'theme_location' => 'footer_cats',
+                        'container'      => false,
+                        'menu_class'     => 'footer__menu-list',
+                        'fallback_cb'    => '__return_false',
+                    ]);
+                    ?>
                 </nav>
             </div>
+
             <div class="footer__column">
                 <div class="footer__reqs">
                     <div class="footer__reqs-icon">
@@ -70,15 +74,14 @@ $socials = array_filter([
                             width="62"
                             height="68"
                             src="<?php echo get_template_directory_uri(); ?>/assets/img/flag.svg"
+                            loading="lazy"
                             alt="Герб России">
                     </div>
                     <div class="footer__reqs-content">
-                        <div class="footer__reqs-title">
-                            Мы в реестре туроператоров
-                        </div>
+                        <div class="footer__reqs-title">Мы в реестре туроператоров</div>
                         <div class="footer__reqs-text">
-                            ООО “Вместе по миру”
-                            РТО: 026332
+                            <?php echo esc_html($reg_company); ?><br>
+                            РТО: <?php echo esc_html($reg_rto); ?>
                         </div>
                     </div>
                 </div>
@@ -97,7 +100,6 @@ $socials = array_filter([
                 </div>
             </div>
         </div>
-
 
         <nav aria-label="Меню политик" class="footer__policies">
             <?php
