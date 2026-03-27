@@ -41,7 +41,7 @@ $socials = array_filter([
                 <p class="footer__desc">По любым вопросам пишите на почту</p>
             </div>
 
-            <div class="footer__column">
+            <div class="footer__column footer__column--menu">
                 <nav aria-label="Основное меню" class="footer__menu">
                     <?php
                     wp_nav_menu([
@@ -54,7 +54,7 @@ $socials = array_filter([
                 </nav>
             </div>
 
-            <div class="footer__column">
+            <div class="footer__column footer__column--menu">
                 <nav aria-label="Популярные направления" class="footer__menu">
                     <?php
                     wp_nav_menu([

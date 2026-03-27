@@ -31,20 +31,21 @@ $socials = array_filter([
                     aria-label="Читайте нас в <?php echo esc_attr($social['label']); ?>">
                 </a>
             <?php endforeach; ?>
-            <!-- <a href="" class="socials__item icon-ok"></a> -->
         </div>
     <?php endif; ?>
-    <nav aria-label="Главное меню" class="header__menu menu">
-        <?php
-        wp_nav_menu([
-            'theme_location'  => 'header_menu',
-            'container'       => false,
-            'menu_class'      => 'menu__list',
-            'fallback_cb'     => '__return_false',
-            'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-        ]);
-        ?>
-    </nav>
+    <div class="header__menu menu">
+        <nav aria-label="Главное меню" class="menu__navbar">
+            <?php
+            wp_nav_menu([
+                'theme_location'  => 'header_menu',
+                'container'       => false,
+                'menu_class'      => 'menu__list',
+                'fallback_cb'     => '__return_false',
+                'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+            ]);
+            ?>
+        </nav>
+    </div>
     <?php if ($tel) :
         $tel_clean = preg_replace('/[^0-9+]/', '', $tel);
     ?>

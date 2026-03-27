@@ -53,6 +53,11 @@
         align-items: center;
         transition: opacity 0.3s ease;
         gap: rem(20);
+        flex-direction: column;
+
+        @media (min-width:$md2) {
+            flex-direction: row;
+        }
 
         @media (min-width:$md1) {
             gap: rem(60);
@@ -174,8 +179,12 @@
     &__body {
         margin-top: 1.46rem;
         display: grid;
-        grid-template-columns: 1fr 0.875fr;
         gap: 1.31rem;
+
+        @media (min-width:$md2) {
+            grid-template-columns: 1fr 0.875fr;
+
+        }
     }
 
     // .booking-calendar__block

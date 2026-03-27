@@ -33,7 +33,11 @@
 	// .error__code
 	&__code {
 		font-weight: 900;
-		font-size: 16rem;
+		font-size: 12rem;
+
+		@media (min-width:$md2) {
+			font-size: 16rem;
+		}
 
 		@media (min-width:$md1) {
 			font-size: 20.93394rem;
@@ -56,8 +60,13 @@
 	// .error__subtitle
 	&__subtitle {
 		margin-top: rem(17);
-		font-size: 1.37531rem;
 		font-weight: 900;
+		font-size: 1rem;
+
+		@media (min-width:$md2) {
+			font-size: 1.37531rem;
+
+		}
 	}
 
 	// .error__btns

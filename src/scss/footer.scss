@@ -12,14 +12,29 @@
 
 	// .footer__header
 	&__header {
-		display: flex;
-		justify-content: space-between;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.5rem;
+
+		@media (min-width:$md2) {
+			display: flex;
+			justify-content: space-between;
+
+		}
 	}
 
 	// .footer__column
 	&__column {
 		display: flex;
 		flex-direction: column;
+
+		&--menu {
+			order: 1;
+
+			@media (min-width:$md2) {
+				order: 0;
+			}
+		}
 	}
 
 	// .footer__phone
@@ -166,8 +181,14 @@
 	// .footer__policies-list
 	&__policies-list {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: rem(26);
+		gap: rem(20);
+		grid-template-columns: repeat(2, 1fr);
+
+		@media (min-width:$md2) {
+			gap: rem(26);
+			grid-template-columns: repeat(3, 1fr);
+
+		}
 
 		& a {
 			text-align: center;
