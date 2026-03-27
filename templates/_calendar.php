@@ -44,16 +44,20 @@ $tours_raw = get_all_tours_data();
                             <?php endforeach; ?>
                         </div>
                     </div>
-                    <button type="button" class="booking-calendar__filters-prev swiper-button-prev"></button>
-                    <button type="button" class="booking-calendar__filters-next swiper-button-next"></button>
+                    <button type="button" aria-label="Предыдущая категория" class="booking-calendar__filters-prev swiper-button-prev"></button>
+                    <button type="button" aria-label="Следующая категория" class="booking-calendar__filters-next swiper-button-next"></button>
                 </div>
                 <div class="booking-calendar__controls">
                     <button
                         type="button"
+                        aria-label="Предыдущий месяц"
                         disabled
                         class="booking-calendar__prev icon-chevron-left"></button>
                     <div class="booking-calendar__month"></div>
-                    <button type="button" class="booking-calendar__next icon-chevron-right"></button>
+                    <button
+                        type="button"
+                        aria-label="Следующий месяц"
+                        class="booking-calendar__next icon-chevron-right"></button>
                 </div>
             </div>
             <div class="booking-calendar__body">

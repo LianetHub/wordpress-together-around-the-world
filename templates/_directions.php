@@ -82,8 +82,8 @@
 
         <div class="directions__footer">
             <div class="directions__controls">
-                <button type="button" class="directions__prev swiper-button-prev"></button>
-                <button type="button" class="directions__next swiper-button-next"></button>
+                <button type="button" aria-label="Пролистать влево" class="directions__prev swiper-button-prev"></button>
+                <button type="button" aria-label="Пролистать вправо" class="directions__next swiper-button-next"></button>
             </div>
             <a href="<?php echo esc_url(get_post_type_archive_link('post')); ?>" class="directions__all-link">
                 Смотреть все направления
