@@ -4314,7 +4314,8 @@ select.select {
   padding: 2.8125rem 0;
 }
 
-.tours.tours--categories {
+.tours.tours--categories,
+.tours.tours--selection {
   padding-top: 0;
 }
 
@@ -4334,6 +4335,23 @@ select.select {
 .tours__actions .btn {
   max-width: 23.3125rem;
   width: 100%;
+}
+
+.tours__empty {
+  margin-top: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+  font-size: 1.5rem;
+  line-height: 1.35;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .tour-card {
