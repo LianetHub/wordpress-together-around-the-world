@@ -27,18 +27,24 @@ $socials = array_filter([
 <footer class="footer">
     <div class="container">
         <div class="footer__header">
-            <div class="footer__column">
+            <div class="footer__column footer__column--main">
                 <?php the_custom_logo(); ?>
-                <?php if ($tel) :
-                    $tel_clean = preg_replace('/[^0-9+]/', '', $tel);
-                ?>
-                    <a href="tel:<?php echo $tel_clean; ?>" class="footer__phone">
-                        <?php echo $tel; ?>
-                    </a>
-                <?php endif; ?>
-                <p class="footer__desc">Мы всегда на связи <br> и готовы помочь</p>
-                <a href="mailto:<?php echo $email ?>" class="footer__email"><?php echo $email ?></a>
-                <p class="footer__desc">По любым вопросам пишите на почту</p>
+                <div class="footer__contacts">
+                    <div class="footer__contacts-block">
+                        <?php if ($tel) :
+                            $tel_clean = preg_replace('/[^0-9+]/', '', $tel);
+                        ?>
+                            <a href="tel:<?php echo $tel_clean; ?>" class="footer__phone">
+                                <?php echo $tel; ?>
+                            </a>
+                        <?php endif; ?>
+                        <p class="footer__desc">Мы всегда на связи <br> и готовы помочь</p>
+                    </div>
+                    <div class="footer__contacts-block">
+                        <a href="mailto:<?php echo $email ?>" class="footer__email"><?php echo $email ?></a>
+                        <p class="footer__desc">По любым вопросам пишите на почту</p>
+                    </div>
+                </div>
             </div>
 
             <div class="footer__column footer__column--menu">
@@ -67,7 +73,7 @@ $socials = array_filter([
                 </nav>
             </div>
 
-            <div class="footer__column">
+            <div class="footer__column footer__column--contacts">
                 <div class="footer__reqs">
                     <div class="footer__reqs-icon">
                         <img
@@ -85,9 +91,9 @@ $socials = array_filter([
                         </div>
                     </div>
                 </div>
-                <div class="footer__contacts">
-                    <div class="footer__contacts-title">Связаться с нами</div>
-                    <div class="footer__socials socials">
+                <div class="footer__socials">
+                    <div class="footer__socials-title">Связаться с нами</div>
+                    <div class="footer__socials-items socials">
                         <?php foreach ($socials as $social) : ?>
                             <a href="<?php echo esc_url($social['url']); ?>"
                                 class="socials__item <?php echo esc_attr($social['icon']); ?>"

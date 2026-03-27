@@ -178,9 +178,12 @@
     // .selection__form-row
     &__form-row {
         display: grid;
-        align-items: end;
         gap: 1rem;
-        grid-template-columns: repeat(2, 1fr);
+
+        @media (min-width:$md4) {
+            align-items: end;
+            grid-template-columns: repeat(2, 1fr);
+        }
 
         @media (min-width:$md2) {
             grid-template-columns: repeat(3, 1fr) 12.5rem;
@@ -204,7 +207,12 @@
 }
 
 .description {
-    padding: rem(55) 0 rem(50);
+    padding: rem(25) 0 rem(25);
+
+    @media (min-width:$md3) {
+        padding: rem(55) 0 rem(50);
+
+    }
 
     // .description__container
     &__container {
@@ -274,8 +282,13 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 3.5rem;
-        row-gap: 6.6rem;
         font-size: 1.25rem;
+        row-gap: 2.21rem;
+
+        @media (min-width:$md3) {
+            row-gap: 6.6rem;
+
+        }
 
         @media (min-width:$md1) {
             margin-top: 6.8rem;
@@ -318,11 +331,23 @@
         flex: 0 0 100%;
         margin-top: rem(30);
         display: grid;
-        grid-auto-rows: 21rem;
-        gap: rem(20);
         grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: rem(167);
+        gap: rem(8);
+
+        @media (min-width:$md4) {
+            grid-auto-rows: rem(220);
+
+        }
+
+        @media (min-width:$md3) {
+            grid-auto-rows: 21rem;
+            gap: rem(16);
+
+        }
 
         @media (min-width:$md2) {
+            gap: rem(20);
             grid-template-columns: repeat(3, 1fr);
 
         }
@@ -342,17 +367,18 @@
         &--count-3 {
             .directions__item {
 
-                @media (min-width:$md2) {
-
-                    &:nth-child(1),
-                    &:nth-child(3) {
-                        grid-column: span 2;
-                    }
-
+                &:nth-child(1),
+                &:nth-child(3) {
+                    grid-column: span 2;
                 }
 
                 &:nth-child(2) {
-                    grid-row: span 2;
+                    grid-column: span 2;
+
+                    @media (min-width:$md2) {
+                        grid-row: span 2;
+                        grid-column: auto;
+                    }
                 }
             }
         }
@@ -415,7 +441,17 @@
         height: 100%;
         display: flex;
         align-items: flex-end;
-        padding: 1.5rem;
+        padding: 0.5rem;
+
+        @media (min-width:$md4) {
+            padding: 1rem;
+
+        }
+
+        @media (min-width:$md2) {
+            padding: 1.5rem;
+
+        }
     }
 
     // .directions__info-blocks
@@ -431,7 +467,17 @@
         background: rgba(248, 248, 248, 0.70);
         color: #262626;
         font-weight: 600;
-        padding: 0.875rem 0.675rem;
+        font-size: rem(9);
+        padding: 0.45rem 0.75rem;
+
+        @media (min-width:$md4) {
+            font-size: 0.875rem;
+        }
+
+        @media (min-width:$md3) {
+            padding: 0.875rem 0.675rem;
+            font-size: 1rem;
+        }
 
         @media (min-width:$md1) {
             padding: 1rem 1.06rem;
@@ -446,7 +492,18 @@
         text-transform: lowercase;
         border-radius: 3.125rem;
         background: rgba(248, 248, 248, 0.70);
-        padding: 0.875rem 0.675rem;
+        font-size: rem(9);
+        padding: 0.45rem 0.75rem;
+
+        @media (min-width:$md4) {
+
+            font-size: 0.875rem;
+        }
+
+        @media (min-width:$md3) {
+            padding: 0.875rem 0.675rem;
+            font-size: 1rem;
+        }
 
         @media (min-width:$md1) {
             padding: 1rem 0.75rem;
@@ -456,16 +513,30 @@
 
     // .directions__info-arrow
     &__info-arrow {
-        width: 4.0625rem;
-        height: 2.8125rem;
-        font-size: 1.4375rem;
         flex-shrink: 0;
-        padding: 0.69rem 1rem;
         margin-left: auto;
         background: #B1DF1D;
         color: #353535;
         border-radius: 3.125rem;
         transition: background-color 0.3s ease;
+        width: 2.01013rem;
+        height: 1.39163rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.75rem;
+
+        @media (min-width:$md4) {
+            width: 3rem;
+            height: 2rem;
+            font-size: 1rem;
+        }
+
+        @media (min-width:$md2) {
+            width: 4.0625rem;
+            height: 2.8125rem;
+            font-size: 1.4375rem;
+        }
     }
 
     // .directions__footer
@@ -474,7 +545,12 @@
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
+
+        @media (min-width:$md3) {
+            justify-content: center;
+
+        }
     }
 
     // .directions__controls
@@ -499,14 +575,17 @@
 
     // .directions__all-link
     &__all-link {
-        position: absolute;
-        top: 50%;
-        right: 1.625rem;
-        transform: translateY(-50%);
         color: #797979;
         font-size: 1.01875rem;
         font-weight: 500;
         transition: color 0.3s ease;
+
+        @media (min-width:$md3) {
+            position: absolute;
+            top: 50%;
+            right: 1.625rem;
+            transform: translateY(-50%);
+        }
 
         @media (any-hover: hover) {
             &:hover {
@@ -524,12 +603,18 @@
 
     // .team__content
     &__content {
-        margin-top: rem(48);
+        margin-top: rem(24);
         display: flex;
         flex-direction: column;
-        gap: rem(48);
+        gap: rem(16);
+
+        @media (min-width:$md4) {
+            margin-top: rem(48);
+            gap: rem(32);
+        }
 
         @media (min-width:$md2) {
+            gap: rem(48);
             flex-direction: row;
         }
 
@@ -567,9 +652,11 @@
         flex: 1 1 auto;
 
         .swiper-wrapper {
-            display: grid;
-            gap: rem(15);
-            grid-template-columns: repeat(3, 1fr);
+            @media (min-width:$md3) {
+                display: grid;
+                gap: rem(15);
+                grid-template-columns: repeat(3, 1fr);
+            }
 
             @media (min-width:$md1) {
                 grid-template-columns: repeat(4, 1fr);
@@ -577,11 +664,23 @@
             }
         }
     }
+
+    // .team__slider-pagination
+    &__slider-pagination {
+        &.swiper-pagination {
+            margin-bottom: rem(12);
+        }
+
+        @media (min-width:$md3) {
+            display: none;
+        }
+    }
 }
 
 .expert {
     display: flex;
     flex-direction: column;
+
 
     // .expert__image
     &__image {
@@ -629,8 +728,18 @@
 
 .callback {
     background: #F9F9F9;
-    padding: rem(55) 0 rem(80);
     text-align: center;
+    padding: rem(14) 0 rem(24);
+
+    @media (min-width:$md4) {
+        padding: rem(32) 0 rem(50);
+
+    }
+
+    @media (min-width:$md2) {
+        padding: rem(55) 0 rem(80);
+
+    }
 
     // .callback__title
     &__title {}
@@ -647,16 +756,38 @@
 
     // .callback__form
     &__form {
-        margin-top: rem(44);
+        margin-top: rem(22);
+
+        @media (min-width:$md3) {
+            margin-top: rem(32);
+        }
+
+        @media (min-width:$md1) {
+            margin-top: rem(44);
+
+        }
     }
 
     // .callback__form-row
     &__form-row {
         display: flex;
-        align-items: flex-start;
-        gap: rem(25);
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: rem(7);
+        row-gap: rem(13);
+
+        @media (min-width:$md3) {
+            gap: rem(25);
+            flex-wrap: nowrap;
+        }
 
         .wpcf7-form-control-wrap {
+            flex: 0 0 calc(50% - rem(7));
+
+            @media (min-width:$md3) {
+                flex: 0 1 auto;
+            }
+
             .wpcf7-not-valid-tip {
                 position: absolute;
                 top: 100%;
@@ -671,11 +802,20 @@
 
     // .callback__tagline
     &__tagline {
-        margin-top: rem(49);
+        margin-top: rem(16);
         color: #4F4F4F;
-        font-size: 1.125rem;
         font-weight: 500;
-        line-height: 0.8125rem;
         text-transform: lowercase;
+        font-size: rem(10);
+
+        @media (min-width:$md4) {
+            font-size: 1rem;
+        }
+
+        @media (min-width:$md3) {
+            font-size: 1.125rem;
+            margin-top: rem(49);
+            line-height: 0.8125rem;
+        }
     }
 }

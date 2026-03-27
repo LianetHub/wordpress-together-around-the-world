@@ -23,6 +23,7 @@ $experts_query = new WP_Query([
             <?php endif; ?>
 
             <div class="team__slider swiper">
+                <div class="team__slider-pagination swiper-pagination"></div>
                 <div class="swiper-wrapper">
                     <?php if ($experts_query->have_posts()) : ?>
                         <?php while ($experts_query->have_posts()) : $experts_query->the_post();

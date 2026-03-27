@@ -22,7 +22,11 @@
         display: grid;
         row-gap: rem(30);
         column-gap: rem(20);
-        grid-template-columns: repeat(2, 1fr);
+
+        @media (min-width:$md3) {
+            grid-template-columns: repeat(2, 1fr);
+
+        }
 
         @media (min-width:$md2) {
             grid-template-columns: repeat(3, 1fr);
@@ -167,7 +171,12 @@
         flex-direction: column;
         gap: 0.25rem;
         flex-grow: 1;
-        padding: rem(10) rem(8);
+        padding: rem(10) rem(0);
+
+        @media (min-width:$md3) {
+            padding: rem(10) rem(8);
+
+        }
 
         @media (min-width:$md1) {
             padding: rem(14) rem(17);

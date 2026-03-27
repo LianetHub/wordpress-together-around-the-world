@@ -87,9 +87,19 @@
 		border: rem(1) solid #FFF;
 		background: #fff;
 		color: #262624;
-		font-size: 1.125rem;
 		font-weight: 600;
-		padding: rem(10.5) rem(23);
+		font-size: rem(15);
+		padding: rem(4) rem(12);
+
+		@media (min-width: $md3) {
+			padding: rem(8) rem(16);
+			font-size: 1rem;
+		}
+
+		@media (min-width:$md1) {
+			padding: rem(10.5) rem(23);
+			font-size: 1.125rem;
+		}
 
 		&.form__control--green {
 			background: #D9F970;
@@ -494,10 +504,11 @@
 	border: rem(3.5) solid;
 	font-weight: 600;
 	border-radius: 4.375rem;
-	padding: rem(10) rem(18);
-	font-size: 1rem;
+	padding: rem(5) rem(10);
+	font-size: rem(15);
 
 	@media (min-width: $md3) {
+		font-size: 1rem;
 		padding: rem(8.5) rem(18);
 	}
 

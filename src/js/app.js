@@ -91,6 +91,18 @@ $(function () {
         }
     }
 
+    if ($('.team__slider').length) {
+        new MobileSwiper('.team__slider', {
+            slidesPerView: 3,
+            spaceBetween: 8,
+            pagination: {
+                el: '.team__slider-pagination',
+                clickable: true
+            }
+        })
+    }
+
+
     if ($('.directions__slider').length) {
         new Swiper('.directions__slider', {
             slidesPerView: 1,
