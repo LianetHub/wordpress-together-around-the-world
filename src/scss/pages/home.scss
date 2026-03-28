@@ -437,7 +437,6 @@
     // .directions__grid
     &__grid {
         flex: 0 0 100%;
-
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: rem(167);
@@ -445,7 +444,6 @@
 
         @media (min-width:$md4) {
             grid-auto-rows: rem(220);
-
         }
 
         @media (min-width:$md3) {
@@ -466,13 +464,25 @@
         }
 
         // .directions__grid--count-1
-        &--count-1 {}
+        &.directions__grid--count-1 {
+            grid-template-columns: auto;
+
+            .directions__item {
+                grid-row: span 2;
+            }
+        }
 
         // .directions__grid--count-2
-        &--count-2 {}
+        &.directions__grid--count-2 {
+            grid-template-columns: repeat(2, 1fr);
+
+            .directions__item {
+                grid-row: span 2;
+            }
+        }
 
         // .directions__grid--count-3
-        &--count-3 {
+        &.directions__grid--count-3 {
             .directions__item {
 
                 &:nth-child(1),
@@ -492,7 +502,7 @@
         }
 
         // .directions__grid--count-4
-        &--count-4 {
+        &.directions__grid--count-4 {
             .directions__item {
                 &:nth-child(1) {
                     grid-column: span 2;
