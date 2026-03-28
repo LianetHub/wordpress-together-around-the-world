@@ -1237,7 +1237,7 @@ button[data-vc-week-day] {
 [data-vc-theme=light] .vc-months__month[data-vc-months-month-selected],
 [data-vc-theme=light] .vc-years__year[data-vc-years-year-selected] {
   --tw-bg-opacity: 1;
-  background-color: rgb(6, 182, 212, var(--tw-bg-opacity));
+  background-color: #B1DF1D;
   color: #fff;
 }
 
@@ -1267,7 +1267,7 @@ button[data-vc-week-day] {
 }
 
 [data-vc-theme=light] .vc-date[data-vc-date-selected=middle][data-vc-date-selected] .vc-date__btn {
-  background-color: rgb(6, 182, 212, var(--tw-bg-opacity));
+  background-color: #B1DF1D;
   --tw-bg-opacity: 0.7;
   color: #fff;
 }
@@ -1596,7 +1596,7 @@ button[data-vc-week-day] {
 }
 
 [data-vc-theme=dark] .vc-date[data-vc-date-selected=middle][data-vc-date-selected] .vc-date__btn {
-  background-color: rgb(6, 182, 212, var(--tw-bg-opacity));
+  background-color: #B1DF1D;
   --tw-bg-opacity: 0.8;
   color: #fff;
 }
@@ -1729,7 +1729,7 @@ button[data-vc-week-day] {
 
 [data-vc-theme=dark] .vc-date[data-vc-date-selected] .vc-date__btn {
   --tw-bg-opacity: 1;
-  background-color: rgb(6, 182, 212, var(--tw-bg-opacity));
+  background-color: #B1DF1D;
   color: #fff;
 }
 
@@ -6691,7 +6691,7 @@ select.select {
   [data-vc-theme=light] .vc-months__month[data-vc-months-month-selected]:hover,
   [data-vc-theme=light] .vc-years__year[data-vc-years-year-selected]:hover {
     --tw-bg-opacity: 1;
-    background-color: rgb(6, 182, 212, var(--tw-bg-opacity));
+    background-color: #B1DF1D;
     color: #fff;
   }
 
@@ -6724,7 +6724,7 @@ select.select {
   }
 
   [data-vc-theme=light] .vc-date[data-vc-date-selected=middle][data-vc-date-selected] .vc-date__btn:hover {
-    background-color: rgb(6, 182, 212, var(--tw-bg-opacity));
+    background-color: #B1DF1D;
     --tw-bg-opacity: 0.7;
     color: #fff;
   }
@@ -6866,7 +6866,7 @@ select.select {
   }
 
   [data-vc-theme=dark] .vc-date[data-vc-date-selected=middle][data-vc-date-selected] .vc-date__btn:hover {
-    background-color: rgb(6, 182, 212, var(--tw-bg-opacity));
+    background-color: #B1DF1D;
     --tw-bg-opacity: 0.8;
     color: #fff;
   }
@@ -6935,7 +6935,7 @@ select.select {
 
   [data-vc-theme=dark] .vc-date[data-vc-date-selected] .vc-date__btn:hover {
     --tw-bg-opacity: 1;
-    background-color: rgb(6, 182, 212, var(--tw-bg-opacity));
+    background-color: #B1DF1D;
     color: #fff;
   }
 
