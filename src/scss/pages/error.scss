@@ -17,11 +17,19 @@
 
 	// .error__header
 	&__header {
-		display: grid;
+		display: flex;
+		flex-direction: column;
 		align-items: center;
 		gap: 1.3rem;
-		grid-template-columns: repeat(2, 1fr);
+		text-align: center;
 		padding-top: 4rem;
+
+		@media (min-width:$md4) {
+			text-align: left;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+
+		}
 
 		@media (min-width:$md1) {
 			padding-top: 8rem;
@@ -33,7 +41,12 @@
 	// .error__code
 	&__code {
 		font-weight: 900;
-		font-size: 12rem;
+		font-size: 9rem;
+
+		@media (min-width:$md3) {
+			font-size: 12rem;
+
+		}
 
 		@media (min-width:$md2) {
 			font-size: 16rem;
@@ -73,8 +86,19 @@
 	&__btns {
 		display: flex;
 		justify-content: center;
-		gap: 3.69rem;
-		margin-top: 3rem;
+		align-items: center;
+		margin-top: 2rem;
+		gap: 1rem;
+		flex-direction: column;
+
+		@media (min-width:$md5) {
+			flex-direction: row;
+		}
+
+		@media (min-width:$md3) {
+			margin-top: 3rem;
+			gap: 3.69rem;
+		}
 
 		@media (min-width:$md1) {
 			margin-top: 6rem;

@@ -93,8 +93,13 @@
 	width: 100%;
 	max-width: rem(916);
 	flex-direction: column;
-	padding: rem(52) 3.5rem 1.75rem;
 	border-radius: rem(23);
+	padding: rem(52) 1.5rem 1.75rem;
+
+	@media (min-width:$md4) {
+		padding: rem(52) 3.5rem 1.75rem;
+
+	}
 
 	&.popup--small {
 		max-width: rem(490);

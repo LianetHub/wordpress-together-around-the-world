@@ -313,7 +313,10 @@
     &__booking-header {
         gap: 1rem;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+
+        @media (min-width:$md4) {
+            grid-template-columns: repeat(2, 1fr);
+        }
 
         @media (min-width:$md2) {
             display: flex;
@@ -366,7 +369,12 @@
         display: flex;
         flex: 1 1 auto;
         gap: 1rem;
-        grid-column: span 2;
+        flex-direction: column;
+
+        @media (min-width:$md4) {
+            flex-direction: row;
+            grid-column: span 2;
+        }
 
         @media (min-width:$md2) {
             grid-column: auto;
@@ -394,9 +402,14 @@
     &__booking-desc {
         margin-top: 1rem;
         display: flex;
-        align-items: flex-start;
         gap: 1rem;
-        padding-bottom: 1.37rem;
+        flex-direction: column;
+
+        @media (min-width:$md3) {
+            align-items: flex-start;
+            padding-bottom: 1.37rem;
+            flex-direction: row;
+        }
     }
 
     // .tour__booking-text
@@ -428,6 +441,7 @@
         display: flex;
         align-items: center;
         gap: 1rem;
+        flex-wrap: wrap;
 
         @media (min-width:$md1) {
             padding-inline: rem(20);
@@ -465,10 +479,14 @@
     &__info {
         margin-top: 2.06rem;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
         border-radius: 1.25rem;
         background: #F9F9F9;
         padding: 1.5rem 1.3rem;
+        row-gap: 2rem;
+
+        @media (min-width:$md3) {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 
     // .tour__conditions
@@ -549,15 +567,25 @@
 
     // .tour__actions
     &__actions {
-        margin-top: 4rem;
         display: flex;
         gap: 1rem;
+        flex-direction: column;
+        margin-top: 2rem;
+
+        @media (min-width:$md4) {
+            margin-top: 4rem;
+            flex-direction: row;
+        }
     }
 
     // .tour__btn
     &__btn {
-        max-width: 17.9375rem;
         width: 100%;
+
+        @media (min-width:$md5) {
+            max-width: 17.9375rem;
+
+        }
     }
 }
 
@@ -611,7 +639,12 @@
 
     // .booking-form__options
     &__options {
-        margin-top: 1.25rem;
+        margin-top: 1.85rem;
+
+        @media (min-width:$md4) {
+            margin-top: 1.25rem;
+
+        }
     }
 
     // .booking-form__options-caption
@@ -657,7 +690,10 @@
         display: grid;
         gap: rem(18);
         row-gap: rem(32);
-        grid-template-columns: repeat(2, 1fr);
+
+        @media (min-width:$md4) {
+            grid-template-columns: repeat(2, 1fr);
+        }
 
         @media (min-width:$md1) {
             grid-template-columns: repeat(3, 1fr) 0.75fr;
@@ -722,8 +758,11 @@
     // .questions__actions
     &__actions {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
         gap: rem(13);
+
+        @media (min-width:$md3) {
+            grid-template-columns: repeat(3, 1fr);
+        }
     }
 
     // .questions__btn
@@ -749,6 +788,11 @@
     &__bottom-row {
         display: flex;
         gap: 1.31rem;
+        flex-direction: column;
+
+        @media (min-width:$md3) {
+            flex-direction: row;
+        }
 
         &>.wpcf7-form-control-wrap {
             flex: 1 1 auto;
@@ -757,10 +801,14 @@
 
     // .questions__bottom-column
     &__bottom-column {
-        flex: 0 0 17.75rem;
         display: flex;
         flex-direction: column;
         gap: 1.06rem;
+
+        @media (min-width:$md3) {
+            flex: 0 0 17.75rem;
+
+        }
 
         .form__btn {
             min-height: rem(45);

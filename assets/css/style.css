@@ -168,9 +168,9 @@ body.error404 .main {
 }
 
 .typography-block {
-  font-size: 1.20313rem;
   letter-spacing: -0.04213rem;
   line-height: 116.648%;
+  font-size: 0.9375rem;
 }
 
 .typography-block h2,
@@ -184,15 +184,15 @@ body.error404 .main {
 .typography-block h1 {
   margin-top: 0;
   margin-bottom: 2.4rem;
-  font-size: 3rem;
   font-weight: 500;
   line-height: 1.25;
+  font-size: 2.5rem;
 }
 
 .typography-block h2 {
   margin: 2.5rem 0 1.25rem;
-  font-size: 2.25rem;
   line-height: 116.667%;
+  font-size: 2rem;
 }
 
 .typography-block h2:first-child {
@@ -200,9 +200,9 @@ body.error404 .main {
 }
 
 .typography-block h3 {
-  font-size: 1.75rem;
   margin: 2rem 0 1rem;
   line-height: 128.571%;
+  font-size: 1.5rem;
 }
 
 .typography-block h3:first-child {
@@ -210,9 +210,9 @@ body.error404 .main {
 }
 
 .typography-block h4 {
-  font-size: 1.5rem;
   line-height: 1.45;
   margin: 2rem 0 1rem;
+  font-size: 1.25rem;
 }
 
 .typography-block h4:first-child {
@@ -364,6 +364,8 @@ body.error404 .main {
 
 .typography-block img {
   border-radius: 1.5625rem;
+  width: 100%;
+  height: auto;
 }
 
 .typography-block .wp-block-image img {
@@ -2194,8 +2196,8 @@ button[data-vc-week-day] {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 3.25rem 3.5rem 1.75rem;
   border-radius: 1.4375rem;
+  padding: 3.25rem 1.5rem 1.75rem;
 }
 
 .popup.popup--small {
@@ -4654,8 +4656,6 @@ select.select {
   gap: 1rem;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[2];
-  grid-template-columns: repeat(2, 1fr);
 }
 
 .tour__booking-date {
@@ -4711,8 +4711,10 @@ select.select {
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
   gap: 1rem;
-  -ms-grid-column-span: 2;
-  grid-column: span 2;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .tour__booking-btn,
@@ -4725,11 +4727,11 @@ select.select {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
   gap: 1rem;
-  padding-bottom: 1.37rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .tour__booking-text.typography-block {
@@ -4757,6 +4759,8 @@ select.select {
       -ms-flex-align: center;
           align-items: center;
   gap: 1rem;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .tour__departure-title {
@@ -4783,11 +4787,10 @@ select.select {
   margin-top: 2.06rem;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[2];
-  grid-template-columns: repeat(2, 1fr);
   border-radius: 1.25rem;
   background: #F9F9F9;
   padding: 1.5rem 1.3rem;
+  row-gap: 2rem;
 }
 
 .tour__conditions {
@@ -4874,15 +4877,18 @@ select.select {
 }
 
 .tour__actions {
-  margin-top: 4rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   gap: 1rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 2rem;
 }
 
 .tour__btn {
-  max-width: 17.9375rem;
   width: 100%;
 }
 
@@ -4929,7 +4935,7 @@ select.select {
 }
 
 .booking-form__options {
-  margin-top: 1.25rem;
+  margin-top: 1.85rem;
 }
 
 .booking-form__options-caption {
@@ -4973,8 +4979,6 @@ select.select {
   display: grid;
   gap: 1.125rem;
   row-gap: 2rem;
-  -ms-grid-columns: (1fr)[2];
-  grid-template-columns: repeat(2, 1fr);
 }
 
 .booking-form__controls {
@@ -5035,8 +5039,6 @@ select.select {
 .questions__actions {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[3];
-  grid-template-columns: repeat(3, 1fr);
   gap: 0.8125rem;
 }
 
@@ -5056,6 +5058,10 @@ select.select {
   display: -ms-flexbox;
   display: flex;
   gap: 1.31rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .questions__bottom-row > .wpcf7-form-control-wrap {
@@ -5065,9 +5071,6 @@ select.select {
 }
 
 .questions__bottom-column {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 17.75rem;
-          flex: 0 0 17.75rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -5096,20 +5099,24 @@ select.select {
 }
 
 .error__header {
-  display: -ms-grid;
-  display: grid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   gap: 1.3rem;
-  -ms-grid-columns: (1fr)[2];
-  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
   padding-top: 4rem;
 }
 
 .error__code {
   font-weight: 900;
-  font-size: 12rem;
+  font-size: 9rem;
 }
 
 .error__title {
@@ -5129,8 +5136,15 @@ select.select {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 3.69rem;
-  margin-top: 3rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 2rem;
+  gap: 1rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .error__btn {
@@ -5144,14 +5158,6 @@ select.select {
 
 .policy__content {
   margin-top: 2rem;
-}
-
-.nojq {
-  display: none;
-}
-
-html {
-  margin-top: 0 !important;
 }
 
 @media (min-width: 359.98px) {
@@ -5173,6 +5179,26 @@ html {
 }
 
 @media (min-width: 409.98px) {
+  .typography-block {
+    font-size: 1.20313rem;
+  }
+
+  .typography-block h1 {
+    font-size: 3rem;
+  }
+
+  .typography-block h2 {
+    font-size: 2.25rem;
+  }
+
+  .typography-block h3 {
+    font-size: 1.75rem;
+  }
+
+  .typography-block h4 {
+    font-size: 1.5rem;
+  }
+
   [data-vc-week-day] {
     font-size: 1.17413rem;
   }
@@ -5478,6 +5504,17 @@ html {
   .tour-card__dates {
     font-size: 1.125rem;
   }
+
+  .tour__btn {
+    max-width: 17.9375rem;
+  }
+
+  .error__btns {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
 }
 
 @media (min-width: 575.98px) {
@@ -5516,6 +5553,10 @@ html {
   .f-button.is-close-button {
     top: 0.875rem;
     right: 0.875rem;
+  }
+
+  .popup {
+    padding: 3.25rem 3.5rem 1.75rem;
   }
 
   .popup.popup--small {
@@ -5678,6 +5719,45 @@ html {
   .tours__actions {
     margin-top: 1.4375rem;
   }
+
+  .tour__booking-header {
+    -ms-grid-columns: (1fr)[2];
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tour__booking-actions {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-grid-column-span: 2;
+    grid-column: span 2;
+  }
+
+  .tour__actions {
+    margin-top: 4rem;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+
+  .booking-form__options {
+    margin-top: 1.25rem;
+  }
+
+  .booking-form__row {
+    -ms-grid-columns: (1fr)[2];
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .error__header {
+    text-align: left;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[2];
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (min-width: 767.98px) {
@@ -5826,6 +5906,49 @@ html {
 
   .tour-card__btn.btn {
     border-width: 0.125rem;
+  }
+
+  .tour__booking-desc {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    padding-bottom: 1.37rem;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+
+  .tour__info {
+    -ms-grid-columns: (1fr)[2];
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .questions__actions {
+    -ms-grid-columns: (1fr)[3];
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .questions__bottom-row {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+
+  .questions__bottom-column {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 17.75rem;
+            flex: 0 0 17.75rem;
+  }
+
+  .error__code {
+    font-size: 12rem;
+  }
+
+  .error__btns {
+    margin-top: 3rem;
+    gap: 3.69rem;
   }
 }
 
