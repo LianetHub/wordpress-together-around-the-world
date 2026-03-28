@@ -523,10 +523,36 @@ $(function () {
         const $form = $('.tour__booking-form');
         const $passengersContainer = $('.booking-form__passengers');
 
-        $('.tour__booking-btn').on('click', function (e) {
-            e.preventDefault();
-            $form.stop().slideToggle(400);
-        });
+        function initPassengerCalendar(input) {
+            if (typeof window.VanillaCalendarPro === 'undefined' || !input) return;
+            if (input.dataset.calendarInitialized) return;
+
+            const { Calendar } = window.VanillaCalendarPro;
+
+            const cal = new Calendar(input, {
+                inputMode: true,
+                positionToInput: 'auto',
+                parentMode: document.body,
+                selectedTheme: 'light',
+                locale: "ru-RU",
+                dateMin: '1920-01-01',
+                dateMax: new Date().toISOString().split('T')[0],
+                dateDisplay: 'DD.MM.YYYY',
+                onChangeToInput(self) {
+                    if (self.context.selectedDates.length > 0) {
+                        const selectedDate = self.context.selectedDates[0];
+                        const [year, month, day] = selectedDate.split('-');
+                        input.value = `${day}.${month}.${year}`;
+
+                        $(input).closest('.form__field').removeClass('has-error').find('.form__field-error').remove();
+                        self.hide();
+                    }
+                },
+            });
+
+            cal.init();
+            input.dataset.calendarInitialized = 'true';
+        }
 
         function updatePassengerIndices() {
             $passengersContainer.find('.booking-form__block').each(function (index) {
@@ -547,16 +573,24 @@ $(function () {
 
                     if (fieldName) {
                         $input.attr('name', `passengers[${index}][${fieldName}]`);
+                        if (fieldName === 'birth_date') {
+                            initPassengerCalendar($input[0]);
+                        }
                     }
                 });
             });
         }
 
+        $('.tour__booking-btn').on('click', function (e) {
+            e.preventDefault();
+            $form.stop().slideToggle(400);
+        });
+
         $passengersContainer.on('click', '.booking-form__add', function () {
             const $currentBlock = $(this).closest('.booking-form__block');
             const $newBlock = $currentBlock.clone();
 
-            $newBlock.find('input').val('');
+            $newBlock.find('input').val('').removeAttr('data-calendar-initialized');
             $newBlock.find('.form__field').removeClass('has-error');
             $newBlock.find('.form__field-error').remove();
 
@@ -578,49 +612,68 @@ $(function () {
         });
 
         $form.on('submit', function (e) {
+            e.preventDefault();
             let isValid = true;
             const $requiredFields = $form.find('[data-required]');
 
-            $form.find('.form__field').removeClass('has-error');
-            $form.find('.checkbox').removeClass('has-error');
+            $form.find('.form__field, .checkbox').removeClass('has-error');
             $form.find('.form__field-error').remove();
 
             $requiredFields.each(function () {
                 const $input = $(this);
                 const $parent = $input.closest('.form__field');
-                const value = $input.val() || '';
-
-                if (value.trim() === "") {
+                if (!($input.val() || '').trim()) {
                     isValid = false;
-                    $parent.addClass('has-error');
-                    if ($parent.hasClass('form__field')) {
-                        $parent.append('<div class="form__field-error">Заполните это поле</div>');
-                    }
+                    $parent.addClass('has-error').append('<div class="form__field-error">Заполните это поле</div>');
                 }
             });
 
-            const $agreementLabel = $form.find('.checkbox');
-            const $agreementInput = $agreementLabel.find('.checkbox__input');
-
-            if (!$agreementInput.is(':checked')) {
+            if (!$form.find('.checkbox__input').is(':checked')) {
                 isValid = false;
-                $agreementLabel.addClass('has-error');
+                $form.find('.checkbox').addClass('has-error');
             }
 
             if (!isValid) {
-                e.preventDefault();
                 const $firstError = $('.has-error').first();
                 if ($firstError.length) {
-                    $('html, body').animate({
-                        scrollTop: $firstError.offset().top - 100
-                    }, 500);
+                    $('html, body').animate({ scrollTop: $firstError.offset().top - 100 }, 500);
                 }
+                return false;
             }
+
+            const $submitBtn = $form.find('.booking-form__submit');
+            const formUrl = $form.attr('action');
+
+            $submitBtn.addClass('_loading');
+
+            $.ajax({
+                url: formUrl,
+                type: 'POST',
+                dataType: 'json',
+                data: $form.serialize() + '&action=send_booking_form',
+                success: function (response) {
+                    $submitBtn.removeClass('_loading');
+
+                    if (response.success) {
+                        getSuccessSubmitting();
+
+                        $form[0].reset();
+                        $passengersContainer.find('.booking-form__block:not(:first)').remove();
+                        updatePassengerIndices();
+
+                        $form.slideUp(400);
+                    } else {
+                        getErrorSubmitting();
+                    }
+                },
+                error: function () {
+                    $submitBtn.removeClass('_loading');
+                    getErrorSubmitting();
+                }
+            });
         });
 
         $('.js-anchor-booking').on('click', function (e) {
-            const $form = $('.tour__booking-form');
-
             if ($form.is(':hidden')) {
                 $form.stop().slideDown(400);
             }
@@ -629,20 +682,28 @@ $(function () {
         updatePassengerIndices();
     }
 
-    document.addEventListener('wpcf7mailsent', function () {
-
+    function getSuccessSubmitting() {
         Fancybox.close();
         Fancybox.show([{
             src: "#success-submitting",
             type: "inline"
         }]);
-    }, false);
+    }
 
-    document.addEventListener('wpcf7mailfailed', function () {
+    function getErrorSubmitting() {
         Fancybox.close();
         Fancybox.show([{
             src: "#error-submitting",
             type: "inline"
         }]);
+    }
+
+    document.addEventListener('wpcf7mailsent', function () {
+
+        getSuccessSubmitting()
+    }, false);
+
+    document.addEventListener('wpcf7mailfailed', function () {
+        getErrorSubmitting()
     }, false);
 })

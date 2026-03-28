@@ -421,3 +421,155 @@ function get_all_tours_data()
     }
     return $events;
 }
+
+// =========================================================================
+// 10. BOOKING FORM SUBMITTING
+// =========================================================================
+add_filter('wpcf7_before_send_mail', 'target_email_from_acf', 10, 1);
+
+function target_email_from_acf($contact_form)
+{
+    $mail = $contact_form->prop('mail');
+
+
+    $email_repeater = get_field('email_receiver', 'option');
+    $emails = [];
+
+    if ($email_repeater) {
+        foreach ($email_repeater as $row) {
+
+            $email = $row['email'];
+            if ($email && is_email($email)) {
+                $emails[] = $email;
+            }
+        }
+    }
+
+    if (!empty($emails)) {
+
+        $mail['recipient'] = implode(', ', $emails);
+        $contact_form->set_properties(['mail' => $mail]);
+    }
+
+    return $contact_form;
+}
+
+add_action('wp_ajax_send_booking_form', 'handle_booking_form');
+add_action('wp_ajax_nopriv_send_booking_form', 'handle_booking_form');
+
+function handle_booking_form()
+{
+    if (!isset($_POST['customer_phone'])) wp_send_json_error('Нет данных');
+
+    $email_repeater = get_field('email_receiver', 'option');
+    $emails = [];
+    if ($email_repeater && is_array($email_repeater)) {
+        foreach ($email_repeater as $row) {
+            if (!empty($row['email'])) $emails[] = sanitize_email($row['email']);
+        }
+    }
+    $email_to = !empty($emails) ? implode(', ', $emails) : get_option('admin_email');
+
+    $tg_token = get_option('cf7_tg_bot_token');
+    $tg_chat  = get_option('cf7_tg_chat_id');
+
+    $phone      = sanitize_text_field($_POST['customer_phone']);
+    $method_raw = sanitize_text_field($_POST['communication_method']);
+    $comment    = sanitize_textarea_field($_POST['comment']);
+    $page_url   = esc_url($_POST['page_url'] ?? '');
+    $tour_name  = sanitize_text_field($_POST['tour_name'] ?? 'Тур не указан');
+    $passengers = $_POST['passengers'] ?? [];
+
+    $methods_map = [
+        'telegram' => 'Телеграм',
+        'whatsapp' => 'WhatsApp',
+        'call'     => 'Звонок'
+    ];
+    $method = $methods_map[$method_raw] ?? $method_raw;
+
+    $passengers_list = "";
+    if (!empty($passengers)) {
+        foreach ($passengers as $idx => $p) {
+            $num = $idx + 1;
+            $f = sanitize_text_field($p['first_name'] ?? '');
+            $l = sanitize_text_field($p['last_name'] ?? '');
+            $m = sanitize_text_field($p['middle_name'] ?? '');
+            $b = sanitize_text_field($p['birth_date'] ?? '');
+            $passengers_list .= "{$num}. {$l} {$f} {$m} ({$b})<br>";
+        }
+    }
+
+    $mail_subject = "Новое бронирование тура «{$tour_name}»";
+
+    $mail_body = '
+    <div style="background-color: #f4f4f4; padding: 20px; font-family: sans-serif;">
+        <div style="background-color: #ffffff; padding: 30px; border-radius: 10px; border: 1px solid #e0e0e0; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #B1DF1D; margin-top: 0;">Новая заявка с сайта «Вместе по миру»</h2>
+            <p style="font-size: 16px; color: #333;">Вы получили новую заявку через форму <strong>"Бронирование тура"</strong></p>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="padding: 10px 0; color: #777; width: 150px;">Тур:</td>
+                    <td style="padding: 10px 0; font-weight: bold; color: #333;">' . $tour_name . '</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; color: #777;">Телефон:</td>
+                    <td style="padding: 10px 0; font-weight: bold; color: #333;">
+                        <a href="tel:' . $phone . '" style="color: #B1DF1D; text-decoration: none; font-size: 20px;">' . $phone . '</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; color: #777;">Связь:</td>
+                    <td style="padding: 10px 0; color: #333;">' . $method . '</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; color: #777;">Пассажиры:</td>
+                    <td style="padding: 10px 0; color: #333; font-size: 14px;">' . $passengers_list . '</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; color: #777;">Комментарий:</td>
+                    <td style="padding: 10px 0; color: #333;">' . nl2br($comment) . '</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; color: #777;">Страница:</td>
+                    <td style="padding: 10px 0; font-size: 12px; color: #333;"><a href="' . $page_url . '">' . $page_url . '</a></td>
+                </tr>
+            </table>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+            <p style="font-size: 12px; color: #999; text-align: center;">Это сообщение отправлено автоматически с вашего сайта vmeste-po-miru.ru</p>
+        </div>
+    </div>';
+
+    $headers = ['Content-Type: text/html; charset=UTF-8', 'From: Вместе по миру <noreply@vmeste-po-miru.ru>'];
+    wp_mail($email_to, $mail_subject, $mail_body, $headers);
+
+    if ($tg_token && $tg_chat) {
+        $tg_message = "<b>Новое бронирование!</b>\n\n";
+        $tg_message .= "<b>Источник:</b> " . $page_url . "\n";
+        $tg_message .= "<b>Телефон:</b> " . $phone . "\n";
+        $tg_message .= "<b>Связь:</b> " . $method . "\n";
+        $tg_message .= "<b>Комментарий:</b> " . $comment . "\n\n";
+        $tg_message .= "<b>Пассажиры:</b>\n";
+
+        if (!empty($passengers)) {
+            foreach ($passengers as $idx => $p) {
+                $num = $idx + 1;
+                $f = sanitize_text_field($p['first_name'] ?? '');
+                $l = sanitize_text_field($p['last_name'] ?? '');
+                $m = sanitize_text_field($p['middle_name'] ?? '');
+                $b = sanitize_text_field($p['birth_date'] ?? '');
+                $tg_message .= "{$num}. {$l} {$f} {$m} ({$b})\n";
+            }
+        }
+
+        wp_remote_post("https://api.telegram.org/bot{$tg_token}/sendMessage", [
+            'body' => [
+                'chat_id'    => $tg_chat,
+                'text'       => $tg_message,
+                'parse_mode' => 'html'
+            ]
+        ]);
+    }
+
+    wp_send_json_success();
+}

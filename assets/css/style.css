@@ -4955,7 +4955,8 @@ select.select {
 
 .booking-form__block:not(:last-child) {
   border-bottom: 0.0625rem solid #D9D9D9;
-  padding-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .booking-form__caption {
@@ -5028,7 +5029,6 @@ select.select {
 
 .booking-form__controls {
   position: absolute;
-  bottom: 1.75rem;
   right: 0;
   top: 0;
   display: -webkit-box;
@@ -5042,6 +5042,7 @@ select.select {
       -ms-flex-pack: end;
           justify-content: flex-end;
   gap: 0.5rem;
+  bottom: 1.25rem;
 }
 
 .booking-form__add {

@@ -1,10 +1,11 @@
 <form
-    action="#"
+    action="<?php echo esc_url(admin_url('admin-ajax.php')); ?>"
     method="post"
     id="booking-form"
     class="tour__booking-form booking-form"
     style="display: none;">
-
+    <input type="hidden" name="page_url" value="<?php echo esc_url("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"); ?>">
+    <input type="hidden" name="tour_name" value="<?php echo esc_attr(get_the_title()); ?>">
     <div class="booking-form__header">
         <fieldset class="booking-form__block">
             <legend class="booking-form__caption">Данные заказчика</legend>
