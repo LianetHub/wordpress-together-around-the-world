@@ -1,18 +1,18 @@
 @font-face {
+    font-family: icons;
+    font-display: swap;
+    src: url(../fonts/icons.woff2) format("woff2"), url(../fonts/icons.woff) format("woff");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
     font-family: Roboto;
     src: url(../fonts/Roboto-VariableFont_wdth,wght.woff2) format("woff2 supports variations"), url(../fonts/Roboto-VariableFont_wdth,wght.woff2) format("woff2-variations"), url(../fonts/Roboto-VariableFont_wdth,wght.woff) format("woff");
     font-weight: 100 900;
     font-stretch: 75% 125%;
     font-style: normal;
     font-display: swap
-}
-
-@font-face {
-    font-family: icons;
-    font-display: swap;
-    src: url(../fonts/icons.woff2) format("woff2"), url(../fonts/icons.woff) format("woff");
-    font-weight: 400;
-    font-style: normal
 }
 
 .checkbox__input:checked+.checkbox__text::before, .dropdown__list-item.selected::before, .dropdown__list-item[aria-checked=true]::before, .swiper-button-next, .swiper-button-prev, .tour-card__badge--hot::before, .wpcf7-list-item label .checkbox__input:checked+.wpcf7-list-item-label::before, .wpcf7-list-item label input:checked+.wpcf7-list-item-label::before, [class*=" icon-"]:before, [class^=icon-]:before {
@@ -772,7 +772,6 @@ body.error404 .main {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    font-size: 1.17413rem;
     font-weight: 500;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
@@ -780,9 +779,10 @@ body.error404 .main {
     text-transform: uppercase;
     line-height: 115%;
     margin: 0;
-    min-width: 1.875rem;
     padding: 0;
-    width: 100%
+    width: 100%;
+    font-size: .625rem;
+    min-width: 1.875rem
 }
 
 button[data-vc-week-day] {
@@ -848,23 +848,18 @@ button[data-vc-week-day] {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    border-radius: .5rem;
     border-width: 0;
     text-transform: uppercase;
     cursor: pointer;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    font-size: .9375rem;
     font-weight: 500;
     height: 100%;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
     line-height: 115%;
-    min-height: 2.1875rem;
-    min-width: 2.1875rem;
-    max-width: 2.1875rem;
     border-radius: 50%;
     padding: 0;
     -webkit-transition-duration: 75ms;
@@ -873,7 +868,11 @@ button[data-vc-week-day] {
     transition-property: all;
     -webkit-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
     transition-timing-function: cubic-bezier(.4, 0, .2, 1);
-    width: 100%
+    width: 100%;
+    min-width: 1.17819rem;
+    max-width: 1.17819rem;
+    min-height: 1.17819rem;
+    font-size: .5625rem
 }
 
 [data-vc-date][data-vc-date-today] [data-vc-date-btn] {
@@ -1707,14 +1706,14 @@ button[data-vc-week-day] {
 }
 
 .booking-calendar {
-    padding: 3.7rem 0;
-    background: #f9f9f9
+    background: #f9f9f9;
+    padding: 1.75rem 0 .94rem
 }
 
 .booking-calendar__content {
-    margin-top: 1rem;
     -webkit-transition: all .3s ease;
-    transition: all .3s ease
+    transition: all .3s ease;
+    margin-top: .375rem
 }
 
 .booking-calendar__content:not(.is-loaded) {
@@ -1759,11 +1758,11 @@ button[data-vc-week-day] {
     align-items: center;
     -webkit-transition: opacity .3s ease;
     transition: opacity .3s ease;
-    gap: 1.25rem;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
-    flex-direction: column
+    flex-direction: column;
+    gap: .75rem
 }
 
 .booking-calendar__filters {
@@ -1776,13 +1775,11 @@ button[data-vc-week-day] {
 }
 
 .booking-calendar__filter {
-    font-size: .9375rem;
     font-weight: 500;
     line-height: 146.667%;
-    padding: .44rem 1.56rem;
     border-radius: 3.125rem;
     color: #b7b7b7;
-    border: .1875rem solid transparent;
+    border: .0625rem solid transparent;
     background: 0 0;
     -webkit-transition: all .3s ease;
     transition: all .3s ease;
@@ -1790,7 +1787,9 @@ button[data-vc-week-day] {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    font-size: .5rem;
+    padding: .1875rem .625rem
 }
 
 .booking-calendar__filter.swiper-slide {
@@ -1801,8 +1800,8 @@ button[data-vc-week-day] {
 
 .booking-calendar__filter.active {
     color: #3c3c3c;
-    border: .1875rem solid #b1df1d;
-    background: #fff
+    background: #fff;
+    border: .0625rem solid #b1df1d
 }
 
 .booking-calendar__filters-prev.swiper-button-prev {
@@ -1824,17 +1823,18 @@ button[data-vc-week-day] {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    gap: 1.4375rem
+    gap: .5rem
 }
 
 .booking-calendar__next, .booking-calendar__prev {
-    width: 2.1875rem;
-    height: 2.1875rem;
     background: #d9d9d9;
     color: #353535;
     border-radius: 50%;
     -webkit-transition: all .3s ease;
-    transition: all .3s ease
+    transition: all .3s ease;
+    width: 1.08238rem;
+    height: 1.08238rem;
+    font-size: .5rem
 }
 
 .booking-calendar__next:disabled, .booking-calendar__prev:disabled {
@@ -1844,24 +1844,24 @@ button[data-vc-week-day] {
 
 .booking-calendar__month {
     color: #000;
-    font-size: 1.25rem;
     font-weight: 600;
     line-height: 110%;
-    min-width: 8.875rem;
+    min-width: 7.1em;
+    font-size: .5625rem;
     text-align: center
 }
 
 .booking-calendar__body {
-    margin-top: 1.46rem;
     display: -ms-grid;
     display: grid;
-    gap: 1.31rem
+    margin-top: .75rem;
+    gap: .69rem
 }
 
 .booking-calendar__block {
     border-radius: 1.25rem;
     background: #fffdfd;
-    padding: 4rem 1.69rem 2rem
+    padding: .75rem
 }
 
 .booking-calendar__block [data-vc=calendar] {
@@ -1873,8 +1873,8 @@ button[data-vc-week-day] {
 }
 
 .booking-calendar__block .vc-dates__row {
-    border-top: .125rem solid #dbdbdb;
-    padding: .75rem 0
+    padding: .3rem 0;
+    border-top: .0625rem solid #dbdbdb
 }
 
 .booking-calendar__block [data-vc-theme=light] .vc-date:not([data-vc-date-month=prev]):not([data-vc-date-month=next]) .vc-date__btn:not([aria-disabled]) {
@@ -1905,17 +1905,18 @@ button[data-vc-week-day] {
 .booking-calendar__side {
     border-radius: 1.25rem;
     background: #fffdfd;
-    padding: 3rem 2.31rem
+    padding: 1.5rem 1.06rem;
+    min-height: 8.1875rem
 }
 
 .booking-calendar__caption {
     color: #797979;
-    font-size: 1.125rem;
-    font-weight: 500
+    font-weight: 500;
+    font-size: .75rem
 }
 
 .booking-calendar__list {
-    margin-top: 1.94rem
+    margin-top: .6875rem
 }
 
 .tours-list {
@@ -1954,29 +1955,29 @@ button[data-vc-week-day] {
 
 .tours-list__name {
     color: #797979;
-    font-size: 1.125rem;
     font-weight: 500;
     line-height: 72.222%;
     -webkit-transition: color .3s ease;
-    transition: color .3s ease
+    transition: color .3s ease;
+    font-size: .625rem
 }
 
 .tours-list__duration {
-    margin-top: .56rem;
+    margin-top: .25rem;
     color: #b7b7b7;
-    font-size: .9375rem;
     font-weight: 500;
-    line-height: 146.667%
+    line-height: 146.667%;
+    font-size: .625rem
 }
 
 .tours-list__price {
     -ms-flex-negative: 0;
     flex-shrink: 0;
     color: #383838;
-    font-size: 1.125rem;
     font-weight: 600;
     line-height: 72.222%;
-    text-transform: lowercase
+    text-transform: lowercase;
+    font-size: .75rem
 }
 
 .fancybox__container {
@@ -2127,7 +2128,7 @@ button[data-vc-week-day] {
 .title {
     font-weight: 600;
     line-height: 117.073%;
-    font-size: 1.75rem
+    font-size: 1.5625rem
 }
 
 .text-center {
@@ -2163,8 +2164,9 @@ button[data-vc-week-day] {
     align-items: center;
     background: #d9d9d9;
     color: #353535;
-    --swiper-navigation-size: 2.1875rem;
-    border-radius: 50%
+    border-radius: 50%;
+    --swiper-navigation-size: 1.08238rem;
+    font-size: .5rem
 }
 
 .swiper-button-next.swiper-button-lock, .swiper-button-prev.swiper-button-lock {
@@ -2389,7 +2391,6 @@ button[data-vc-week-day] {
 .dropdown {
     position: relative;
     width: 100%;
-    font-size: 1.125rem;
     font-weight: 600
 }
 
@@ -2424,10 +2425,7 @@ button[data-vc-week-day] {
     border-radius: 3.125rem;
     background: #d9f970;
     color: #262624;
-    padding: .125rem .5rem;
-    font-size: 1.125rem;
     font-weight: 600;
-    padding: .65625rem 1.4375rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2438,7 +2436,9 @@ button[data-vc-week-day] {
     -ms-flex-pack: justify;
     justify-content: space-between;
     z-index: 1;
-    border: .0625rem solid #d9f970
+    border: .0625rem solid #d9f970;
+    padding: .5rem 1rem;
+    font-size: 1rem
 }
 
 .dropdown__button.selected {
@@ -2498,7 +2498,8 @@ button[data-vc-week-day] {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: .25rem
+    gap: .25rem;
+    max-height: 15.9375rem
 }
 
 .dropdown__list::-webkit-scrollbar {
@@ -2518,12 +2519,8 @@ button[data-vc-week-day] {
 }
 
 .dropdown__list::-webkit-scrollbar-thumb {
-    background: rgba(217, 249, 112, .2);
+    background: #b1df1d;
     border-radius: .625rem
-}
-
-.dropdown__list::-webkit-scrollbar-thumb:hover {
-    background: #d9f970
 }
 
 .dropdown__list-item {
@@ -2596,8 +2593,8 @@ button[data-vc-week-day] {
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start;
-    gap: .69rem;
-    position: relative
+    position: relative;
+    gap: .3rem
 }
 
 .form__field.has-error .form__control {
@@ -2653,10 +2650,10 @@ button[data-vc-week-day] {
 
 .form__field-label {
     color: #262624;
-    font-size: .75rem;
     font-weight: 600;
     text-transform: uppercase;
-    padding: 0 1.69rem
+    font-size: .5625rem;
+    padding: 0 1rem
 }
 
 .form__control {
@@ -2671,15 +2668,13 @@ button[data-vc-week-day] {
     background: #fff;
     color: #262624;
     font-weight: 600;
-    font-size: .9375rem;
-    padding: .25rem .75rem
+    padding: .5rem 1rem;
+    font-size: 1rem
 }
 
 .form__control.form__control--green {
     background: #d9f970;
-    border-color: #d9f970;
-    padding: .65625rem 1.4375rem;
-    font-size: 1.125rem
+    border-color: #d9f970
 }
 
 .form__control.form__control--green::-webkit-input-placeholder {
@@ -3499,7 +3494,7 @@ button[data-vc-week-day] {
 .footer {
     background: #0c0c0c;
     color: #e0e0e0;
-    padding: 2.19rem 0
+    padding: 1.88rem 0 .875rem
 }
 
 .footer__header {
@@ -3536,48 +3531,60 @@ button[data-vc-week-day] {
 }
 
 .footer__column.footer__column--contacts {
-    gap: 2.5rem;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;
     -ms-flex-direction: row-reverse;
-    flex-direction: row-reverse
+    flex-direction: row-reverse;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    gap: .625rem
 }
 
 .footer__contacts {
-    gap: 1.87rem;
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: (1fr)[2];
-    grid-template-columns: repeat(2, 1fr)
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-top: .875rem;
+    gap: 1rem
+}
+
+.footer__contacts-block {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 50%;
+    flex: 0 1 50%
 }
 
 .footer__phone {
     color: #fff;
-    font-size: 1.5625rem;
     font-weight: 600;
     line-height: 112%;
+    white-space: nowrap;
     letter-spacing: -.01563rem;
     -webkit-transition: color .3s ease;
     transition: color .3s ease
 }
 
 .footer__desc {
-    margin-top: .875rem;
     color: #8e8e8e;
-    font-size: .9375rem;
     font-weight: 500;
-    line-height: 1.125rem;
-    text-transform: lowercase
+    line-height: 1.2;
+    text-transform: lowercase;
+    margin-top: .25rem;
+    font-size: .75rem
 }
 
 .footer__email {
     color: #fff;
-    font-size: 1.5625rem;
     font-weight: 600;
     line-height: 112%;
     letter-spacing: -.01563rem;
     -webkit-transition: color .3s ease;
-    transition: color .3s ease
+    transition: color .3s ease;
+    white-space: nowrap
 }
 
 .footer__menu-list {
@@ -3591,11 +3598,11 @@ button[data-vc-week-day] {
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start;
-    gap: .5rem;
+    gap: .125rem;
     color: #e0e0e0;
-    font-size: 1.125rem;
     font-weight: 600;
-    line-height: 155.556%
+    line-height: 155.556%;
+    font-size: .75rem
 }
 
 .footer__menu-list a {
@@ -3611,31 +3618,32 @@ button[data-vc-week-day] {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    gap: 2rem;
-    padding: .75rem 1rem;
+    padding: .1875rem .1875rem .1875rem .5rem;
     border-radius: .9375rem;
-    max-width: 21.125rem
+    max-width: 11.925rem;
+    gap: .25rem
 }
 
 .footer__reqs-icon {
     -ms-flex-negative: 0;
-    flex-shrink: 0
+    flex-shrink: 0;
+    width: 2.25rem
 }
 
 .footer__reqs-content {
     color: #fff;
-    font-size: 1.5625rem;
     font-weight: 600;
     line-height: 112%;
-    letter-spacing: .0625rem
+    font-size: .75rem;
+    letter-spacing: .03rem
 }
 
 .footer__reqs-text {
-    font-size: 1.25rem;
     line-height: 1.5;
-    letter-spacing: -.0375rem;
     color: silver;
-    text-transform: uppercase
+    text-transform: uppercase;
+    font-size: .75rem;
+    letter-spacing: -.0225rem
 }
 
 .footer__socials {
@@ -3645,15 +3653,15 @@ button[data-vc-week-day] {
 
 .footer__socials-title {
     color: #e0e0e0;
-    font-size: 1.0625rem;
     font-weight: 600;
-    line-height: 1.75rem;
-    letter-spacing: .0425rem
+    letter-spacing: .0425rem;
+    font-size: .75rem;
+    letter-spacing: .03rem
 }
 
 .footer__socials-items {
-    margin-top: 1.19rem;
-    gap: .9375rem
+    margin-top: .625rem;
+    gap: .6875rem
 }
 
 .footer__policies {
@@ -3674,9 +3682,9 @@ button[data-vc-week-day] {
     font-weight: 600;
     line-height: 1.6470588235;
     letter-spacing: .0425rem;
-    padding: .5rem;
     display: block;
-    font-size: .9rem
+    font-size: .75rem;
+    padding: .25rem
 }
 
 .hero {
@@ -3822,14 +3830,14 @@ button[data-vc-week-day] {
 }
 
 .selection {
-    padding: 2.5rem 0 1.5625rem
+    padding: 1.5rem 0 .875rem
 }
 
 .selection__form {
-    margin-top: 2.4rem;
     border-radius: 1.25rem;
     background: #f9f9f9;
-    padding: 1.375rem 1rem .5rem
+    margin-top: .75rem;
+    padding: .75rem .875rem
 }
 
 .selection__form-row {
@@ -3838,27 +3846,19 @@ button[data-vc-week-day] {
     gap: 1rem
 }
 
-.selection__form-submit {
-    min-height: 2.8125rem
-}
-
 .selection__form-checkbox {
     margin-top: .75rem;
-    margin-left: 1.5625rem
+    margin-left: 1rem
 }
 
 .description {
-    padding: 1.5625rem 0 1.5625rem
+    padding: .75rem 0 1.5625rem
 }
 
 .description__container {
     display: -ms-grid;
     display: grid;
-    gap: 2rem
-}
-
-.description__column {
-    padding-left: 1.75rem
+    gap: 1rem
 }
 
 .description__title {
@@ -3866,15 +3866,14 @@ button[data-vc-week-day] {
 }
 
 .description__list {
-    margin-top: 2.5rem;
     color: #000;
-    max-width: 30.625rem;
-    font-size: 1.25rem
+    font-size: .75rem;
+    margin-top: 1.375rem
 }
 
 .description__list li {
     position: relative;
-    padding-left: 3.4375rem
+    padding-left: 2.75em
 }
 
 .description__list li::before {
@@ -3889,25 +3888,26 @@ button[data-vc-week-day] {
 }
 
 .description__list li:not(:last-child) {
-    margin-bottom: 1.25rem
+    margin-bottom: 1em
 }
 
 .description__steps {
-    margin-top: 2.5rem;
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: (1fr)[2];
     grid-template-columns: repeat(2, 1fr);
-    gap: 3.5rem;
-    font-size: 1.25rem;
-    row-gap: 2.21rem
+    gap: .5rem;
+    row-gap: 2.21rem;
+    margin-top: 2.3rem;
+    font-size: .75rem
 }
 
 .description__steps li {
     counter-increment: num;
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex
+    display: flex;
+    max-width: 70%
 }
 
 .description__steps li::before {
@@ -3919,11 +3919,12 @@ button[data-vc-week-day] {
 }
 
 .directions {
-    padding: 1.75rem 0
+    padding: 1.125rem 0
 }
 
 .directions__slider {
-    overflow: hidden
+    overflow: hidden;
+    margin-top: .875rem
 }
 
 .directions__slider .swiper-wrapper {
@@ -3936,7 +3937,6 @@ button[data-vc-week-day] {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
-    margin-top: 1.875rem;
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: (1fr)[2];
@@ -3967,9 +3967,9 @@ button[data-vc-week-day] {
 
 .directions__item {
     overflow: hidden;
-    border-radius: 1.875rem;
     position: relative;
-    background: #272727
+    background: #272727;
+    border-radius: 1.4375rem
 }
 
 .directions__image {
@@ -4004,7 +4004,7 @@ button[data-vc-week-day] {
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    gap: .81rem
+    gap: .375rem
 }
 
 .directions__info-day {
@@ -4086,18 +4086,17 @@ button[data-vc-week-day] {
 
 .directions__all-link {
     color: #797979;
-    font-size: 1.01875rem;
     font-weight: 500;
     -webkit-transition: color .3s ease;
-    transition: color .3s ease
+    transition: color .3s ease;
+    font-size: .625rem
 }
 
 .team {
-    padding: 5rem 0 5.625rem
+    padding: 1.56rem 0 1.5rem
 }
 
 .team__content {
-    margin-top: 1.5rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -4105,17 +4104,18 @@ button[data-vc-week-day] {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: 1rem
+    gap: .3125rem;
+    margin-top: 1rem
 }
 
 .team__info {
-    font-size: 1.125rem;
-    font-weight: 500;
-    line-height: 122.222%
+    font-size: 120%;
+    font-size: .625rem
 }
 
 .team__info h3 {
-    font-size: 1.9375rem
+    font-size: 1.25rem;
+    margin: 2rem 0 .25rem
 }
 
 .team__slider {
@@ -4127,7 +4127,7 @@ button[data-vc-week-day] {
 }
 
 .team__slider-pagination.swiper-pagination {
-    margin-bottom: .75rem
+    margin-bottom: .375rem
 }
 
 .expert {
@@ -4155,7 +4155,7 @@ button[data-vc-week-day] {
     height: 100%;
     -o-object-position: center 5%;
     object-position: center 5%;
-    border-radius: 1.25rem
+    border-radius: .75rem
 }
 
 .expert__content {
@@ -4171,36 +4171,40 @@ button[data-vc-week-day] {
 
 .expert__name {
     color: #313131;
-    font-size: 1.125rem;
     font-weight: 500;
-    line-height: 1.375rem;
-    text-transform: uppercase
+    text-transform: uppercase;
+    font-size: .75rem;
+    line-height: 1
 }
 
 .expert__position {
-    margin-top: .75rem;
-    font-size: .75rem;
     font-weight: 500;
-    line-height: 120%
+    line-height: 120%;
+    font-size: .5625rem;
+    margin-top: .5rem
 }
 
 .callback {
     background: #f9f9f9;
     text-align: center;
-    padding: .875rem 0 1.5rem
+    padding: .875rem 0
+}
+
+.callback__title {
+    max-width: 15rem;
+    margin: 0 auto
 }
 
 .callback__subtitle {
-    margin-top: .9375rem;
     color: #4f4f4f;
-    font-size: 1.125rem;
     font-weight: 500;
-    line-height: .8125rem;
-    text-transform: lowercase
+    text-transform: lowercase;
+    font-size: .625rem;
+    margin-top: .15rem
 }
 
 .callback__form {
-    margin-top: 1.375rem
+    margin-top: .8125rem
 }
 
 .callback__form-row {
@@ -4218,8 +4222,8 @@ button[data-vc-week-day] {
 
 .callback__form-row .wpcf7-form-control-wrap {
     -webkit-box-flex: 0;
-    -ms-flex: 0 0 calc(50% - .4375rem);
-    flex: 0 0 calc(50% - .4375rem)
+    -ms-flex: 0 0 calc(50% - .21875rem);
+    flex: 0 0 calc(50% - .21875rem)
 }
 
 .callback__form-row .wpcf7-form-control-wrap .wpcf7-not-valid-tip {
@@ -4235,15 +4239,17 @@ button[data-vc-week-day] {
 }
 
 .callback__tagline {
-    margin-top: 1rem;
+    margin-top: .5rem;
     color: #4f4f4f;
     font-weight: 500;
     text-transform: lowercase;
-    font-size: .625rem
+    font-size: .625rem;
+    max-width: 80%;
+    margin-inline: auto
 }
 
 .tours {
-    padding: 2.8125rem 0
+    padding: .75rem 0 1.5rem
 }
 
 .tours.tours--categories, .tours.tours--selection {
@@ -4251,22 +4257,19 @@ button[data-vc-week-day] {
 }
 
 .tours__grid {
-    margin-top: 1.5rem;
+    margin-top: .75rem;
     display: -ms-grid;
     display: grid;
-    row-gap: 1.875rem;
-    -webkit-column-gap: 1.25rem;
-    -moz-column-gap: 1.25rem;
-    column-gap: 1.25rem
+    gap: 1rem
 }
 
 .tours__actions {
-    margin-top: 1.4375rem
+    margin-top: 1.625rem
 }
 
 .tours__actions .btn {
     width: 100%;
-    max-width: 18.5625rem
+    max-width: 13.5rem
 }
 
 .tours__empty {
@@ -4403,15 +4406,15 @@ button[data-vc-week-day] {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: .25rem;
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
-    padding: .625rem 0
+    padding: .625rem 0;
+    gap: .125rem
 }
 
 .tour-card__title {
-    font-size: 1.125rem;
+    font-size: .9375rem;
     font-weight: 600;
     color: #262624;
     display: -webkit-box;
@@ -4423,8 +4426,8 @@ button[data-vc-week-day] {
 
 .tour-card__dates {
     color: #b5b5b5;
-    font-size: 1.125rem;
-    font-weight: 600
+    font-weight: 600;
+    font-size: .9375rem
 }
 
 .tour-card__footer {
@@ -4452,12 +4455,13 @@ button[data-vc-week-day] {
     -webkit-box-flex: 1;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
-    max-width: 12.25rem;
-    margin-left: auto
+    margin-left: auto;
+    max-width: 10.5rem
 }
 
 .tour-card__btn.btn {
-    padding-inline: .25rem
+    padding-inline: .25rem;
+    border-width: .0625rem
 }
 
 .tour {
@@ -4966,6 +4970,14 @@ button[data-vc-week-day] {
     margin-top: 2rem
 }
 
+.nojq {
+    display: none
+}
+
+html {
+    margin-top: 0 !important
+}
+
 @media (min-width:359.98px) {
     .header__main {
         gap: .5rem
@@ -4974,15 +4986,108 @@ button[data-vc-week-day] {
     .header__main .custom-logo-link {
         max-width: 5.75rem
     }
+
+    .footer__phone {
+        font-size: 1.125rem
+    }
+
+    .footer__email {
+        font-size: 1.125rem
+    }
 }
 
 @media (min-width:409.98px) {
+    [data-vc-week-day] {
+        font-size: 1.17413rem
+    }
+
+    [data-vc-date-btn] {
+        min-height: 2.1875rem;
+        min-width: 2.1875rem;
+        max-width: 2.1875rem;
+        font-size: .9375rem
+    }
+
+    .booking-calendar {
+        padding: 2rem 0
+    }
+
+    .booking-calendar__content {
+        margin-top: 1rem
+    }
+
+    .booking-calendar__header {
+        gap: 1.25rem
+    }
+
+    .booking-calendar__filter {
+        border: .1875rem solid transparent;
+        font-size: .9375rem;
+        padding: .44rem 1.56rem
+    }
+
+    .booking-calendar__filter.active {
+        border: .1875rem solid #b1df1d
+    }
+
+    .booking-calendar__controls {
+        gap: 1.4375rem
+    }
+
+    .booking-calendar__next, .booking-calendar__prev {
+        width: 2.1875rem;
+        height: 2.1875rem;
+        font-size: 1rem
+    }
+
+    .booking-calendar__month {
+        font-size: 1.25rem
+    }
+
+    .booking-calendar__body {
+        gap: 1.31rem;
+        margin-top: 1.46rem
+    }
+
+    .booking-calendar__block {
+        padding: 2rem 1.25rem 1.5rem
+    }
+
+    .booking-calendar__side {
+        padding: 3rem 2.31rem
+    }
+
+    .booking-calendar__caption {
+        font-size: 1.125rem
+    }
+
+    .booking-calendar__list {
+        margin-top: 1.94rem
+    }
+
+    .tours-list__name {
+        font-size: 1.125rem
+    }
+
+    .tours-list__duration {
+        font-size: .9375rem
+    }
+
+    .tours-list__price {
+        font-size: 1.125rem
+    }
+
     .popup__form {
         margin-top: 4rem
     }
 
     .title {
         font-size: 2.25rem
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+        --swiper-navigation-size: 2.1875rem;
+        font-size: 1rem
     }
 
     .socials {
@@ -5011,6 +5116,23 @@ button[data-vc-week-day] {
         font-size: 1.25rem
     }
 
+    .dropdown {
+        font-size: 1.125rem
+    }
+
+    .dropdown__list {
+        max-height: 17.5rem
+    }
+
+    .form__field {
+        gap: .69rem
+    }
+
+    .form__field-label {
+        font-size: .75rem;
+        padding: 0 1.69rem
+    }
+
     .form__control:is(textarea) {
         height: 8.125rem
     }
@@ -5025,6 +5147,159 @@ button[data-vc-week-day] {
         width: 1.875rem;
         height: 1.875rem
     }
+
+    .footer__column.footer__column--contacts {
+        gap: 2.5rem
+    }
+
+    .footer__phone {
+        font-size: 1.5625rem
+    }
+
+    .footer__desc {
+        margin-top: .875rem;
+        font-size: .9375rem
+    }
+
+    .footer__email {
+        font-size: 1.5625rem
+    }
+
+    .footer__menu-list {
+        gap: .5rem;
+        font-size: 1rem
+    }
+
+    .footer__reqs {
+        gap: 2rem;
+        max-width: 21.125rem
+    }
+
+    .footer__reqs-icon {
+        width: 3.125rem
+    }
+
+    .footer__reqs-content {
+        font-size: 1.5625rem;
+        letter-spacing: .0625rem
+    }
+
+    .footer__reqs-text {
+        letter-spacing: -.0375rem;
+        font-size: 1.25rem
+    }
+
+    .footer__socials-title {
+        line-height: 1.75rem;
+        font-size: 1.0625rem;
+        letter-spacing: .0425rem
+    }
+
+    .footer__socials-items {
+        gap: .9375rem;
+        margin-top: 1.19rem
+    }
+
+    .footer__policies-list a {
+        padding: .5rem;
+        font-size: .9rem
+    }
+
+    .selection__form {
+        padding: 1.375rem 1rem .5rem;
+        margin-top: 2.4rem
+    }
+
+    .selection__form-submit {
+        min-height: 2.8125rem
+    }
+
+    .selection__form-checkbox {
+        margin-left: 1.5625rem
+    }
+
+    .description {
+        padding: 1.5625rem 0 1.5625rem
+    }
+
+    .description__container {
+        gap: 2rem
+    }
+
+    .description__list {
+        margin-top: 2.5rem;
+        max-width: 30.625rem;
+        font-size: 1rem
+    }
+
+    .description__steps {
+        gap: 3.5rem;
+        row-gap: 2.21rem;
+        margin-top: 2.5rem;
+        font-size: 1rem
+    }
+
+    .description__steps li {
+        max-width: 100%
+    }
+
+    .directions {
+        padding: 1.75rem 0
+    }
+
+    .directions__item {
+        border-radius: 1.875rem
+    }
+
+    .directions__info-blocks {
+        gap: .81rem
+    }
+
+    .directions__all-link {
+        font-size: 1.01875rem
+    }
+
+    .team {
+        padding: 2.5rem 0 3.75rem
+    }
+
+    .team__content {
+        gap: 1rem;
+        margin-top: 1.5rem
+    }
+
+    .callback__title {
+        max-width: 100%
+    }
+
+    .callback__subtitle {
+        margin-top: .9375rem;
+        font-size: 1rem
+    }
+
+    .callback__form {
+        margin-top: 1.375rem
+    }
+
+    .tours {
+        padding: 1.875rem 0
+    }
+
+    .tours__actions .btn {
+        max-width: 18.5625rem
+    }
+
+    .tour-card__content {
+        gap: .25rem
+    }
+
+    .tour-card__title {
+        font-size: 1.125rem
+    }
+
+    .tour-card__dates {
+        font-size: 1.125rem
+    }
 }
 
 @media (min-width:575.98px) {
@@ -5037,6 +5312,19 @@ button[data-vc-week-day] {
         box-sizing: content-box;
         max-width: 33.75rem;
         padding: 0 1.25rem
+    }
+
+    .booking-calendar {
+        padding: 3.7rem 0
+    }
+
+    .booking-calendar__block {
+        padding: 4rem 1.69rem 2rem
+    }
+
+    .booking-calendar__block .vc-dates__row {
+        border-top: .125rem solid #dbdbdb;
+        padding: .75rem 0
     }
 
     .fancybox__slide {
@@ -5086,6 +5374,14 @@ button[data-vc-week-day] {
         max-width: 7.5rem
     }
 
+    .footer {
+        padding: 2.19rem 0
+    }
+
+    .footer__menu-list {
+        font-size: 1.125rem
+    }
+
     .hero__title {
         line-height: 1.1;
         font-size: 2.5rem
@@ -5107,12 +5403,24 @@ button[data-vc-week-day] {
         font-size: 1.25rem
     }
 
+    .selection {
+        padding: 2.5rem 0 1.5625rem
+    }
+
     .selection__form-row {
         -webkit-box-align: end;
         -ms-flex-align: end;
         align-items: end;
         -ms-grid-columns: (1fr)[2];
         grid-template-columns: repeat(2, 1fr)
+    }
+
+    .description__list {
+        font-size: 1.25rem
+    }
+
+    .directions__slider {
+        margin-top: 1.875rem
     }
 
     .directions__grid {
@@ -5142,12 +5450,55 @@ button[data-vc-week-day] {
         gap: 2rem
     }
 
+    .team__info {
+        font-size: 1.125rem;
+        font-weight: 500;
+        line-height: 122.222%
+    }
+
+    .team__info h3 {
+        margin: 2rem 0 1rem;
+        font-size: 1.9375rem
+    }
+
+    .expert__image img {
+        border-radius: 1.25rem
+    }
+
+    .expert__name {
+        line-height: 1.375rem;
+        font-size: 1.125rem
+    }
+
+    .expert__position {
+        margin-top: .75rem;
+        font-size: .75rem
+    }
+
     .callback {
         padding: 2rem 0 3.125rem
     }
 
+    .callback__subtitle {
+        line-height: .8125rem;
+        font-size: 1.125rem
+    }
+
     .callback__tagline {
+        margin-top: 1rem;
+        max-width: 100%;
         font-size: 1rem
+    }
+
+    .tours__grid {
+        -webkit-column-gap: 1.25rem;
+        -moz-column-gap: 1.25rem;
+        column-gap: 1.25rem;
+        row-gap: 1.25rem
+    }
+
+    .tours__actions {
+        margin-top: 1.4375rem
     }
 }
 
@@ -5158,11 +5509,6 @@ button[data-vc-week-day] {
 
     .container {
         max-width: 45rem
-    }
-
-    .form__control {
-        padding: .5rem 1rem;
-        font-size: 1rem
     }
 
     .btn {
@@ -5188,8 +5534,18 @@ button[data-vc-week-day] {
     }
 
     .footer__contacts {
-        -ms-grid-columns: auto;
-        grid-template-columns: auto
+        gap: 1.87rem;
+        margin-top: 0;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+    .footer__contacts-block {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto
     }
 
     .footer__socials-items .socials__item {
@@ -5207,6 +5563,7 @@ button[data-vc-week-day] {
     }
 
     .description__steps {
+        font-size: 1.25rem;
         row-gap: 6.6rem
     }
 
@@ -5238,6 +5595,10 @@ button[data-vc-week-day] {
         -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
         transform: translateY(-50%)
+    }
+
+    .team {
+        padding: 5rem 0 5.625rem
     }
 
     .team__slider .swiper-wrapper {
@@ -5275,12 +5636,18 @@ button[data-vc-week-day] {
     }
 
     .tours__grid {
+        margin-top: 1.5rem;
         -ms-grid-columns: (1fr)[2];
-        grid-template-columns: repeat(2, 1fr)
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 1.875rem
     }
 
     .tour-card__content {
         padding: .625rem .5rem
+    }
+
+    .tour-card__btn.btn {
+        border-width: .125rem
     }
 }
 
@@ -5485,9 +5852,21 @@ button[data-vc-week-day] {
         padding: 3.4375rem 0 5rem
     }
 
+    .tours {
+        padding: 2.8125rem 0
+    }
+
     .tours__grid {
         -ms-grid-columns: (1fr)[3];
         grid-template-columns: repeat(3, 1fr)
+    }
+
+    .tour-card__btn {
+        max-width: 12.25rem
+    }
+
+    .tour-card__btn.btn {
+        border-width: .1875rem
     }
 
     .tour__booking-header {
@@ -5546,6 +5925,11 @@ button[data-vc-week-day] {
         gap: 3.75rem
     }
 
+    .dropdown__button {
+        padding: .65625rem 1.4375rem;
+        font-size: 1.125rem
+    }
+
     .form__control {
         padding: .65625rem 1.4375rem;
         font-size: 1.125rem
@@ -5592,6 +5976,10 @@ button[data-vc-week-day] {
 
     .hero__title {
         font-size: 3.625rem
+    }
+
+    .description__column {
+        padding-left: 1.75rem
     }
 
     .description__title {
@@ -5752,9 +6140,23 @@ button[data-vc-week-day] {
     }
 }
 
+@media (max-width:575.98px) {
+    .team__info {
+        letter-spacing: normal
+    }
+}
+
 @media (max-width:409.98px) {
     .mobile-hidden {
         display: none !important
+    }
+
+    .selection__form-submit {
+        font-size: .9375rem
+    }
+
+    .tours__actions .btn {
+        padding: .125rem .625rem
     }
 }
 

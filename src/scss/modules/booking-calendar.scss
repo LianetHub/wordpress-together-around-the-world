@@ -7,16 +7,30 @@
 @use "calendar";
 
 .booking-calendar {
-    padding: 3.7rem 0;
     background: #F9F9F9;
+    padding: 1.75rem 0 0.94rem;
+
+    @media (min-width:$md5) {
+        padding: 2rem 0;
+
+    }
+
+    @media (min-width:$md4) {
+        padding: 3.7rem 0;
+
+    }
 
     // .booking-calendar__title
     &__title {}
 
     // .booking-calendar__content
     &__content {
-        margin-top: 1rem;
         transition: all 0.3s ease;
+        margin-top: rem(6);
+
+        @media (min-width:$md5) {
+            margin-top: 1rem;
+        }
 
         &:not(.is-loaded) {
             position: relative;
@@ -52,8 +66,12 @@
         display: flex;
         align-items: center;
         transition: opacity 0.3s ease;
-        gap: rem(20);
         flex-direction: column;
+        gap: rem(12);
+
+        @media (min-width:$md5) {
+            gap: rem(20);
+        }
 
         @media (min-width:$md2) {
             flex-direction: row;
@@ -75,17 +93,24 @@
 
     // .booking-calendar__filter
     &__filter {
-        font-size: 0.9375rem;
         font-weight: 500;
         line-height: 146.667%;
-        padding: 0.44rem 1.56rem;
         border-radius: 3.125rem;
         color: #B7B7B7;
-        border: rem(3) solid transparent;
+        border: rem(1) solid transparent;
         background: transparent;
         transition: all 0.3s ease;
         display: inline-block;
         user-select: none;
+        font-size: 0.5rem;
+        padding: rem(3) rem(10);
+
+        @media (min-width:$md5) {
+            border: rem(3) solid transparent;
+            font-size: 0.9375rem;
+            padding: 0.44rem 1.56rem;
+
+        }
 
         &.swiper-slide {
             width: fit-content;
@@ -99,8 +124,13 @@
 
         &.active {
             color: #3C3C3C;
-            border: rem(3) solid #B1DF1D;
             background: #FFF;
+            border: rem(1) solid #B1DF1D;
+
+            @media (min-width:$md5) {
+                border: rem(3) solid #B1DF1D;
+
+            }
         }
     }
 
@@ -135,17 +165,29 @@
     &__controls {
         display: flex;
         align-items: center;
-        gap: rem(23);
+        gap: rem(8);
+
+        @media (min-width:$md5) {
+            gap: rem(23);
+
+        }
     }
 
     // .booking-calendar__prev
     &__prev {
-        width: rem(35);
-        height: rem(35);
         background: #D9D9D9;
         color: #353535;
         border-radius: 50%;
         transition: all 0.3s ease;
+        width: 1.08238rem;
+        height: 1.08238rem;
+        font-size: 0.5rem;
+
+        @media (min-width:$md5) {
+            width: rem(35);
+            height: rem(35);
+            font-size: 1rem;
+        }
 
         &:disabled {
             opacity: 0.3;
@@ -163,11 +205,16 @@
     // .booking-calendar__month
     &__month {
         color: #000;
-        font-size: 1.25rem;
         font-weight: 600;
         line-height: 110%;
-        min-width: rem(142);
+        min-width: em(8.875, 1.25);
+        font-size: 0.5625rem;
         text-align: center;
+
+        @media (min-width:$md5) {
+            font-size: 1.25rem;
+
+        }
     }
 
     // .booking-calendar__next
@@ -177,9 +224,14 @@
 
     // .booking-calendar__body
     &__body {
-        margin-top: 1.46rem;
         display: grid;
-        gap: 1.31rem;
+        margin-top: rem(12);
+        gap: 0.69rem;
+
+        @media (min-width:$md5) {
+            gap: 1.31rem;
+            margin-top: 1.46rem;
+        }
 
         @media (min-width:$md2) {
             grid-template-columns: 1fr 0.875fr;
@@ -191,7 +243,16 @@
     &__block {
         border-radius: 1.25rem;
         background: #FFFDFD;
-        padding: 4rem 1.69rem 2rem;
+        padding: 0.75rem;
+
+        @media (min-width:$md5) {
+            padding: 2rem 1.25rem 1.5rem;
+        }
+
+        @media (min-width:$md4) {
+            padding: 4rem 1.69rem 2rem;
+
+        }
 
         [data-vc=calendar] {
             padding: 0;
@@ -203,8 +264,13 @@
 
         .vc-dates {
             &__row {
-                border-top: 0.125rem solid #DBDBDB;
-                padding: 0.75rem 0;
+                padding: 0.3rem 0;
+                border-top: rem(1) solid #DBDBDB;
+
+                @media (min-width:$md4) {
+                    border-top: 0.125rem solid #DBDBDB;
+                    padding: 0.75rem 0;
+                }
             }
         }
 
@@ -262,19 +328,34 @@
     &__side {
         border-radius: 1.25rem;
         background: #FFFDFD;
-        padding: 3rem 2.31rem;
+        padding: 1.5rem 1.06rem;
+        min-height: 8.1875rem;
+
+        @media (min-width:$md5) {
+            padding: 3rem 2.31rem;
+
+        }
     }
 
     // .booking-calendar__caption
     &__caption {
         color: #797979;
-        font-size: 1.125rem;
         font-weight: 500;
+        font-size: 0.75rem;
+
+        @media (min-width:$md5) {
+            font-size: 1.125rem;
+
+        }
     }
 
     // .booking-calendar__list
     &__list {
-        margin-top: 1.94rem;
+        margin-top: rem(11);
+
+        @media (min-width:$md5) {
+            margin-top: 1.94rem;
+        }
     }
 }
 
@@ -311,28 +392,42 @@
     // .tours-list__name
     &__name {
         color: #797979;
-        font-size: 1.125rem;
         font-weight: 500;
         line-height: 72.222%;
         transition: color 0.3s ease;
+        font-size: 0.625rem;
+
+        @media (min-width:$md5) {
+            font-size: 1.125rem;
+
+        }
     }
 
     // .tours-list__duration
     &__duration {
-        margin-top: 0.56rem;
+        margin-top: 0.25rem;
         color: #B7B7B7;
-        font-size: 0.9375rem;
         font-weight: 500;
         line-height: 146.667%;
+        font-size: 0.625rem;
+
+        @media (min-width:$md5) {
+            font-size: 0.9375rem;
+
+        }
     }
 
     // .tours-list__price
     &__price {
         flex-shrink: 0;
         color: #383838;
-        font-size: 1.125rem;
         font-weight: 600;
         line-height: 72.222%;
         text-transform: lowercase;
+        font-size: 0.75rem;
+
+        @media (min-width:$md5) {
+            font-size: 1.125rem;
+        }
     }
 }

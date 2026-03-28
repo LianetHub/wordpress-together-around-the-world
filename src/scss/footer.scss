@@ -8,7 +8,12 @@
 .footer {
 	background: #0C0C0C;
 	color: #E0E0E0;
-	padding: 2.19rem 0;
+	padding: 1.88rem 0 .875rem;
+
+	@media (min-width:$md4) {
+		padding: 2.19rem 0;
+
+	}
 
 	// .footer__header
 	&__header {
@@ -51,8 +56,14 @@
 		}
 
 		&.footer__column--contacts {
-			gap: rem(40);
 			flex-direction: row-reverse;
+			justify-content: space-between;
+			gap: rem(10);
+
+			@media (min-width:$md5) {
+				gap: rem(40);
+
+			}
 
 			@media (min-width:$md3) {
 				flex-direction: column;
@@ -61,24 +72,46 @@
 		}
 	}
 
+	// .footer__contacts
 	&__contacts {
-		gap: 1.87rem;
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+
+		display: flex;
+		justify-content: space-between;
+		margin-top: 0.875rem;
+		gap: 1rem;
 
 		@media (min-width:$md3) {
-			grid-template-columns: auto;
+			gap: 1.87rem;
+			margin-top: 0;
+			flex-direction: column;
+		}
+	}
+
+	// .footer__contacts-block
+	&__contacts-block {
+		flex: 0 1 50%;
+
+		@media (min-width:$md3) {
+			flex: 0 1 auto;
 		}
 	}
 
 	// .footer__phone
 	&__phone {
 		color: #FFF;
-		font-size: 1.5625rem;
 		font-weight: 600;
 		line-height: 112%;
+		white-space: nowrap;
 		letter-spacing: -0.01563rem;
 		transition: color 0.3s ease;
+
+		@media (min-width:$md6) {
+			font-size: 1.125rem;
+		}
+
+		@media (min-width:$md5) {
+			font-size: 1.5625rem;
+		}
 
 		@media (any-hover: hover) {
 			&:hover {
@@ -89,22 +122,38 @@
 
 	// .footer__desc
 	&__desc {
-		margin-top: 0.875rem;
 		color: #8E8E8E;
-		font-size: 0.9375rem;
+
 		font-weight: 500;
-		line-height: 1.125rem;
+		line-height: math.div(1.125, 0.9375);
 		text-transform: lowercase;
+		margin-top: 0.25rem;
+		font-size: 0.75rem;
+
+		@media (min-width:$md5) {
+			margin-top: 0.875rem;
+			font-size: 0.9375rem;
+
+		}
 	}
 
 	// .footer__email
 	&__email {
 		color: #FFF;
-		font-size: 1.5625rem;
 		font-weight: 600;
 		line-height: 112%;
 		letter-spacing: -0.01563rem;
 		transition: color 0.3s ease;
+		white-space: nowrap;
+
+		@media (min-width:$md6) {
+			font-size: 1.125rem;
+
+		}
+
+		@media (min-width:$md5) {
+			font-size: 1.5625rem;
+		}
 
 		@media (any-hover: hover) {
 			&:hover {
@@ -121,11 +170,21 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: 0.5rem;
+		gap: 0.125rem;
 		color: #E0E0E0;
-		font-size: 1.125rem;
 		font-weight: 600;
 		line-height: 155.556%;
+		font-size: 0.75rem;
+
+		@media (min-width:$md5) {
+			gap: 0.5rem;
+			font-size: 1rem;
+		}
+
+		@media (min-width:$md4) {
+			font-size: 1.125rem;
+
+		}
 
 		& a {
 			transition: color 0.3s ease;
@@ -143,10 +202,16 @@
 		background: #4C4C4C;
 		display: flex;
 		align-items: center;
-		gap: 2rem;
-		padding: rem(12) rem(16);
+
+		padding: rem(3) rem(3) rem(3) rem(8);
 		border-radius: 0.9375rem;
-		max-width: 21.125rem;
+		max-width: 11.925rem;
+		gap: 0.25rem;
+
+		@media (min-width:$md5) {
+			gap: 2rem;
+			max-width: 21.125rem;
+		}
 
 		@media (min-width:$md1) {
 			max-width: 24.125rem;
@@ -157,15 +222,27 @@
 	// .footer__reqs-icon
 	&__reqs-icon {
 		flex-shrink: 0;
+		width: rem(36);
+
+		@media (min-width:$md5) {
+			width: rem(50);
+
+		}
 	}
 
 	// .footer__reqs-content
 	&__reqs-content {
 		color: #FFF;
-		font-size: 1.5625rem;
 		font-weight: 600;
 		line-height: 112%;
-		letter-spacing: 0.0625rem;
+		font-size: 0.75rem;
+		letter-spacing: 0.03rem;
+
+		@media (min-width:$md5) {
+			font-size: 1.5625rem;
+			letter-spacing: 0.0625rem;
+
+		}
 
 	}
 
@@ -174,11 +251,17 @@
 
 	// .footer__reqs-text
 	&__reqs-text {
-		font-size: 1.25rem;
 		line-height: 1.5;
-		letter-spacing: -0.0375rem;
 		color: #C0C0C0;
 		text-transform: uppercase;
+		font-size: 0.75rem;
+		letter-spacing: -0.0225rem;
+
+		@media (min-width:$md5) {
+			letter-spacing: -0.0375rem;
+			font-size: 1.25rem;
+
+		}
 	}
 
 	// .footer__socials
@@ -189,16 +272,30 @@
 	// .footer__socials-title
 	&__socials-title {
 		color: #E0E0E0;
-		font-size: 1.0625rem;
 		font-weight: 600;
-		line-height: 1.75rem;
+
 		letter-spacing: 0.0425rem;
+		font-size: 0.75rem;
+		letter-spacing: 0.03rem;
+
+		@media (min-width:$md5) {
+			line-height: 1.75rem;
+			font-size: 1.0625rem;
+			letter-spacing: 0.0425rem;
+
+		}
 	}
 
 	// .footer__socials-items
 	&__socials-items {
-		margin-top: 1.19rem;
-		gap: rem(15);
+		margin-top: 0.625rem;
+		gap: rem(11);
+
+		@media (min-width:$md5) {
+			gap: rem(15);
+			margin-top: 1.19rem;
+
+		}
 
 		@media (min-width:$md3) {
 			.socials__item {
@@ -236,9 +333,14 @@
 			font-weight: 600;
 			line-height: math.div(1.75, 1.0625);
 			letter-spacing: 0.0425rem;
-			padding: 0.5rem;
 			display: block;
-			font-size: 0.9rem;
+			font-size: 0.75rem;
+			padding: 0.25rem;
+
+			@media (min-width:$md5) {
+				padding: 0.5rem;
+				font-size: 0.9rem;
+			}
 
 			@media (min-width:$md1) {
 				font-size: 1.0625rem;

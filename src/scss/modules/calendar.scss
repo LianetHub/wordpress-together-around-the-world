@@ -1,3 +1,10 @@
+@use "sass:color";
+@use "sass:math";
+@use "mixins" as *;
+@use "variables" as *;
+@use "fonts";
+@use "icons";
+
 [data-vc=calendar] {
     border-radius: .75rem;
     box-sizing: border-box;
@@ -256,15 +263,21 @@
     background-color: transparent;
     border-style: none;
     display: flex;
-    font-size: 1.17413rem;
+
     font-weight: 500;
     justify-content: center;
     text-transform: uppercase;
     line-height: 115%;
     margin: 0;
-    min-width: 1.875rem;
     padding: 0;
-    width: 100%
+    width: 100%;
+    font-size: 0.625rem;
+    min-width: 1.875rem;
+
+    @media (min-width:$md5) {
+
+        font-size: 1.17413rem;
+    }
 }
 
 button[data-vc-week-day] {
@@ -315,25 +328,33 @@ button[data-vc-week-day] {
 
 [data-vc-date-btn] {
     align-items: center;
-    border-radius: .5rem;
     border-width: 0;
     text-transform: uppercase;
     cursor: pointer;
     display: flex;
-    font-size: 0.9375rem;
+
     font-weight: 500;
     height: 100%;
     justify-content: center;
     line-height: 115%;
-    min-height: 2.1875rem;
-    min-width: 2.1875rem;
-    max-width: 2.1875rem;
+
     border-radius: 50%;
     padding: 0;
     transition-duration: 75ms;
     transition-property: all;
     transition-timing-function: cubic-bezier(.4, 0, .2, 1);
-    width: 100%
+    width: 100%;
+    min-width: 1.17819rem;
+    max-width: 1.17819rem;
+    min-height: 1.17819rem;
+    font-size: 0.5625rem;
+
+    @media (min-width:$md5) {
+        min-height: 2.1875rem;
+        min-width: 2.1875rem;
+        max-width: 2.1875rem;
+        font-size: 0.9375rem;
+    }
 }
 
 [data-vc-date][data-vc-date-today] [data-vc-date-btn] {

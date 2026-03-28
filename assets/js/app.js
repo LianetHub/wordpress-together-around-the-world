@@ -118,6 +118,7 @@ $(function () {
     if ($('.directions__slider').length) {
         new Swiper('.directions__slider', {
             slidesPerView: 1,
+            autoHeight: true,
             navigation: {
                 prevEl: '.directions__prev',
                 nextEl: '.directions__next'
