@@ -404,10 +404,11 @@
         display: flex;
         gap: 1rem;
         flex-direction: column;
+        padding-bottom: 1.37rem;
 
         @media (min-width:$md3) {
             align-items: flex-start;
-            padding-bottom: 1.37rem;
+
             flex-direction: row;
         }
     }
@@ -600,22 +601,24 @@
         display: flex;
         flex-direction: column;
         position: relative;
-        padding-block: rem(20);
+        padding-bottom: rem(20);
 
-        &:not(:first-child) {
-            border-top: rem(1) solid #D9D9D9;
-        }
 
         &:not(:last-child) {
-            margin-bottom: rem(8);
+            border-bottom: rem(1) solid #D9D9D9;
+            padding-bottom: rem(28);
         }
     }
 
     // .booking-form__caption
     &__caption {
+
+        padding-top: rem(20);
+        display: block;
         color: #000;
         font-size: 1.63069rem;
         font-weight: 600;
+        width: 100% !important;
     }
 
     // .booking-form__body
@@ -668,7 +671,12 @@
         border-top: rem(1) solid #D9D9D9;
 
         .booking-form__block {
-            padding-right: 5rem;
+            padding-right: 3rem;
+
+            @media (min-width:$md5) {
+                padding-right: 5rem;
+
+            }
 
             &:first-child {
                 .booking-form__remove {
@@ -689,9 +697,10 @@
         margin-top: 1rem;
         display: grid;
         gap: rem(18);
-        row-gap: rem(32);
+        gap: 1rem;
 
         @media (min-width:$md4) {
+            row-gap: rem(32);
             grid-template-columns: repeat(2, 1fr);
         }
 
@@ -704,7 +713,7 @@
     // .booking-form__controls
     &__controls {
         position: absolute;
-        bottom: 1.25rem;
+        bottom: rem(28);
         right: 0;
         top: 0;
         display: flex;

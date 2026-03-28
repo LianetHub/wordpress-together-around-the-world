@@ -376,7 +376,7 @@ body.error404 .main {
 .breadcrumbs {
   position: relative;
   z-index: 3;
-  padding: 1rem 0;
+  padding: 1.5rem 0 1rem;
 }
 
 .breadcrumbs__list {
@@ -2805,10 +2805,10 @@ select.select {
 .form__field-clear {
   position: absolute;
   right: 1rem;
-  bottom: 0.75rem;
   font-size: 1.5rem;
   -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;
+  bottom: 0.3rem;
 }
 
 .form__field-label {
@@ -2866,8 +2866,8 @@ select.select {
 }
 
 .form__control.form__control--green-outline {
-  border: 0.1875rem solid #B1DF1D;
   text-align: center;
+  border: 0.0625rem solid #B1DF1D;
 }
 
 .form__control.form__control--underline {
@@ -4732,6 +4732,7 @@ select.select {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding-bottom: 1.37rem;
 }
 
 .tour__booking-text.typography-block {
@@ -4905,21 +4906,21 @@ select.select {
       -ms-flex-direction: column;
           flex-direction: column;
   position: relative;
-  padding-block: 1.25rem;
-}
-
-.booking-form__block:not(:first-child) {
-  border-top: 0.0625rem solid #D9D9D9;
+  padding-bottom: 1.25rem;
 }
 
 .booking-form__block:not(:last-child) {
-  margin-bottom: 0.5rem;
+  border-bottom: 0.0625rem solid #D9D9D9;
+  padding-bottom: 1.75rem;
 }
 
 .booking-form__caption {
+  padding-top: 1.25rem;
+  display: block;
   color: #000;
   font-size: 1.63069rem;
   font-weight: 600;
+  width: 100% !important;
 }
 
 .booking-form__body {
@@ -4960,7 +4961,7 @@ select.select {
 }
 
 .booking-form__passengers .booking-form__block {
-  padding-right: 5rem;
+  padding-right: 3rem;
 }
 
 .booking-form__passengers .booking-form__block:first-child .booking-form__remove {
@@ -4978,12 +4979,12 @@ select.select {
   display: -ms-grid;
   display: grid;
   gap: 1.125rem;
-  row-gap: 2rem;
+  gap: 1rem;
 }
 
 .booking-form__controls {
   position: absolute;
-  bottom: 1.25rem;
+  bottom: 1.75rem;
   right: 0;
   top: 0;
   display: -webkit-box;
@@ -5178,7 +5179,7 @@ select.select {
   }
 }
 
-@media (min-width: 409.98px) {
+@media (min-width: 449.98px) {
   .typography-block {
     font-size: 1.20313rem;
   }
@@ -5509,6 +5510,10 @@ select.select {
     max-width: 17.9375rem;
   }
 
+  .booking-form__passengers .booking-form__block {
+    padding-right: 5rem;
+  }
+
   .error__btns {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -5579,6 +5584,14 @@ select.select {
 
   .popup__form-footer {
     margin-top: 2rem;
+  }
+
+  .form__field-clear {
+    bottom: 0.4rem;
+  }
+
+  .form__control.form__control--green-outline {
+    border: 0.1875rem solid #B1DF1D;
   }
 
   .btn.btn-sm {
@@ -5747,6 +5760,7 @@ select.select {
   }
 
   .booking-form__row {
+    row-gap: 2rem;
     -ms-grid-columns: (1fr)[2];
     grid-template-columns: repeat(2, 1fr);
   }
@@ -5912,7 +5926,6 @@ select.select {
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
-    padding-bottom: 1.37rem;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -6232,6 +6245,10 @@ select.select {
     font-size: 1.125rem;
   }
 
+  .form__field-clear {
+    bottom: 0.75rem;
+  }
+
   .form__control {
     padding: 0.65625rem 1.4375rem;
     font-size: 1.125rem;
@@ -6449,7 +6466,7 @@ select.select {
   }
 }
 
-@media (max-width: 409.98px) {
+@media (max-width: 449.98px) {
   .mobile-hidden {
     display: none !important;
   }

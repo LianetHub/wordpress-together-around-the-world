@@ -60,9 +60,19 @@
 	&__field-clear {
 		position: absolute;
 		right: 1rem;
-		bottom: 0.75rem;
 		font-size: 1.5rem;
 		transition: color 0.3s ease;
+		bottom: 0.3rem;
+
+		@media (min-width:$md4) {
+			bottom: 0.4rem;
+
+		}
+
+		@media (min-width:$md1) {
+			bottom: 0.75rem;
+
+		}
 
 		@media (any-hover: hover) {
 			&:hover {
@@ -121,8 +131,13 @@
 		}
 
 		&.form__control--green-outline {
-			border: rem(3) solid #B1DF1D;
 			text-align: center;
+			border: rem(1) solid #B1DF1D;
+
+			@media (min-width:$md4) {
+				border: rem(3) solid #B1DF1D;
+
+			}
 		}
 
 		&.form__control--underline {
