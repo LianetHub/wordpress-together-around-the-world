@@ -114,6 +114,17 @@ $(function () {
         })
     }
 
+    if ($('.tour__gallery').length) {
+        new MobileSwiper('.tour__gallery', {
+            slidesPerView: 1.5,
+            spaceBetween: 8,
+            pagination: {
+                el: '.tour__gallery-pagination',
+                clickable: true
+            }
+        })
+    }
+
 
     if ($('.directions__slider').length) {
         new Swiper('.directions__slider', {

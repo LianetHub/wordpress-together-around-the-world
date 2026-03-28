@@ -3952,6 +3952,11 @@ button[data-vc-week-day] {
     grid-template-columns: auto
 }
 
+.directions__grid.directions__grid--count-1 .directions__item {
+    -ms-grid-row-span: 2;
+    grid-row: span 2
+}
+
 .directions__grid.directions__grid--count-2 {
     -ms-grid-columns: (1fr)[2];
     grid-template-columns: repeat(2, 1fr)
@@ -4587,8 +4592,28 @@ button[data-vc-week-day] {
     flex-shrink: 0
 }
 
+.tour__details {
+    margin-top: 2rem
+}
+
+.tour__gallery {
+    overflow: visible
+}
+
+.tour__gallery-pagination {
+    margin-top: 1.5rem
+}
+
+.tour__gallery-item.swiper-slide {
+    height: auto
+}
+
+.tour__gallery-img {
+    border-radius: 1.5625rem
+}
+
 .tour__departure {
-    margin-top: 3.75rem
+    margin-top: 1.5rem
 }
 
 .tour__departure-header {
@@ -4705,6 +4730,10 @@ button[data-vc-week-day] {
 
 .tour__included-price strong {
     font-weight: 800
+}
+
+.tour__bottom-desc {
+    margin-top: 1.5rem
 }
 
 .tour__included-text {
@@ -5584,6 +5613,10 @@ button[data-vc-week-day] {
         grid-column: span 2
     }
 
+    .tour__details {
+        margin-top: 3.75rem
+    }
+
     .tour__actions {
         margin-top: 4rem;
         -webkit-box-orient: horizontal;
@@ -5767,6 +5800,21 @@ button[data-vc-week-day] {
         -webkit-box-direction: normal;
         -ms-flex-direction: row;
         flex-direction: row
+    }
+
+    .tour__gallery .swiper-wrapper {
+        display: -ms-grid;
+        display: grid;
+        gap: 2rem
+    }
+
+    .tour__gallery .swiper-wrapper {
+        -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    .tour__gallery-pagination {
+        display: none
     }
 
     .tour__info {
@@ -6041,6 +6089,16 @@ button[data-vc-week-day] {
         max-width: 17.9375rem
     }
 
+    .tour__gallery .swiper-wrapper {
+        -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr)
+    }
+
+    .tour__gallery-item.tour__gallery-item--large {
+        -ms-grid-column-span: 2;
+        grid-column: span 2
+    }
+
     .booking-form__body {
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;
@@ -6208,6 +6266,12 @@ button[data-vc-week-day] {
 
     .tour__departure-text {
         padding-inline: 1.25rem
+    }
+
+    .tour__departure-text img {
+        margin-inline: -1.25rem;
+        width: calc(100% + 2.5rem);
+        max-width: calc(100% + 2.5rem)
     }
 
     .booking-form__row {

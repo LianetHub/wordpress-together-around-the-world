@@ -22,6 +22,9 @@
     $tour_included  = get_field('tour_included');
     $tour_conditions = get_field('tour_conditions');
 
+    $tour_gallery = get_field('tour_gallery');
+    $tour_bottom_description = get_field('tour_bottom_description');
+
     $date_str = get_formatted_tour_dates($date_from, $date_to, 'tour_page');
     $departure_full = get_formatted_tour_departure($date_from, $departure_time);
 
@@ -86,6 +89,33 @@
         </div>
 
         <div class="tour__details">
+            <?php if ($tour_gallery) : ?>
+                <div class="tour__gallery swiper">
+                    <div class="swiper-wrapper">
+                        <?php foreach ($tour_gallery as $item) :
+                            $image_data = $item['image'];
+                            $is_large   = $item['is_large'];
+
+                            if ($image_data) :
+                                $full_url  = $image_data['url'];
+                                $thumb_url = $image_data['sizes']['large'];
+                                $alt       = !empty($image_data['alt']) ? $image_data['alt'] : get_the_title();
+                        ?>
+                                <a href="<?php echo esc_url($full_url); ?>"
+                                    data-fancybox="tour-gallery"
+                                    class="tour__gallery-item swiper-slide <?php echo $is_large ? 'tour__gallery-item--large' : ''; ?>">
+                                    <img
+                                        src="<?php echo esc_url($thumb_url); ?>"
+                                        alt="<?php echo esc_attr($alt); ?>"
+                                        class="tour__gallery-img cover-image"
+                                        loading="lazy">
+                                </a>
+                        <?php endif;
+                        endforeach; ?>
+                    </div>
+                    <div class="tour__gallery-pagination swiper-pagination"></div>
+                </div>
+            <?php endif; ?>
             <div class="tour__departure">
                 <div class="tour__departure-header">
                     <div class="tour__departure-title">Выезд</div>
@@ -130,7 +160,14 @@
                         </div>
                     <?php endif; ?>
                 </div>
+
+
             </div>
+            <?php if ($tour_bottom_description) : ?>
+                <div class="tour__bottom-desc typography-block">
+                    <?php echo $tour_bottom_description; ?>
+                </div>
+            <?php endif; ?>
             <div class="tour__actions">
                 <a href="#callback" data-fancybox class="tour__btn btn btn-secondary">Оставить заявку</a>
                 <a href="#booking-block" class="tour__btn btn btn-primary js-anchor-booking">Забронировать тур</a>
