@@ -28,7 +28,7 @@
                                     type="radio"
                                     name="communication_method"
                                     value="telegram"
-                                    checked
+
                                     class="form__option-input hidden" hidden>
                                 <span class="form__option-btn">Телеграм</span>
                             </label>
@@ -36,10 +36,11 @@
                                 <input
                                     type="radio"
                                     name="communication_method"
-                                    value="whatsapp"
+                                    value="Max"
+                                    checked
                                     class="form__option-input hidden"
                                     hidden>
-                                <span class="form__option-btn">WA</span>
+                                <span class="form__option-btn">Max</span>
                             </label>
                             <label class="form__option">
                                 <input

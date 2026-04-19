@@ -138,7 +138,8 @@ function theme_scripts_add_attributes($tag, $handle)
         'fancybox-js',
         'expert-review-scripts',
         'current-template-js',
-        'app-js'
+        'app-js',
+        'responsive-lightbox'
     );
 
     if (in_array($handle, $deferred_scripts)) {
@@ -179,6 +180,14 @@ add_action('init', function () {
     ]);
 });
 
+add_action('template_redirect', 'theme_redirect_empty_category');
+function theme_redirect_empty_category()
+{
+    if (is_category('net-kategorii')) {
+        wp_redirect(home_url(), 301);
+        exit;
+    }
+}
 
 // =========================================================================
 // 6. SECURITY & CLEANUP

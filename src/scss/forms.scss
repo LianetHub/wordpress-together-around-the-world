@@ -617,7 +617,7 @@
 	&:disabled,
 	&[aria-disabled="true"] {
 		cursor: default;
-		color: $white;
+		background: #ccc;
 		pointer-events: none;
 	}
 

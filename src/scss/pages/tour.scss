@@ -655,6 +655,13 @@
 
         }
     }
+
+    &__booking-sold-out {
+        color: #000;
+        border-color: #f04438;
+        background-color: #f04438;
+        pointer-events: none;
+    }
 }
 
 .booking-form {

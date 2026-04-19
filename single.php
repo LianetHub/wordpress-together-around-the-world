@@ -42,6 +42,9 @@
             }
         }
     }
+
+    $badge = get_field('tour_badge');
+    $is_sold_out = ($badge === 'sold');
     ?>
 
     <div class="container">
@@ -66,8 +69,12 @@
                 <?php endif; ?>
 
                 <div class="tour__booking-actions">
-                    <a href="#callback" data-fancybox class="tour__booking-order btn btn-primary">Оставить заявку</a>
-                    <button type="button" class="tour__booking-btn btn btn-primary">Забронировать тур</button>
+                    <?php if ($is_sold_out) : ?>
+                        <span class="tour__booking-sold-out btn">Мест нет</span>
+                    <?php else : ?>
+                        <a href="#callback" data-fancybox class="tour__booking-order btn btn-primary">Оставить заявку</a>
+                        <button type="button" class="tour__booking-btn btn btn-primary">Забронировать тур</button>
+                    <?php endif; ?>
                 </div>
             </div>
 
@@ -85,7 +92,11 @@
                     </a>
                 <?php endif; ?>
             </div>
-            <?php require(TEMPLATE_PATH . '_booking-form.php'); ?>
+            <?php
+            if (!$is_sold_out) {
+                require(TEMPLATE_PATH . '_booking-form.php');
+            }
+            ?>
         </div>
 
         <div class="tour__details">
@@ -168,10 +179,12 @@
                     <?php echo $tour_bottom_description; ?>
                 </div>
             <?php endif; ?>
-            <div class="tour__actions">
-                <a href="#callback" data-fancybox class="tour__btn btn btn-secondary">Оставить заявку</a>
-                <a href="#booking-block" class="tour__btn btn btn-primary js-anchor-booking">Забронировать тур</a>
-            </div>
+            <?php if (!$is_sold_out) : ?>
+                <div class="tour__actions">
+                    <a href="#callback" data-fancybox class="tour__btn btn btn-secondary">Оставить заявку</a>
+                    <a href="#booking-block" class="tour__btn btn btn-primary js-anchor-booking">Забронировать тур</a>
+                </div>
+            <?php endif; ?>
         </div>
         <div class="tour__description">
             <?php the_content() ?>

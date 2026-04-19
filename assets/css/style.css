@@ -3373,7 +3373,7 @@ select.select {
 .btn:disabled,
 .btn[aria-disabled=true] {
   cursor: default;
-  color: #ffffff;
+  background: #ccc;
   pointer-events: none;
 }
 
@@ -3874,7 +3874,7 @@ select.select {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  min-height: 43.75rem;
+  min-height: max(43.75rem, 100svh);
   padding: 7.5rem 0 1.25rem;
 }
 
@@ -4935,6 +4935,13 @@ select.select {
 
 .tour__btn {
   width: 100%;
+}
+
+.tour__booking-sold-out {
+  color: #000;
+  border-color: #f04438;
+  background-color: #f04438;
+  pointer-events: none;
 }
 
 .booking-form__header {
@@ -6363,7 +6370,7 @@ select.select {
   }
 
   .hero {
-    min-height: 58.875rem;
+    min-height: max(58.875rem, 100svh);
     padding: 19.9375rem 0 3.625rem;
   }
 
